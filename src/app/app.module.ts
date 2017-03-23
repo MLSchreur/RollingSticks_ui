@@ -9,16 +9,20 @@ import './rxjs-extensions';
 
 import { AppComponent }           from './app.component';
 import { BladmuziekComponent }    from './bladmuziek/bladmuziek.component';
+import { LoginComponent }         from './login/login.component';
+import { AlertModule }            from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BladmuziekComponent
+    BladmuziekComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,6 +12,7 @@ import { BladmuziekService }     from './bladmuziek.service';
 
 export class BladmuziekComponent {
   title = 'bladmuziek works!';
+
   allBladmuziek:    Bladmuziek[];
   bladmuziek:       Bladmuziek;
   bladmuziekInvoer: Bladmuziek = new Bladmuziek;
