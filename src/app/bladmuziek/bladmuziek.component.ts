@@ -12,9 +12,10 @@ import { BladmuziekService }     from './bladmuziek.service';
 
 export class BladmuziekComponent {
   title = 'bladmuziek works!';
-  allBladmuziek:  Bladmuziek[];
-  bladmuziek:     Bladmuziek;
-  bladmuziekId:   number;
+  allBladmuziek:    Bladmuziek[];
+  bladmuziek:       Bladmuziek;
+  bladmuziekInvoer: Bladmuziek = new Bladmuziek;
+  bladmuziekId:     number;
 
   constructor(private bladmuziekService: BladmuziekService) {
   }
@@ -34,6 +35,19 @@ export class BladmuziekComponent {
       console.log("Bladmuziek per stuk, succes!");
       console.log(bladmuziek);
       this.bladmuziek = bladmuziek;
+    });
+  }
+
+  postBladmuziek() {
+    console.log(this.bladmuziekInvoer);
+    // zonder .subscribe werkt het niet!
+    // Deze code gaan gebruiken, zodra backend text (id) teruggeeft ipv json
+    // this.bladmuziekService.postBladmuziek(this.bladmuziekInvoer).subscribe();
+    this.bladmuziekService.postBladmuziek(this.bladmuziekInvoer).subscribe(bladmuziekInvoer => {
+      console.log("Bladmuziek gepost, succes!");
+      console.log(bladmuziekInvoer);
+      this.bladmuziek = bladmuziekInvoer;
+      this.bladmuziekId = bladmuziekInvoer.id;
     });
   }
 }

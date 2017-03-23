@@ -20,3 +20,10 @@
         <li>{{ bladmuziek.artiest }} - {{ bladmuziek.titel }} - {{ bladmuziek.lesonderdeel }}</li>
     </ul>
 </div>
+<div>
+    <input [(ngModel)]="bladmuziekInvoer.titel" placeholder="Titel">
+    <input [(ngModel)]="bladmuziekInvoer.artiest" placeholder="Artiest">
+    <input [(ngModel)]="bladmuziekInvoer.omschrijving" placeholder="Omschrijving">
+    <input [(ngModel)]="bladmuziekInvoer.lesonderdeel" placeholder="Lesonderdeel">
+    <button (click)="postBladmuziek()">Post Bladmuziek</button>
+</div>

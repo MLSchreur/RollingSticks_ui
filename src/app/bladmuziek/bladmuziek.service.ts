@@ -17,9 +17,12 @@ export class BladmuziekService {
 
   postBladmuziek(bladmuziek: Bladmuziek) {
     console.log("bladmuziek.service - postBladmuziek");
-    return this.http.post("http://localhost:8082/api/bladmziek", JSON.stringify(bladmuziek), { headers: this.headers }).map(res => {
-      console.log("New bladmuziek id = " + res.text());
-    });
+    return this.http.post("http://localhost:8082/api/bladmuziek", JSON.stringify(bladmuziek), { headers: this.headers }).map(res => res.json());
+      
+    // Deze statements gebruiken, wanneer de backend text terugstuurt (alleen id) ipv het hele JSON object.
+    // return this.http.post("http://localhost:8082/api/bladmuziek", JSON.stringify(bladmuziek), { headers: this.headers }).map(res => {
+    //   console.log("New bladmuziek id = " + res.text());
+    // });
   }  
   
   // Ik beloof (observable, vroeger promise) dat ik een bladmuziek ga opsturen, maar zeg niet wanneer.
