@@ -17,7 +17,8 @@ export class BladmuziekService {
 
   postBladmuziek(bladmuziek: Bladmuziek) {
     console.log("bladmuziek.service - postBladmuziek");
-    return this.http.post("http://localhost:8082/api/bladmuziek", JSON.stringify(bladmuziek), { headers: this.headers }).map(res => res.json());
+    return this.http.post("http://rollingsticks.test.carpago.nl/api/bladmuziek", JSON.stringify(bladmuziek), { headers: this.headers }).map(res => res.json());
+//    return this.http.post("http://localhost:8082/api/bladmuziek", JSON.stringify(bladmuziek), { headers: this.headers }).map(res => res.json());
       
     // Deze statements gebruiken, wanneer de backend text terugstuurt (alleen id) ipv het hele JSON object.
     // return this.http.post("http://localhost:8082/api/bladmuziek", JSON.stringify(bladmuziek), { headers: this.headers }).map(res => {
@@ -29,11 +30,13 @@ export class BladmuziekService {
   // Oftewel asynchroon.
   // Wat je terugkrijgt is res, maar alleen het .json gedeelte wordt wat meegedaan. Terug naar aanroepende functie gaat dan alleen het json gedeelte
   getBladmuziekById(id: number): Observable<Bladmuziek> {
-    return this.http.get("http://localhost:8082/api/bladmuziek/" + id).map(res => res.json());
+    return this.http.get("http://rollingsticks.test.carpago.nl/api/bladmuziek/" + id).map(res => res.json());
+//    return this.http.get("http://localhost:8082/api/bladmuziek/" + id).map(res => res.json());
   }
 
   getBladmuziek(): Observable<Bladmuziek[]> {
-    return this.http.get("http://localhost:8082/api/bladmuziek").map(res => res.json());
+    return this.http.get("http://rollingsticks.test.carpago.nl/api/bladmuziek").map(res => res.json());
+//    return this.http.get("http://localhost:8082/api/bladmuziek").map(res => res.json());
   }  
   
 }
