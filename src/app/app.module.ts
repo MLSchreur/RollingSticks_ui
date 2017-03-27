@@ -10,13 +10,15 @@ import './rxjs-extensions';
 import { AppComponent }           from './app.component';
 import { BladmuziekComponent }    from './bladmuziek/bladmuziek.component';
 import { LoginComponent }         from './login/login.component';
+import { UploadComponent }        from './upload/upload.component';
 import { AlertModule }            from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     BladmuziekComponent,
-    LoginComponent
+    LoginComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
