@@ -6,17 +6,13 @@ import { Router }       from '@angular/router';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-
   input_gebrNaam = 'gebruikersnaam';
   input_wachtWoord = 'wachtwoord';
-
-
 
   loginDocent() {
   }
 
-  loginLeerling(){
-    
+  loginLeerling() {
   }
 }
 

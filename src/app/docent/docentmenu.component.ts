@@ -8,10 +8,8 @@ import { ActivatedRoute } from "@angular/router";
 export class DocentmenuComponent {
   title = 'docentmenu';
 
-constructor(route: ActivatedRoute) {
-
-      route.params.subscribe(params => console.log("side menu id parameter",params['id']));
-
+  constructor(route: ActivatedRoute) {
+    route.params.subscribe(params => console.log("side menu id parameter",params['id']));
   }
 }
 

@@ -6,7 +6,4 @@ import { Router }       from '@angular/router';
   templateUrl: './logout.component.html',
 })
 export class LogoutComponent {
-
-
-    
-  }
+}
