@@ -20,7 +20,8 @@ import { DocentComponent }        from "./Docent/docent.component";
 import { LeerlingComponent }      from "./leerling/leerling.component";
 import { HomeComponent }          from "./home/Home.component";
 import { DocentmenuComponent }    from "./docentmenu/docentmenu.component";
-import { LogoutComponent }         from './login/logout.component';
+import { LogoutComponent }        from './login/logout.component';
+import { NotenbalkComponent }     from './notenbalk/notenbalk.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LogoutComponent }         from './login/logout.component';
     HomeComponent,
     DocentmenuComponent,
     LogoutComponent,
+    NotenbalkComponent,
   ],
   imports: [
     BrowserModule,

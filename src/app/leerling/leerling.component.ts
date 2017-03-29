@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NotenbalkComponent} from '../notenbalk/notenbalk.component'; 
 
 @Component({
   selector: 'leerling',

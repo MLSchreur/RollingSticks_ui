@@ -1,24 +1,4 @@
- <div class="container">
-        <div class="row row-offcanvas row-offcanvas-right">
-            <div class="col-xs-12 col-sm-9">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-                    <li class="breadcrumb-item active">Leerling</li>
-                </ol>
-                <a class="btn btn-sm btn-info"> terug </a>
-                <div class="jumbotron">
-                    <h1>Leerling</h1>
-					
-					
-                    <p>Hier komt de inhoud van de leerlingen jojo.</p>
-			
-					 <div class="container">
-
-                    <h2>Kies hier de noot jojo</h2>
-                    <my-notenbalk> 
-                        
-                    </my-notenbalk>
-					
+<h1>{{ title }} - my-notenbalk.component.html</h1>
 					  <script>
 					
                         function myFunction() {
@@ -36,6 +16,7 @@
 
                         }
                     </script>
+                    <div class = "jojo">test</div>
                     <form name="Notenbalk">
                         <input type="radio" name="noot" value="bar end">bar end<br />
                         <input type="radio" name="noot" value="double bar">double bar<br />
@@ -48,27 +29,12 @@
                         <input type="radio" name="noot" value="quarter note c5">quarter note c5<br />
                         <input type="radio" name="noot" value="quarter note e5">quarter note e5<br />
                         <input type="radio" name="noot" value="quarter note f4">quarter note f4<br />     
-                        <input type="button" onclick="myFunction()" value = "Toon noot">                  
+                        <input type="button" (click)="deFunctie()" value = "Toon noot">                  
     	                <input type = "text" id = "order" width= "100">
                     </form>
-
-                  
+===============================FROM HERE 
+   <h1>{{ title }} - my-notenbalk.component.html</h1>               
                     <div class="staff" id="notenkeuze">
                        
                         
                     </div>
-			
-                </div>
-				
-                <router-outlet></router-outlet>
-            </div>
-             <div class="col-md-3 divCol" id="divColSideBar">
-            <h2>Leerling Menu</h2>
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Muziekoverzicht</a><br>
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Muziekles</a><br>
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Huiswerk</a><br>
-              </div>
-            <router-outlet name="sidemenu"></router-outlet>
-        </div>
-    </div>
-
