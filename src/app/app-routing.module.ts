@@ -8,6 +8,9 @@ import { DocentComponent }               from 'app/docent/docent.component';
 import { LogoutComponent }               from 'app/login/logout.component';
 import { LoginComponent }                from 'app/login/login.component';
 
+// voor Observable is deze import nodig. Het bestand rxjs-extenstions.ts moet in dezelfde map staan als waar de app.module.ts staat (app).
+// Later import verplaatsen na implementeren van routing.
+import './rxjs-extensions';
 
 // Route Confiratie van de menu's
 export const routes: Routes = [
