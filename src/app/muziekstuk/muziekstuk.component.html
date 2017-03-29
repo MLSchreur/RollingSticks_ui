@@ -27,9 +27,8 @@
     <input [(ngModel)]="muziekstukInvoer.titel" placeholder="Titel"><br>
     <input [(ngModel)]="muziekstukInvoer.artiest" placeholder="Artiest"><br>
     <input [(ngModel)]="muziekstukInvoer.omschrijving" placeholder="Omschrijving"><br>
-    <button (click)="postMuziekstuk()">Titel, artiest, omschrijving opslaan</button>
-    <h2>Upload XML</h2>
-    <input [(ngModel)]="muziekstukInvoer.xml" type="file" accept=".txt,.xml">
+    <input  type="file" (change)="updateFile($event)" accept=".txt,.xml">
+    <button (click)="postMuziekstuk()">Titel, artiest, omschrijving, xml opslaan</button>
     
 </div>
 
