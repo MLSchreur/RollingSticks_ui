@@ -5,7 +5,9 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'my-notenbalk',
     templateUrl: './notenbalk.component.html', 
-    styleUrls: ['./color.css']
+    styleUrls: ['./color.css', 
+                './music.css'
+    ]
 
 })
 export class NotenbalkComponent {
