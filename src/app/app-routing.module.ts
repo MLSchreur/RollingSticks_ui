@@ -2,9 +2,9 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Routes, RouterModule }          from '@angular/router';
 import { BladmuziekComponent }           from 'app/bladmuziek/bladmuziek.component';
 import { LeerlingComponent }             from 'app/leerling/leerling.component';
-import { DocentComponent }               from 'app/Docent/docent.component';
 import { HomeComponent }                 from 'app/home/Home.component';
 import { DocentmenuComponent }           from 'app/docent/docentmenu.component';
+import { DocentComponent }               from 'app/docent/docent.component';
 import { LogoutComponent }               from 'app/login/logout.component';
 import { LoginComponent }                from 'app/login/login.component';
 

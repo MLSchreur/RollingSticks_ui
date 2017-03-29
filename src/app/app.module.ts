@@ -4,6 +4,7 @@ import { FormsModule }            from '@angular/forms';
 import { HttpModule }             from '@angular/http';
 import { RouterModule, Routes }   from '@angular/router';
 import { AppRoutingModule }       from './app-routing.module';
+import { AlertModule }            from 'ng2-bootstrap';
 
 // voor Observable is deze import nodig. Het bestand rxjs-extenstions.ts moet in dezelfde map staan als waar de app.module.ts staat (app).
 // Later import verplaatsen na implementeren van routing.
@@ -13,11 +14,10 @@ import { AppComponent }           from './app.component';
 import { BladmuziekComponent }    from './bladmuziek/bladmuziek.component';
 import { LoginComponent }         from './login/login.component';
 import { MuziekstukComponent }    from './muziekstuk/muziekstuk.component';
-import { AlertModule }            from 'ng2-bootstrap';
-import { DocentComponent }        from './Docent/docent.component';
+import { DocentComponent }        from './docent/docent.component';
+import { DocentmenuComponent }    from './docent/docentmenu.component';
 import { LeerlingComponent }      from './leerling/leerling.component';
 import { HomeComponent }          from './home/Home.component';
-import { DocentmenuComponent }    from './docent/docentmenu.component';
 import { LogoutComponent }        from './login/logout.component';
 
 @NgModule({
