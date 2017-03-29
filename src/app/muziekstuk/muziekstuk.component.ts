@@ -48,24 +48,26 @@ export class MuziekstukComponent {
   postMuziekstuk() {
     console.log(this.muziekstukInvoer);
     let ms = this.muziekstukService;
-    // zonder .subscribe werkt het niet!
-    // Deze code gaan gebruiken, zodra backend text (id) teruggeeft ipv json
-    //this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe();
-    this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe(muziekstukId => {
-      console.log("Muziekstuk gepost, succes!");
-      console.log(muziekstukId);
-      this.muziekstukId = +muziekstukId;
-      // upload xml
-      let reader: FileReader = new FileReader();
-      reader.onload = function (e) {
-        console.log(reader.result);
-        ms.postXml(+muziekstukId, reader.result).subscribe(nr => {
-          console.log("status" + nr);
-        });
-      }
-      reader.readAsText(this.fileXml);  // xml omzetten naar text
+    let reader: FileReader = new FileReader();
+    if (this.fileXml != null) {
 
-      
-    });
+      // zonder .subscribe werkt het niet!
+      // Deze code gaan gebruiken, zodra backend text (id) teruggeeft ipv json
+      //this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe();
+      this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe(muziekstukId => {
+
+        console.log("Muziekstuk gepost, succes!");
+        console.log(muziekstukId);
+        this.muziekstukId = +muziekstukId;
+        // upload xml
+        reader.onload = function (e) {
+          console.log(reader.result);
+          ms.postXml(+muziekstukId, reader.result).subscribe(nr => {
+            console.log("status" + nr);
+          });
+        }
+        reader.readAsText(this.fileXml);  // xml omzetten naar text
+      });
+    } else alert("XML bestand selecteren")
   }
 }
