@@ -13,10 +13,11 @@ export class LoginComponent {
 
 
   loginDocent() {
+    //  this.router.navigate(['docent']);
   }
 
   loginLeerling(){
-    
+    // this.router.navigate(['leerling']);
   }
 }
 

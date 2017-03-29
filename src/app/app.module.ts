@@ -13,11 +13,12 @@ import { AppComponent }           from './app.component';
 import { BladmuziekComponent }    from './bladmuziek/bladmuziek.component';
 import { LoginComponent }         from './login/login.component';
 import { AlertModule }            from 'ng2-bootstrap';
-import { DocentComponent }        from "./Docent/docent.component";
-import { LeerlingComponent }      from "./leerling/leerling.component";
-import { HomeComponent }          from "./home/Home.component";
-import { DocentmenuComponent }    from "./docentmenu/docentmenu.component";
-import { LogoutComponent }         from './login/logout.component';
+import { DocentComponent }        from "app/Docent/docent.component";
+import { LeerlingComponent }      from "app/leerling/leerling.component";
+import { HomeComponent }                 from "app/home/Home.component";
+import { LeerlingOverzichtComponent }    from "app/docent/leerlingoverzicht.component";
+import { LogoutComponent }                from 'app/login/logout.component';
+import { LeerlingAanmakenComponent }                from "app/docent/leerlingaanmaken.component";
 
 
 @NgModule({
@@ -28,8 +29,9 @@ import { LogoutComponent }         from './login/logout.component';
     DocentComponent,
     LeerlingComponent,
     HomeComponent,
-    DocentmenuComponent,
+    LeerlingOverzichtComponent,
     LogoutComponent,
+    LeerlingAanmakenComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'docentmenu',
-  templateUrl: './docentmenu.component.html',
+  selector: 'leerlingoverzicht',
+  templateUrl: './leerlingoverzicht.component.html',
 })
-export class DocentmenuComponent {
+export class LeerlingOverzichtComponent {
   title = 'docentmenu';
 
 constructor(route: ActivatedRoute) {
