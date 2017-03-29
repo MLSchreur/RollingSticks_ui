@@ -1,25 +1,24 @@
 import { Component } from '@angular/core';
 
-import { Muziekstuk }            from './muziekstuk';
-import { MuziekstukService }     from './muziekstuk.service';
+import { Muziekstuk } from './muziekstuk';
+import { MuziekstukService } from './muziekstuk.service';
 
 
 @Component({
   selector: 'muziekstuk',
   templateUrl: './muziekstuk.component.html',
-  providers:[ MuziekstukService ]
+  providers: [MuziekstukService]
 })
 
 export class MuziekstukComponent {
   title = 'Upload';
 
-  allMuziekstuk:    Muziekstuk[];
-  muziekstuk:       Muziekstuk;
+  allMuziekstuk: Muziekstuk[];
+  muziekstuk: Muziekstuk;
   muziekstukInvoer: Muziekstuk = new Muziekstuk;
-  muziekstukId:     number;
+  muziekstukId: number;
 
-  constructor(private muziekstukService: MuziekstukService) {
-  }
+  constructor(private muziekstukService: MuziekstukService) {}
 
   getMuziekstuk() {
     this.muziekstukService.getMuziekstuk().subscribe(allMuziekstuk => {
@@ -49,10 +48,8 @@ export class MuziekstukComponent {
       console.log(muziekstukId);
       this.muziekstukId = +muziekstukId;
       this.muziekstukService.postXml(+muziekstukId, "<dummy></dummy>").subscribe(nr => {
-        console.log("status"+nr);
+        console.log("status" + nr);
       });
     });
-
   }
-
 }
