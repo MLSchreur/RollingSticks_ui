@@ -29,14 +29,28 @@ export class NotenbalkComponent {
 
     // }
     deFunctie(newNote) {
+//         let deNotenbalk = document.getElementById("notenkeuze");
+//         //console.log(deNotenbalk);
+//         let huidigeInhoud = deNotenbalk.innerHTML;
+//         console.log(huidigeInhoud);
+//         console.log(newNote);
+// //        deNotenbalk.innerHTML = huidigeInhoud + '<div class="' + newNote + '"></div>';
+//         deNotenbalk.innerHTML = huidigeInhoud + '<div _ngcontent-osd-10 class="quarter note g4"></div>';
+//         huidigeInhoud = deNotenbalk.innerHTML;
+//         console.log(huidigeInhoud);
+
+//         // alternatief via querySelector
+//         let myContainer = <HTMLElement> document.querySelector("#notenkeuze");
+// //        myContainer.innerHTML += '<h1>Test</h1>';
+//         myContainer.innerHTML += '<div class="quarter note g4"></div>';
+//         // let myContainerHTML = myContainer.innerHTML;
+//         // myContainerHTML += '<div _ngcontent-osd-10 class="quarter note g4"></div>';
+
+        let bovenBalk = document.getElementById("voorbeeldbalk");
+        let nootVanBoven = bovenBalk.removeChild(bovenBalk.firstChild);
+        console.log(nootVanBoven);
         let deNotenbalk = document.getElementById("notenkeuze");
-        //console.log(deNotenbalk);
-        let huidigeInhoud = deNotenbalk.innerHTML;
-        console.log(huidigeInhoud);
-        console.log(newNote);
-        deNotenbalk.innerHTML = huidigeInhoud + '<div class="' + newNote + '"></div>';
-        huidigeInhoud = deNotenbalk.innerHTML;
-        console.log(huidigeInhoud);
+        deNotenbalk.appendChild(nootVanBoven);
     }
 }
 //export function myFunction2{
