@@ -27,8 +27,15 @@ export class NotenbalkComponent {
     //     deNotenbalk.innerHTML = huidigeInhoud + '<div class="' + newNote + '"></div>';
 
     // }
-    deFunctie() {
-        console.log("HIJ DOET ET");
+    deFunctie(newNote) {
+        let deNotenbalk = document.getElementById("notenkeuze");
+        console.log(deNotenbalk);
+        let huidigeInhoud = deNotenbalk.innerHTML;
+        console.log(huidigeInhoud);
+        console.log(newNote);
+        deNotenbalk.innerHTML = huidigeInhoud + '<div _ngcontent-xia-10="" class="' + newNote + '"></div>';
+        huidigeInhoud = deNotenbalk.innerHTML;
+        console.log(huidigeInhoud);
     }
 }
 //export function myFunction2{
