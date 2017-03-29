@@ -12,13 +12,16 @@ import { BladmuziekComponent }    from './bladmuziek/bladmuziek.component';
 import { LoginComponent }         from './login/login.component';
 import { MuziekstukComponent }    from './muziekstuk/muziekstuk.component';
 import { AlertModule }            from 'ng2-bootstrap';
+import { FileSelectDirective,
+         FileDropDirective }      from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
     AppComponent,
     BladmuziekComponent,
     LoginComponent,
-    MuziekstukComponent
+    MuziekstukComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

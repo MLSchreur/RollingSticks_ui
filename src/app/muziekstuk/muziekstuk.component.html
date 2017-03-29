@@ -1,7 +1,7 @@
 <h1>===============================================</h1>
 
 <h1>{{ title }}</h1>
-<!--<div>
+<div>
     <h2>Ophalen muziekstuk (alles of per ID)</h2>
     <button (click)="getMuziekstuk()">Alle muziekstuk</button><br>
     <button (click)="getMuziekstukById(muziekstukId = 1)">Muziekstuk met id 1</button><br><br>
@@ -12,22 +12,24 @@
 <div *ngIf="allMuziekstuk">
     <h2>Alle muziekstuk</h2>
     <ul>
-        <li *ngFor="let muziekstuk of allMuziekstuk">{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</li>-->
+        <li *ngFor="let muziekstuk of allMuziekstuk">{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</li>
         <!-- let = typescript versie van var (variabele)-->
-    <!--</ul>
+    </ul>
 </div>
 <div *ngIf="muziekstuk">
     <h2>Muziekstuk met ID {{ muziekstukId }}</h2>
     <ul>
         <li>{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</li>
     </ul>
-</div>-->
+</div>
 <div>
+    <h2>Upload info</h2>
     <input [(ngModel)]="muziekstukInvoer.titel" placeholder="Titel"><br>
     <input [(ngModel)]="muziekstukInvoer.artiest" placeholder="Artiest"><br>
     <input [(ngModel)]="muziekstukInvoer.omschrijving" placeholder="Omschrijving"><br>
+    <button (click)="postMuziekstuk()">Titel, artiest, omschrijving opslaan</button>
+    <h2>Upload XML</h2>
     <input [(ngModel)]="muziekstukInvoer.xml" type="file" accept=".txt,.xml">
-    <button (click)="postMuziekstuk()">Opslaan</button>
     
 </div>
 

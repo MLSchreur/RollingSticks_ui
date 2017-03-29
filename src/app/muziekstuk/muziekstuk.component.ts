@@ -43,13 +43,16 @@ export class MuziekstukComponent {
     console.log(this.muziekstukInvoer);
     // zonder .subscribe werkt het niet!
     // Deze code gaan gebruiken, zodra backend text (id) teruggeeft ipv json
-    // this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe();
-    this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe(muziekstukInvoer => {
+    //this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe();
+    this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe(muziekstukId => {
       console.log("Muziekstuk gepost, succes!");
-      console.log(muziekstukInvoer);
-      this.muziekstuk = muziekstukInvoer;
-      this.muziekstukId = muziekstukInvoer.id;
+      console.log(muziekstukId);
+      this.muziekstukId = +muziekstukId;
+      this.muziekstukService.postXml(+muziekstukId, "<dummy></dummy>").subscribe(nr => {
+        console.log("status"+nr);
+      });
     });
+
   }
 
 }
