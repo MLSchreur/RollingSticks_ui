@@ -14,8 +14,8 @@ import { BladmuziekComponent }    from './bladmuziek/bladmuziek.component';
 import { LoginComponent }         from './login/login.component';
 import { MuziekstukComponent }    from './muziekstuk/muziekstuk.component';
 import { AlertModule }            from 'ng2-bootstrap';
-import { FileSelectDirective,
-         FileDropDirective }      from 'ng2-file-upload';
+// import { FileSelectDirective,
+//          FileDropDirective }      from 'ng2-file-upload';
 import { DocentComponent }        from "./Docent/docent.component";
 import { LeerlingComponent }      from "./leerling/leerling.component";
 import { HomeComponent }          from "./home/Home.component";
@@ -28,7 +28,7 @@ import { LogoutComponent }         from './login/logout.component';
     BladmuziekComponent,
     LoginComponent,
     MuziekstukComponent,
-    FileSelectDirective,
+//    FileSelectDirective,
     DocentComponent,
     LeerlingComponent,
     HomeComponent,
