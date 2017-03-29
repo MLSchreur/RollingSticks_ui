@@ -1,33 +1,33 @@
-                    <div class="staff" id="voorbeeldbalk">
-                        <div class="bar end"></div>
-                        <div class="bar"></div>
-                        <div class="bar double"></div>
-                        <div class="quarter note f4"></div>
-                        <div class="half note e4"></div>
-                        <div class="quarter note g4"></div>
-                        <div class="quarter note a5"></div>
-                        <div class="half note b5"></div>
-                        <div class="quarter note down c5"></div>
-                        <div class="double bar"></div>
-                        <div class="quarter note c5"></div>
-                        <div class="half note a5"></div>
-                        <div class="quarter note e5"></div>
-                        <div class="quarter note c5"></div>
-                        <div class="quarter note e5"></div>
-                        <div class="quarter note f5"></div>
-                        <div class="quarter note g4"></div>
-                        <div class="half note d5"></div>
-                        <div class="half note down a5"></div>
+<div class="staff" id="voorbeeldbalk">
+    <div class="bar end"></div>
+    <div class="bar"></div>
+    <div class="bar double"></div>
+    <div class="quarter note f4"></div>
+    <div class="half note e4"></div>
+    <div class="quarter note g4"></div>
+    <div class="quarter note a5"></div>
+    <div class="half note b5"></div>
+    <div class="quarter note down c5"></div>
+    <div class="double bar"></div>
+    <div class="quarter note c5"></div>
+    <div class="half note a5"></div>
+    <div class="quarter note e5"></div>
+    <div class="quarter note c5"></div>
+    <div class="quarter note e5"></div>
+    <div class="quarter note f5"></div>
+    <div class="quarter note g4"></div>
+    <div class="half note d5"></div>
+    <div class="half note down a5"></div>
 
-                    </div>
-                    <form name="Notenbalk">
-                        <input type="button" (click)="deFunctie('quarter note c5')" value="quarter note c5" />
-                         
-                        <input type="button" (click)="deFunctie('quarter note g4')" value="quarter note g4" />                  
-
-                    </form> 
-                    <br /><br />  
-                    <div class="staff" id="notenkeuze">
-                        <div class="quarter note g4"></div>
-                        <!--<div class="bar end"></div>-->
-                    </div>
+</div>
+<form name="Notenbalk">
+    <input type="button" (click)="opbouwNotenbalk('quarter note c5')" value="quarter note c5" />
+    <input type="button" (click)="opbouwNotenbalk('half note e4')" value="half note e4" />
+    <input type="button" (click)="opbouwNotenbalk('quarter note g4')" value="quarter note g4" />                  
+    <input type="button" (click)="opbouwNotenbalk('quarter note f5')" value="quarter note f5" />
+</form> 
+<br /><br />  
+<div class="staff" id="notenkeuze">
+    <!-- Pas na het opbouwen van een div met een noot, wordt de balk getoond.-->
+    <!-- Zou mooi zijn, als deze meteen getoond zou worden.-->
+</div>
