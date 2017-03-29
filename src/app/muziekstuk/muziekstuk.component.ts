@@ -49,7 +49,7 @@ export class MuziekstukComponent {
     console.log(this.muziekstukInvoer);
     let ms = this.muziekstukService;
     let reader: FileReader = new FileReader();
-    if (this.fileXml != null) {
+    if (this.fileXml != null) {     //post werkt alleen als xml is geselecteerd
 
       // zonder .subscribe werkt het niet!
       // Deze code gaan gebruiken, zodra backend text (id) teruggeeft ipv json
