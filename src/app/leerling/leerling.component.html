@@ -1,24 +1,33 @@
- <div class="container">
-        <div class="row row-offcanvas row-offcanvas-right">
-            <div class="col-xs-12 col-sm-9">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-                    <li class="breadcrumb-item active">Leerling</li>
-                </ol>
-                <a class="btn btn-sm btn-info"> terug </a>
-                <div class="jumbotron">
-                    <h1>Leerling</h1>
-                    <p>Hier komt de inhoud van de leerlingen.</p>
-                </div>
-                <router-outlet></router-outlet>
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                <li class="breadcrumb-item active">Leerling</li>
+            </ol>
+            <a class="btn btn-sm btn-info"> terug </a>
+            <div class="jumbotron">
+                <h1>Leerling</h1>
+                <p>Hier komt de inhoud van de leerlingen.</p>
+                <h2>Leerlingenlijst</h2>
+                <select  class="control-input input-text" (change)="updateLeerling($event)">
+                    <option *ngFor='let leerling of leerlingen' value='{{ leerling.id }}' [selected]="leerling.id == 3">{{ leerling.gebruikersnaam }}</option> 
+                </select>
+                <table *ngIf='leerlingSelected'>
+                    <tr><td>id</td>            <td>{{ leerlingSelected.id }}</td></tr>
+                    <tr><td>Gebruikersnaam</td><td>{{ leerlingSelected.gebruikersnaam }}</td></tr>
+                    <tr><td>Naam</td>          <td>{{ leerlingSelected.voornaam }} {{ leerlingSelected.tussenvoegsel }} {{ leerlingSelected.achternaam }}</td></tr>
+                </table>
             </div>
-             <div class="col-md-3 divCol" id="divColSideBar">
+        </div>
+        <div class="col-md-3 divCol" id="divColSideBar">
             <h2>Leerling Menu</h2>
             <a class="nav-link" routerLink="/home" routerLinkActive="active">Muziekoverzicht</a><br>
             <a class="nav-link" routerLink="/home" routerLinkActive="active">Muziekles</a><br>
             <a class="nav-link" routerLink="/home" routerLinkActive="active">Huiswerk</a><br>
-              </div>
-            <router-outlet name="sidemenu"></router-outlet>
+            <a class="nav-link" routerLink="/loguit" routerLinkActive="active">Log uit</a><br>
         </div>
+        <router-outlet name="sidemenu"></router-outlet>
     </div>
+</div>
 
