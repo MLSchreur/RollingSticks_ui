@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 })
 export class NotenbalkComponent {
     title = 'notenbalk works!';
+    noten = '<div class="quarter note f4"></div>';
     //   export function myFunction2() {
     // alert();
     //     //	loadCSS("color.css");alert();
@@ -29,11 +30,11 @@ export class NotenbalkComponent {
     // }
     deFunctie(newNote) {
         let deNotenbalk = document.getElementById("notenkeuze");
-        console.log(deNotenbalk);
+        //console.log(deNotenbalk);
         let huidigeInhoud = deNotenbalk.innerHTML;
         console.log(huidigeInhoud);
         console.log(newNote);
-        deNotenbalk.innerHTML = huidigeInhoud + '<div _ngcontent-xia-10="" class="' + newNote + '"></div>';
+        deNotenbalk.innerHTML = huidigeInhoud + '<div class="' + newNote + '"></div>';
         huidigeInhoud = deNotenbalk.innerHTML;
         console.log(huidigeInhoud);
     }
