@@ -19,45 +19,7 @@
                         
                     </my-notenbalk>
 					
-					  <script>
-					
-                        function myFunction() {
-					//	loadCSS("color.css");alert();
-                            var checkBoxen = document.forms[0];
-                            for(var i = 0 ; i < checkBoxen.length; i++){
-                                if(checkBoxen[i].checked){
-                                    var newNote = checkBoxen[i].value;
-                                }
 
-                            }
-                            var deNotenbalk = document.getElementById("notenkeuze");
-                            var huidigeInhoud = deNotenbalk.innerHTML;
-                            deNotenbalk.innerHTML = huidigeInhoud +  '<div class="'+ newNote +'"></div>';
-
-                        }
-                    </script>
-                    <form name="Notenbalk">
-                        <input type="radio" name="noot" value="bar end">bar end<br />
-                        <input type="radio" name="noot" value="double bar">double bar<br />
-                        <input type="radio" name="noot" value="bar">bar<br />
-                        <input type="radio" name="noot" value="half note a5">half note a5<br />
-                        <input type="radio" name="noot" value="half note b5">half note b5<br />
-                        <input type="radio" name="noot" value="half note e4">half note e4<br />
-                        <input type="radio" name="noot" value="half note down c5">half note down c5<br />
-                        <input type="radio" name="noot" value="quarter note a5">quarter note a5<br />
-                        <input type="radio" name="noot" value="quarter note c5">quarter note c5<br />
-                        <input type="radio" name="noot" value="quarter note e5">quarter note e5<br />
-                        <input type="radio" name="noot" value="quarter note f4">quarter note f4<br />     
-                        <input type="button" onclick="myFunction()" value = "Toon noot">                  
-    	                <input type = "text" id = "order" width= "100">
-                    </form>
-
-                  
-                    <div class="staff" id="notenkeuze">
-                       
-                        
-                    </div>
-			
                 </div>
 				
                 <router-outlet></router-outlet>
