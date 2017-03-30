@@ -20,12 +20,11 @@ export const routes: Routes = [
   { path: 'login'   , component: LoginComponent     },
   { path: 'loguit'  , component: LogoutComponent    },
   { path: 'verzoek' , component: VerzoekComponent   },
-  { path: 'verzoek' , component: MuziekstukComponent   },
   { path: 'docent'  , component: DocentComponent,  children: [
       // { path: '',                   component: DocentComponent},
       { path: 'leerlingoverzicht',   component: LeerlingOverzichtComponent},
       { path: 'leerlingaanmaken' ,   component: LeerlingAanmakenComponent},
-      { path: 'muziekupload'          ,   component: MuziekstukComponent   },
+      { path: 'muziekupload'     ,   component: MuziekstukComponent   },
   ]},
   { path: '**'                   , redirectTo: '/home', pathMatch: 'full' }
 ];
