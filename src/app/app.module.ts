@@ -7,12 +7,12 @@ import { AlertModule }            from 'ng2-bootstrap';
 
 import { AppComponent }           from './app.component';
 import { BladmuziekComponent }    from './bladmuziek/bladmuziek.component';
-import { LoginComponent }         from './login/login.component';
 import { MuziekstukComponent }    from './muziekstuk/muziekstuk.component';
 import { DocentComponent }        from './docent/docent.component';
 import { DocentmenuComponent }    from './docent/docentmenu.component';
 import { LeerlingComponent }      from './leerling/leerling.component';
-import { HomeComponent }          from './home/Home.component';
+import { HomeComponent }          from './home/home.component';
+import { LoginComponent }         from './login/login.component';
 import { LogoutComponent }        from './login/logout.component';
 
 @NgModule({
