@@ -5,6 +5,8 @@ import { HttpModule }                   from '@angular/http';
 import { AppRoutingModule }             from './app-routing.module';
 import { AlertModule }                  from 'ng2-bootstrap';
 
+// import './rxjs-extensions';
+import { NotenbalkComponent }           from './notenbalk/notenbalk.component';
 import { AppComponent }                 from './app.component';
 import { BladmuziekComponent }          from './bladmuziek/bladmuziek.component';
 import { MuziekstukComponent }          from './muziekstuk/muziekstuk.component';
@@ -13,7 +15,7 @@ import { LeerlingComponent }            from './leerling/leerling.component';
 import { HomeComponent }                from './home/home.component';
 import { LoginComponent }               from './login/login.component';
 import { LeerlingOverzichtComponent }   from "./docent/leerlingoverzicht.component";
-import { LeerlingAanmakenComponent }    from "app/docent/leerlingaanmaken.component";
+import { LeerlingAanmakenComponent }    from "./docent/leerlingaanmaken.component";
 import { LogoutComponent }              from './login/logout.component';
 
 @NgModule({
@@ -27,6 +29,7 @@ import { LogoutComponent }              from './login/logout.component';
     HomeComponent,
     LeerlingOverzichtComponent,
     LogoutComponent,
+    NotenbalkComponent,
     LeerlingAanmakenComponent,
   ],
   imports: [

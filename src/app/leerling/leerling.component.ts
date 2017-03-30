@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotenbalkComponent} from '../notenbalk/notenbalk.component'; 
 
 import { LeerlingService }   from './leerling.service';
 import { Leerling }          from './leerling';
