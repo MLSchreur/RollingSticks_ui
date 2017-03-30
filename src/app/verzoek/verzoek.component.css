@@ -1,0 +1,55 @@
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: dodgerblue; 
+}
+
+h1, div{
+    margin: 10px;
+}
+
+input{
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid lightslategrey;
+    border-radius: 5px;
+}
+
+button{
+    border-radius: 5px;
+    border: none;
+    background: dodgerblue;
+    color: white;
+}
+
+.circle {
+	width: 15px;
+	height: 15px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+/* kleurvullingen */
+.orange-fill, .opgepakt{
+    background: orange;
+}
+
+.blue-fill, .voltooid{
+    background: dodgerblue;
+}
+
+.white-icon{
+    color: white;
+}
+
+.green-fill, .gereed{
+    background: green;
+}
+
+.grey-fill{
+    background: lightslategrey;
+}
+
+.red-fill, .aangevraagd{
+    background: red;
+}

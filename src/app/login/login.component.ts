@@ -10,9 +10,11 @@ export class LoginComponent {
   input_wachtWoord = 'wachtwoord';
 
   loginDocent() {
+    //  this.router.navigate(['docent']);
   }
 
-  loginLeerling() {
+  loginLeerling(){
+    // this.router.navigate(['leerling']);
   }
 }
 
