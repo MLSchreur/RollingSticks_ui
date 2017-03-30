@@ -8,6 +8,8 @@ import { LeerlingOverzichtComponent }    from "app/docent/leerlingoverzicht.comp
 import { LogoutComponent }               from "app/login/logout.component";
 import { LoginComponent }                from "app/login/login.component";
 import { LeerlingAanmakenComponent }     from "app/docent/leerlingaanmaken.component";
+import { VerzoekComponent }              from "./verzoek/verzoek.component";
+
 // voor Observable is deze import nodig. Het bestand rxjs-extenstions.ts moet in dezelfde map staan als waar de app.module.ts staat (app).
 // Later import verplaatsen na implementeren van routing.
 import './rxjs-extensions';
@@ -15,11 +17,12 @@ import './rxjs-extensions';
 // Route Confiratie van de menu's
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home'    , component: HomeComponent },
-  { path: 'leerling', component: LeerlingComponent },
-  { path: 'login'   , component: LoginComponent },
-  { path: 'loguit'  , component: LogoutComponent },
-  { path: 'docent'  , component: DocentComponent,  children: [
+  { path: 'home'      , component: HomeComponent },
+  { path: 'leerling'  , component: LeerlingComponent },
+  { path: 'login'     , component: LoginComponent },
+  { path: 'verzoek'   , component: VerzoekComponent },
+  { path: 'loguit'    , component: LogoutComponent },
+  { path: 'docent'    , component: DocentComponent,  children: [
       { path: '',                   component: DocentComponent},
       { path: 'leerlingoverzicht',  component: LeerlingOverzichtComponent},
       { path: 'leerlingaanmaken',   component: LeerlingAanmakenComponent}
