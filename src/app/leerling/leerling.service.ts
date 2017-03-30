@@ -2,7 +2,7 @@ import { Injectable }               from '@angular/core';
 import { Http, Response, Headers }  from '@angular/http';
 import { Observable }               from 'rxjs/Observable';
 
-import { Leerling }                 from '../Leerling/Leerling';
+import { Leerling }                 from './leerling';
 
 @Injectable()
 export class LeerlingService {
