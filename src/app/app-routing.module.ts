@@ -1,5 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Routes, RouterModule }          from '@angular/router';
+
+
 import { BladmuziekComponent }           from 'app/bladmuziek/bladmuziek.component';
 import { LeerlingComponent }             from 'app/leerling/leerling.component';
 import { DocentComponent }               from "app/docent/docent.component";
@@ -21,7 +23,7 @@ export const routes: Routes = [
   { path: 'loguit'  , component: LogoutComponent    },
   { path: 'verzoek' , component: VerzoekComponent   },
   { path: 'docent'  , component: DocentComponent,  children: [
-    
+
       { path: 'leerlingoverzicht',   component: LeerlingOverzichtComponent},
       { path: 'leerlingaanmaken' ,   component: LeerlingAanmakenComponent},
       { path: 'muziekupload'     ,   component: MuziekstukComponent   },

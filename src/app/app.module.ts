@@ -17,7 +17,9 @@ import { LoginComponent }               from './login/login.component';
 import { LeerlingOverzichtComponent }   from "./docent/leerlingoverzicht.component";
 import { LeerlingAanmakenComponent }    from "./docent/leerlingaanmaken.component";
 import { LogoutComponent }              from './login/logout.component';
-import { VerzoekComponent }             from "./verzoek/verzoek.component";
+import { VerzoekComponent } from "./verzoek/verzoek.component";
+import { NavigatieComponent } from "app/navigatie/navigatie.component";
+
 
 
 
@@ -35,6 +37,8 @@ import { VerzoekComponent }             from "./verzoek/verzoek.component";
     NotenbalkComponent,
     LeerlingAanmakenComponent,
     VerzoekComponent,
+    NavigatieComponent,
+
   ],
   imports: [
     BrowserModule,
