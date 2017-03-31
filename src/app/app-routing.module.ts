@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'loguit'  , component: LogoutComponent    },
   { path: 'verzoek' , component: VerzoekComponent   },
   { path: 'docent'  , component: DocentComponent,  children: [
-      // { path: '',                   component: DocentComponent},
+    
       { path: 'leerlingoverzicht',   component: LeerlingOverzichtComponent},
       { path: 'leerlingaanmaken' ,   component: LeerlingAanmakenComponent},
       { path: 'muziekupload'     ,   component: MuziekstukComponent   },
