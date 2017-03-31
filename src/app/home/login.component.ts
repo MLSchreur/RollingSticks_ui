@@ -2,12 +2,12 @@ import { Component }    from '@angular/core';
 import { Router }       from '@angular/router';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
+  selector:                   'login',
+  templateUrl:                './login.component.html',
 })
 export class LoginComponent {
-  input_gebrNaam = 'gebruikersnaam';
-  input_wachtWoord = 'wachtwoord';
+  input_gebrNaam =            'gebruikersnaam';
+  input_wachtWoord =          'wachtwoord';
 
   loginDocent() {
     //  this.router.navigate(['docent']);
