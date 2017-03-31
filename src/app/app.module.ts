@@ -18,6 +18,8 @@ import { LeerlingOverzichtComponent }   from "./docent/leerlingoverzicht.compone
 import { LeerlingAanmakenComponent }    from "./docent/leerlingaanmaken.component";
 import { LogoutComponent }              from './login/logout.component';
 import { VerzoekComponent }             from "app/verzoek/verzoek.component";
+import { NavbarComponent }              from "app/navbar/navbar.component";
+
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { VerzoekComponent }             from "app/verzoek/verzoek.component";
     NotenbalkComponent,
     LeerlingAanmakenComponent,
     VerzoekComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
