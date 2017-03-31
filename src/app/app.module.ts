@@ -13,11 +13,15 @@ import { MuziekstukComponent }          from './muziekstuk/muziekstuk.component'
 import { DocentComponent }              from './docent/docent.component';
 import { LeerlingComponent }            from './leerling/leerling.component';
 import { HomeComponent }                from './home/home.component';
-import { LoginComponent }               from './login/login.component';
+import { LoginComponent }               from './home/login.component';
 import { LeerlingOverzichtComponent }   from "./docent/leerlingoverzicht.component";
 import { LeerlingAanmakenComponent }    from "./docent/leerlingaanmaken.component";
-import { LogoutComponent }              from './login/logout.component';
-import { VerzoekComponent }             from "app/verzoek/verzoek.component";
+import { LogoutComponent }              from './home/logout.component';
+import { VerzoekComponent }             from "./verzoek/verzoek.component";
+import { NavigatieComponent }           from "./home/navigatie.component";
+
+
+
 
 @NgModule({
   declarations: [
@@ -33,6 +37,8 @@ import { VerzoekComponent }             from "app/verzoek/verzoek.component";
     NotenbalkComponent,
     LeerlingAanmakenComponent,
     VerzoekComponent,
+    NavigatieComponent,
+
   ],
   imports: [
     BrowserModule,
