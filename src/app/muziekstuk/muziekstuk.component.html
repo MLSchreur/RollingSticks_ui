@@ -45,6 +45,9 @@
         <li>{{ muziekstuk.pictogram }}</li>
         <li><img src="data:image/png;base64,{{ muziekstuk.pictogram }}"></li>
         <li><img src="data:image/jpg;base64,{{ muziekstuk.pictogram }}"></li>
+        <!--pictogram_atob is al omgezet maar hoe moet je dit dan tonen?-->
+        <!--op zich ook niet nodig, omdat de andere manier (base 64) prima werkt, maar wel nieuwsgierig of het kan-->
+        <li><img src="data:image/jpg:,{{ muziekstuk.pictogram_atob }}"></li>
     </ul>
 </div>
 

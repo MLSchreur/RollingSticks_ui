@@ -59,6 +59,11 @@ export class MuziekstukComponent {
       console.log("Muziekstuk per stuk - IMG, succes!");
       console.log(img);
       this.muziekstuk.pictogram = img;
+      this.muziekstuk.pictogram_atob = atob(img);
+      console.log("img terug");
+      console.log(this.muziekstuk.pictogram);
+      console.log("img terug en atob");
+      console.log(this.muziekstuk.pictogram_atob);
     });
   }
 
@@ -114,8 +119,15 @@ export class MuziekstukComponent {
         if (this.fileImg != null) {
           console.log("image uploaden... ");
           readerIMG.onload = function (e) {
+            console.log("readerIMG.result:")
             console.log(readerIMG.result);
+            let base64textString = btoa(readerIMG.result);
+            console.log("readerIMG.result -> btoa:")
+            console.log(base64textString);
+            console.log("readerIMG.result -> btoa -> otab:")
+            console.log(atob(base64textString));
             ms.postImg(+muziekstukId, btoa(readerIMG.result)).subscribe(nr => {
+            // ms.postImg(+muziekstukId, btoa(readerIMG.result)).subscribe(nr => {
               console.log("statusIMG" + nr);
             });
           }

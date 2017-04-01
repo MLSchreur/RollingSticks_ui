@@ -11,4 +11,6 @@ export class Muziekstuk {
   //mp3:              string;
   xml:              string;
   pictogram:        string;
+  // tijdelijk, alleen voor test atob
+  pictogram_atob:   string;
 }
