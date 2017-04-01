@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
 
-import { Muziekstuk } from './muziekstuk';
-import { MuziekstukService } from './muziekstuk.service';
+import { Muziekstuk }           from './muziekstuk';
+import { MuziekstukService }    from './muziekstuk.service';
 
 
 @Component({
-  selector: 'muziekstuk',
-  templateUrl: './muziekstuk.component.html',
-  providers: [MuziekstukService]
+  selector:           'muziekstuk',
+  templateUrl:        './muziekstuk.component.html',
+  providers:          [MuziekstukService]
 })
 
 export class MuziekstukComponent {
   title = 'Upload';
 
-  allMuziekstuk: Muziekstuk[];
-  muziekstuk: Muziekstuk;
-  muziekstukInvoer: Muziekstuk = new Muziekstuk;
-  muziekstukId: number;
-  fileXml: File;
-  fileImg: File;
+  allMuziekstuk:      Muziekstuk[];
+  muziekstuk:         Muziekstuk;
+  muziekstukInvoer:   Muziekstuk = new Muziekstuk;
+  muziekstukId:       number;
+  fileXml:            File;
+  fileImg:            File;
 
   private base64textString:String="";
 
@@ -64,30 +64,31 @@ export class MuziekstukComponent {
 
   updateFile($event) {
     let files = $event.srcElement.files;
-    // test img
-    console.log($event.srcElement.id);
+    console.log("updateFile- id: "+ $event.srcElement.id);
+    // code hieronder eventueel omzetten naar een switch. aparte functie voor ieder bestand is wat overbodig.
     if ($event.srcElement.id == "xml") {
       console.log("xml file vullen");
       this.fileXml = files[0];
-    } else if ($event.srcElement.id == "xml") {
+    } else if ($event.srcElement.id == "img") {
       console.log("img file vullen");
       this.fileImg = files[0];
-    } else {
-      this.fileImg = files[0];
+    } else { // ook nog code voor mp3. voor later
+      console.log("Onbekende id voor updateFile: " + $event.srcElement.id);
     }
-    console.log("update van files");
+    // code hieronder kan weg. alleen om te kijken of het vullen gelukt is.
     if (this.fileImg != null) {
       console.log("img gevuld...");
     } else {
       console.log("img leeg...");
     }
+    console.log("einde updateFile!");
   }
 
   postMuziekstuk() {
     console.log(this.muziekstukInvoer);
-    let ms = this.muziekstukService;
-    let reader1: FileReader = new FileReader();
-    let reader2: FileReader = new FileReader();
+    let ms                    = this.muziekstukService;
+    let readerXML: FileReader = new FileReader();
+    let readerIMG: FileReader = new FileReader();
     if (this.fileXml != null) {     //post werkt alleen als xml is geselecteerd
 
       // zonder .subscribe werkt het niet!
@@ -95,51 +96,32 @@ export class MuziekstukComponent {
       //this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe();
       this.muziekstukService.postMuziekstuk(this.muziekstukInvoer).subscribe(muziekstukId => {
 
-        console.log("Muziekstuk gepost, succes!");
-        console.log(muziekstukId);
+        console.log("Muziekstuk gepost, succes! - " + muziekstukId);
+        // Waarom staat hier +muziekstukId?
         this.muziekstukId = +muziekstukId;
         // upload xml
-        reader1.onload = function (e) {
-          console.log(reader1.result);
-          ms.postXml(+muziekstukId, reader1.result).subscribe(nr => {
+        readerXML.onload = function (e) {
+          console.log(readerXML.result);
+          ms.postXml(+muziekstukId, readerXML.result).subscribe(nr => {
             console.log("statusXML" + nr);
           });
         }
-        reader1.readAsText(this.fileXml);  // xml omzetten naar text
-
+        readerXML.readAsText(this.fileXml);  // xml omzetten naar text
         // test img
+        // nog eens goed kijken wat nu waar in staat. verschil tussen inhoud this.fileImg, reader2.result en btoa eromheen
+        // zou deze code (en ook die van uploadXML) niet buiten de postMuziekstuk kunnen? Even een keer proberen.
+        // of moet deze wellicht binnen die van de xml (alleen uitvoeren wanneer dat is afgelopen??)
         if (this.fileImg != null) {
           console.log("image uploaden... ");
-          reader2.onload = function (e) {
-            console.log(reader2.result);
-            ms.postImg(+muziekstukId, btoa(reader2.result)).subscribe(nr => {
+          readerIMG.onload = function (e) {
+            console.log(readerIMG.result);
+            ms.postImg(+muziekstukId, btoa(readerIMG.result)).subscribe(nr => {
               console.log("statusIMG" + nr);
             });
           }
-          reader2.readAsBinaryString(this.fileImg);  // img omzetten naar binary string
-
-          // var reader3 = new FileReader();
-
-          // reader3.onload =this._handleReaderLoaded.bind(this);
-
-          // console.log(reader3.result);
-          // ms.postImg(+muziekstukId, reader3.result).subscribe(nr => {
-          //   console.log("statusIMG" + nr);
-          // });
-
-          // reader3.readAsBinaryString(this.fileImg);
-
+          readerIMG.readAsBinaryString(this.fileImg);  // img omzetten naar binary string
         } 
       });
     } else alert("XML bestand selecteren")
   }
-  _handleReaderLoaded(readerEvt) {
-     var binaryString = readerEvt.target3.result;
-            this.base64textString= btoa(binaryString);
-            console.log("btoa (binaryString");
-            console.log(btoa(binaryString));
-            console.log("base64textString");
-            console.log(this.base64textString);
-    }
-
 }
