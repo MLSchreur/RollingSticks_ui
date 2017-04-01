@@ -10,5 +10,5 @@ export class Muziekstuk {
   padPictogram:     string;
   //mp3:              string;
   xml:              string;
-  //pictogram:        string;
+  pictogram:        string;
 }

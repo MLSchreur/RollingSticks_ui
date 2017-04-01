@@ -25,8 +25,26 @@
     <input [(ngModel)]="muziekstukInvoer.titel" placeholder="Titel"><br>
     <input [(ngModel)]="muziekstukInvoer.artiest" placeholder="Artiest"><br>
     <input [(ngModel)]="muziekstukInvoer.omschrijving" placeholder="Omschrijving"><br>
-    <input  type="file" (change)="updateFile($event)" accept=".txt,.xml">
+    <input  id="xml" type="file" (change)="updateFile($event)" accept=".txt,.xml">
+    <input  id="img" type="file" (change)="updateFile($event)" accept=".png, .jpg, .jpeg"> <!--accept voor img bestanden toevoegen-->
     <button (click)="postMuziekstuk()">Titel, artiest, omschrijving, xml opslaan</button>
-    
+</div>
+
+<div>
+    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="muziekstukId">
+    <button (click)="getMuziekstukById(muziekstukId)">Haal muziekstuk van invoerveld op</button><br>
+    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="muziekstukId">
+    <button (click)="getMuziekstukXMLById(muziekstukId)">Haal XML van muziekstuk op</button><br>
+    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="muziekstukId">
+    <button (click)="getMuziekstukImgById(muziekstukId)">Haal Pictogram van muziekstuk op</button><br>
+</div>
+<div *ngIf="muziekstuk">
+    <h2>Muziekstuk met ID {{ muziekstukId }}</h2>
+    <ul>
+        <li>{{ muziekstuk.xml }} - {{ muziekstuk.titel }}</li>
+        <li>{{ muziekstuk.pictogram }}</li>
+        <li><img src="data:image/png;base64,{{ muziekstuk.pictogram }}"></li>
+        <li><img src="data:image/jpg;base64,{{ muziekstuk.pictogram }}"></li>
+    </ul>
 </div>
 
