@@ -75,7 +75,7 @@ div.divCol {
 .navbar-alignit .navbar-brand {
 	top: 50%;
 	display: block;
-	position: relative;
+	position: fixed;
 	height: auto;
 	transform: translate(0,-50%);
 	margin-right: 15px;
@@ -88,4 +88,8 @@ div.divCol {
 
 body {
   font-family: "Lato";
+}
+
+.navbar .navbar-inverse .navbar-static-top {
+	position: fixed;
 }
