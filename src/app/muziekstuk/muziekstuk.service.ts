@@ -4,16 +4,19 @@ import { Http, Response, Headers }  from '@angular/http';
 import { Observable }               from 'rxjs/Observable';
 
 import { Muziekstuk }               from '../muziekstuk/muziekstuk';
+import { AppGlobalService }         from '../app.global.service';
 
 @Injectable()
 export class MuziekstukService {
 
   // Op deze manier (http van class Http) wordt een private field aangemaakt.
-  constructor(private http: Http) {}
+  constructor(private http: Http, private appGlobalService: AppGlobalService) {
+  }
 
-  private headers = new Headers({ 'Content-Type': 'application/json' });  
-  private headersXml = new Headers({ 'Content-Type': 'text/xml' });  
-  private baseUrl = "http://rollingsticks.test.carpago.nl/api/muziekstuk";   //voor lokaal testen: http://localhost:8082/api/muziekstuk
+  private baseUrl: string     = this.appGlobalService.baseUrl + "/muziekstuk"; 
+  private headers             = new Headers({ 'Content-Type': 'application/json' });  
+  private headersXml          = new Headers({ 'Content-Type': 'text/xml' });  
+  private headersImg          = new Headers({ 'Content-Type': 'text/plain' });  
 
   postMuziekstuk(muziekstuk: Muziekstuk) {
     console.log("muziekstuk.service - postMuziekstuk");
@@ -23,7 +26,14 @@ export class MuziekstukService {
   postXml(id: number, xml: string){
     return this.http.post(this.baseUrl + "/" + id + "/xml", xml, { headers: this.headersXml }).map(res => {
       console.log(res.status);
-      return "dummy" + res.status;
+      return "postXML" + res.status;
+    });
+  }
+  
+  postImg(id: number, img: string){
+    return this.http.post(this.baseUrl + "/" + id + "/img", img, { headers: this.headersImg }).map(res => {
+      console.log(res.status);
+      return "postIMG" + res.status;
     });
   }
   
@@ -32,6 +42,14 @@ export class MuziekstukService {
   // Wat je terugkrijgt is res, maar alleen het .json gedeelte wordt wat meegedaan. Terug naar aanroepende functie gaat dan alleen het json gedeelte
   getMuziekstukById(id: number): Observable<Muziekstuk> {
     return this.http.get(this.baseUrl+"/" + id).map(res => res.json());
+  }
+
+  getMuziekstukXMLById(id: number): Observable<string> {
+    return this.http.get(this.baseUrl+"/" + id + "/xml").map(res => res.text());
+  }
+
+  getMuziekstukImgById(id: number): Observable<string> {
+    return this.http.get(this.baseUrl+"/" + id + "/img").map(res => res.text());
   }
 
   getMuziekstuk(): Observable<Muziekstuk[]> {

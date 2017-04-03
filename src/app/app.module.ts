@@ -17,10 +17,9 @@ import { LoginComponent }               from './home/login.component';
 import { LeerlingOverzichtComponent }   from './docent/leerlingoverzicht.component';
 import { LeerlingAanmakenComponent }    from './docent/leerlingaanmaken.component';
 import { LogoutComponent }              from './home/logout.component';
-import { VerzoekComponent }             from './verzoek/verzoek.component';
-import { NavigatieComponent }           from './home/navigatie.component';
-
-
+import { VerzoekComponent }             from "./verzoek/verzoek.component";
+import { NavigatieComponent }           from "./home/navigatie.component";
+import { AppGlobalService }             from './app.global.service';
 
 
 @NgModule({
@@ -47,7 +46,7 @@ import { NavigatieComponent }           from './home/navigatie.component';
     AppRoutingModule,
     AlertModule.forRoot()
   ],
-  providers: [],
+  providers: [AppGlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
