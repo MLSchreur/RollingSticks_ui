@@ -1,5 +1,7 @@
 
 <input type     = "text" value = "{{input_gebrNaam}}"><br>
-<input type = "text" value = "{{input_wachtWoord}}"><br><br>
-<button (click)="loginDocent()">Login als docent</button>
-<button (click)="loginLeerling()">Login als leerling</button>
+<input type     = "text" value = "{{input_wachtWoord}}"><br><br>
+<button class="button" (click) ="loginDocent(docent)">Login als docent</button>
+<button class="button" (click) ="loginLeerling(leerling)">Login als leerling</button>
+
+
