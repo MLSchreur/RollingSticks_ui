@@ -42,12 +42,14 @@
     <h2>Muziekstuk met ID {{ muziekstukId }}</h2>
     <ul>
         <li>{{ muziekstuk.titel }} -XML: {{ muziekstuk.xml }}</li>
-        <li>{{ muziekstuk.pictogram }}</li>
-        <li><img src="data:image/png;base64,{{ muziekstuk.pictogram }}"></li>
-        <li><img src="data:image/jpg;base64,{{ muziekstuk.pictogram }}"></li>
-        <!--pictogram_atob is al omgezet maar hoe moet je dit dan tonen?-->
-        <!--op zich ook niet nodig, omdat de andere manier (base 64) prima werkt, maar wel nieuwsgierig of het kan-->
-        <li><img src="data:image/jpg:,{{ muziekstuk.pictogram_atob }}"></li>
     </ul>
 </div>
 
+<div class="col-md-2 divCol">
+    <h2>Image to Upload</h2>
+    <img id="imgToUpload" src="" style="max-width: 100%;">
+</div>
+<div class="col-md-2 divCol">
+    <h2>Image from Server</h2>
+    <img id="imgFromServer" src="" style="max-width: 100%;">
+</div>
