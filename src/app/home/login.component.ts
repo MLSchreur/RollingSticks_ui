@@ -4,7 +4,7 @@ import { Router }       from '@angular/router';
 @Component({
   selector:                   'login',
   templateUrl:                './login.component.html',
-  styleUrls:                   ['./login.component.css'] 
+  // styleUrls:                 ['./styles.css'] 
 })
 export class LoginComponent {
   input_gebrNaam =            'gebruikersnaam';
