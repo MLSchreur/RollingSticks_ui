@@ -7,16 +7,18 @@ import { Router }       from '@angular/router';
   // styleUrls:                 ['./styles.css'] 
 })
 export class LoginComponent {
+  Router: Router;
   input_gebrNaam =            'gebruikersnaam';
   input_wachtWoord =          'wachtwoord';
 
-  loginDocent() {
-    //  this.router.navigate(['docent']);
-  }
 
-  loginLeerling(){
-    // this.router.navigate(['leerling']);
-  }
+  loginDocent (docent: string) {
+  this.Router.navigate(['docent']);
 }
 
+  loginLeerling(leerling: string) {
+  this.Router.navigate(['leerling']);
+  }
+
+}
 
