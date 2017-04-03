@@ -4,17 +4,19 @@ import { Http, Response, Headers }  from '@angular/http';
 import { Observable }               from 'rxjs/Observable';
 
 import { Muziekstuk }               from '../muziekstuk/muziekstuk';
+import { AppGlobalService }         from '../app.global.service';
 
 @Injectable()
 export class MuziekstukService {
 
   // Op deze manier (http van class Http) wordt een private field aangemaakt.
-  constructor(private http: Http) {}
+  constructor(private http: Http, private appGlobalService: AppGlobalService) {
+  }
 
-  private headers = new Headers({ 'Content-Type': 'application/json' });  
-  private headersXml = new Headers({ 'Content-Type': 'text/xml' });  
-  private headersImg = new Headers({ 'Content-Type': 'text/plain' });  
-  private baseUrl = "http://rollingsticks.test.carpago.nl/api/muziekstuk";   //voor lokaal testen: http://localhost:8082/api/muziekstuk
+  private baseUrl: string     = this.appGlobalService.baseUrl + "/leerling"; 
+  private headers             = new Headers({ 'Content-Type': 'application/json' });  
+  private headersXml          = new Headers({ 'Content-Type': 'text/xml' });  
+  private headersImg          = new Headers({ 'Content-Type': 'text/plain' });  
 
   postMuziekstuk(muziekstuk: Muziekstuk) {
     console.log("muziekstuk.service - postMuziekstuk");

@@ -19,6 +19,8 @@ import { LeerlingAanmakenComponent }    from "./docent/leerlingaanmaken.componen
 import { LogoutComponent }              from './home/logout.component';
 import { VerzoekComponent }             from "./verzoek/verzoek.component";
 import { NavigatieComponent }           from "./home/navigatie.component";
+import { AppGlobalService }             from './app.global.service';
+
 
 
 
@@ -47,7 +49,7 @@ import { NavigatieComponent }           from "./home/navigatie.component";
     AppRoutingModule,
     AlertModule.forRoot()
   ],
-  providers: [],
+  providers: [AppGlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -69,7 +69,10 @@ export class MuziekstukComponent {
 
   updateFile($event) {
     let files = $event.srcElement.files;
-    console.log("updateFile- id: " + $event.srcElement.id);
+    // test voor meegeven variable naar Filereader gedeelte.
+    // let tmpStringImgBase64 = this.stringImgBase64;
+    // console.log("updateFile- id: " + $event.srcElement.id);
+    console.log(this.stringImgBase64);
     // code hieronder eventueel omzetten naar een switch. aparte functie voor ieder bestand is wat overbodig.
     if ($event.srcElement.id == "xml") {
       console.log("xml file vullen");
@@ -78,11 +81,12 @@ export class MuziekstukComponent {
       console.log("img file vullen");
       this.fileImg = files[0];
       let readerImg = new FileReader();
-      readerImg.onload = function (e) {
+      readerImg.onload = (e) => {
         console.log("Omzetten van imgToUpload");
+        console.log(e);
         // console.log(readerImg.result);
         document.getElementById("imgToUpload").setAttribute("src", readerImg.result);
-        // this.stringImgBase64 = reader.result;
+        this.stringImgBase64 = readerImg.result;
       }
       readerImg.readAsDataURL(this.fileImg);
     } else { // ook nog code voor mp3. voor later		 } else { // ook nog code voor mp3. voor later
