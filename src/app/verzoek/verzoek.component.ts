@@ -39,20 +39,15 @@ export class VerzoekComponent{
         this.verzoekService.postVerzoek(this.verzoekInvoer).subscribe(verzoekInvoer => {
             this.verzoek = verzoekInvoer;
             this.verzoekInvoer = verzoekInvoer.id;
-            location.reload();
+            this.getVerzoeken();
         });
     }
 
     // functie voor het verwijderen van nieuwe verzoeken
     deleteVerzoek(id: number) {
         this.verzoekService.deleteVerzoek(id).subscribe(verzoek => {
-            this.reloadPage();
+            this.getVerzoeken();
         });
-    }
-
-    // functie voor het herladen van de pagina
-    reloadPage(){
-        location.reload();
     }
 
     // in editmodus vullen van de invoervelden met bestaande objectgegevens
@@ -80,7 +75,7 @@ export class VerzoekComponent{
             this.verzoek = verzoekPut;
             this.verzoekPut = verzoekPut;
             this.editModusOff();
-            location.reload();
+            this.getVerzoeken();
         });
     }
 
