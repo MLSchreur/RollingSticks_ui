@@ -13,7 +13,7 @@ export class MuziekstukService {
   constructor(private http: Http, private appGlobalService: AppGlobalService) {
   }
 
-  private baseUrl: string     = this.appGlobalService.baseUrl + "/leerling"; 
+  private baseUrl: string     = this.appGlobalService.baseUrl + "/muziekstuk"; 
   private headers             = new Headers({ 'Content-Type': 'application/json' });  
   private headersXml          = new Headers({ 'Content-Type': 'text/xml' });  
   private headersImg          = new Headers({ 'Content-Type': 'text/plain' });  

@@ -26,7 +26,8 @@
     <input [(ngModel)]="muziekstukInvoer.artiest" placeholder="Artiest"><br>
     <input [(ngModel)]="muziekstukInvoer.omschrijving" placeholder="Omschrijving"><br>
     <input  id="xml" type="file" (change)="updateFile($event)" accept=".txt,.xml">
-    <input  id="img" type="file" (change)="updateFile($event)" accept=".png, .jpg, .jpeg"> <!--accept voor img bestanden toevoegen-->
+    <!--<input  id="img" type="file" (change)="updateFile($event)" accept=".png, .jpg, .jpeg"> accept voor img bestanden toevoegen-->
+    <input  id="img" type="file" (change)="updateFile($event)" accept="image/*"> <!--accept voor img bestanden toevoegen-->
     <button (click)="postMuziekstuk()">Titel, artiest, omschrijving, xml opslaan</button>
 </div>
 

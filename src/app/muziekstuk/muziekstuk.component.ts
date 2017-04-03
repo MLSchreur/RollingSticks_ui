@@ -21,7 +21,7 @@ export class MuziekstukComponent {
   fileImg: File;
   stringImgBase64: string;
 
-  private base64textString: String = "";
+  //private base64textString: String = "";
 
   constructor(private muziekstukService: MuziekstukService) { }
 
@@ -38,7 +38,7 @@ export class MuziekstukComponent {
     console.log(id);
     this.muziekstukService.getMuziekstukById(id).subscribe(muziekstuk => {
       console.log("Muziekstuk per stuk, succes!");
-      console.log(muziekstuk);
+      // console.log(muziekstuk);
       this.muziekstuk = muziekstuk;
     });
   }
@@ -48,7 +48,7 @@ export class MuziekstukComponent {
     console.log(id);
     this.muziekstukService.getMuziekstukXMLById(id).subscribe(xml => {
       console.log("Muziekstuk per stuk - XML, succes!");
-      console.log(xml);
+      // console.log(xml);
       this.muziekstuk.xml = xml;
     });
   }
@@ -58,21 +58,17 @@ export class MuziekstukComponent {
     console.log(id);
     this.muziekstukService.getMuziekstukImgById(id).subscribe(img => {
       console.log("Muziekstuk per stuk - IMG, succes!");
-      console.log(img);
+      // console.log(img);
       this.muziekstuk.pictogram = img;
       // auto vullen image
       document.getElementById("imgFromServer").setAttribute("src", img);
-      console.log("img terug");
-      console.log(this.muziekstuk.pictogram);
     });
   }
 
   updateFile($event) {
     let files = $event.srcElement.files;
-    // test voor meegeven variable naar Filereader gedeelte.
-    // let tmpStringImgBase64 = this.stringImgBase64;
     // console.log("updateFile- id: " + $event.srcElement.id);
-    console.log(this.stringImgBase64);
+    // console.log(this.stringImgBase64);
     // code hieronder eventueel omzetten naar een switch. aparte functie voor ieder bestand is wat overbodig.
     if ($event.srcElement.id == "xml") {
       console.log("xml file vullen");
@@ -83,7 +79,7 @@ export class MuziekstukComponent {
       let readerImg = new FileReader();
       readerImg.onload = (e) => {
         console.log("Omzetten van imgToUpload");
-        console.log(e);
+        // console.log(e);
         // console.log(readerImg.result);
         document.getElementById("imgToUpload").setAttribute("src", readerImg.result);
         this.stringImgBase64 = readerImg.result;
@@ -96,10 +92,9 @@ export class MuziekstukComponent {
 
   postMuziekstuk() {
     console.log(this.muziekstukInvoer);
-    let ms = this.muziekstukService;
     let readerXML: FileReader = new FileReader();
     let readerIMG: FileReader = new FileReader();
-    let fileImg:   File       = this.fileImg;
+    let fileImg: File = this.fileImg;
     if (this.fileXml != null) {     //post werkt alleen als xml is geselecteerd
 
       // zonder .subscribe werkt het niet!
@@ -109,18 +104,15 @@ export class MuziekstukComponent {
         console.log("Muziekstuk gepost, succes! - " + muziekstukId);
         this.muziekstukId = +muziekstukId;
         // upload xml
-        readerXML.onload = function (e) {
+        readerXML.onload = (e) => {
           // console.log(readerXML.result);
-          ms.postXml(+muziekstukId, readerXML.result).subscribe(nr => {
+          this.muziekstukService.postXml(this.muziekstukId, readerXML.result).subscribe(nr => {
             console.log("statusXML: " + nr);
             if (fileImg != null) {
               console.log("image uploaden... ");
-              readerIMG.onload = function (e) {
-                ms.postImg(+muziekstukId, readerIMG.result).subscribe(nr => {
-                  // ms.postImg(+muziekstukId, btoa(readerIMG.result)).subscribe(nr => {
-                  console.log("statusIMG: " + nr);
-                });
-              }
+              this.muziekstukService.postImg(this.muziekstukId, this.stringImgBase64).subscribe(nr => {
+                console.log("statusIMG: " + nr);
+              });
               readerIMG.readAsDataURL(fileImg);
             }
           });
