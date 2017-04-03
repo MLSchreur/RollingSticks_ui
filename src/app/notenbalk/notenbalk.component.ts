@@ -10,7 +10,27 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 })
 export class NotenbalkComponent {
-    title = 'notenbalk works!';
+    noten = [
+        "bar end", 
+        "bar", 
+        "bar double", 
+        "quarter note f4", 
+        "half note e4", 
+        "quarter note g4", 
+        "quarter note a5", 
+        "half note b5", 
+        "quarter note down c5", 
+        "double bar", 
+        "quarter note c5", 
+        "half note a5", 
+        "quarter note e5", 
+        "quarter note c5", 
+        "quarter note e5", 
+        "quarter note f5", 
+        "quarter note g4", 
+        "half note d5", 
+        "half note down a5"
+    ];
 
     opbouwNotenbalk(newNote) {
         let deNotenbalk = document.getElementById("notenkeuze");
