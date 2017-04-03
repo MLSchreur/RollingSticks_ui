@@ -5,10 +5,8 @@ export class Muziekstuk {
   titel:            string;
   artiest:          string;
   omschrijving:     string;
-  padMp3:           string;
-  padXml:           string;
-  padPictogram:     string;
-  //mp3:              string;
   xml:              string;
-  //pictogram:        string;
+  pictogram:        string;
+  // padMp3:           string;
+  // mp3:              string;
 }
