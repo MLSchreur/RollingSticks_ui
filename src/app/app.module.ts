@@ -14,11 +14,11 @@ import { DocentComponent }              from './docent/docent.component';
 import { LeerlingComponent }            from './leerling/leerling.component';
 import { HomeComponent }                from './home/home.component';
 import { LoginComponent }               from './home/login.component';
-import { LeerlingOverzichtComponent }   from "./docent/leerlingoverzicht.component";
-import { LeerlingAanmakenComponent }    from "./docent/leerlingaanmaken.component";
+import { LeerlingOverzichtComponent }   from './docent/leerlingoverzicht.component';
+import { LeerlingAanmakenComponent }    from './docent/leerlingaanmaken.component';
 import { LogoutComponent }              from './home/logout.component';
-import { VerzoekComponent }             from "./verzoek/verzoek.component";
-import { NavigatieComponent }           from "./home/navigatie.component";
+import { VerzoekComponent }             from './verzoek/verzoek.component';
+import { NavigatieComponent }           from './home/navigatie.component';
 
 
 

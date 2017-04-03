@@ -5,12 +5,12 @@ import { LeerlingService }   from './leerling.service';
 import { Leerling }          from './leerling';
 
 @Component({
-  selector: 'leerling',
-  templateUrl: './leerling.component.html',
+  selector:     'leerling',
+  templateUrl:  './leerling.component.html',
   providers: [ LeerlingService ]
 })
 export class LeerlingComponent implements OnInit {
-  title = 'leerling';
+  title =       'leerling';
   leerlingen: Leerling[] = [];
   leerlingSelected: Leerling;
 
