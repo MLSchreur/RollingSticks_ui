@@ -3,8 +3,9 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-    border: 1px solid #ccc;
+    border: 1px solid #9f9f9f;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 4px 8px;
     cursor: pointer;
+    background: #e3e3e3;
 }
