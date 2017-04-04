@@ -13,13 +13,14 @@ import { MuziekstukService } from './muziekstuk.service';
 export class MuziekstukComponent {
   title = 'Upload';
 
-  allMuziekstuk: Muziekstuk[];
-  muziekstuk: Muziekstuk;
-  muziekstukInvoer: Muziekstuk = new Muziekstuk;
-  muziekstukId: number;
-  fileXml: File;
-  fileImg: File;
-  stringImgBase64: string;
+  allMuziekstuk     : Muziekstuk[];
+  muziekstuk        : Muziekstuk;
+  muziekstukInvoer  : Muziekstuk = new Muziekstuk;
+  muziekstukId      : number;
+  fileXml           : File;
+  fileImg           : File;
+  stringImgBase64   : string;
+  noXml             : string;
 
   //private base64textString: String = "";
 
@@ -122,6 +123,6 @@ export class MuziekstukComponent {
         // zou deze code (en ook die van uploadXML) niet buiten de postMuziekstuk kunnen? Even een keer proberen.
         // of moet deze wellicht binnen die van de xml (alleen uitvoeren wanneer dat is afgelopen??)
       });
-    } else alert("XML bestand selecteren")
+    } else this.noXml = 'Upload mislukt; selecteer eerst XML-bestand';
   }
 }
