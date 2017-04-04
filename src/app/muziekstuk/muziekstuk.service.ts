@@ -23,17 +23,17 @@ export class MuziekstukService {
     return this.http.post(this.baseUrl, JSON.stringify(muziekstuk), { headers: this.headers }).map(res => res.text());
   }  
 
-  postXml(id: number, xml: string){
-    return this.http.post(this.baseUrl + "/" + id + "/xml", xml, { headers: this.headersXml }).map(res => {
+  putXml(id: number, xml: string){
+    return this.http.put(this.baseUrl + "/" + id + "/xml", xml, { headers: this.headersXml }).map(res => {
       console.log(res.status);
-      return "postXML" + res.status;
+      return "putXML" + res.status;
     });
   }
   
-  postImg(id: number, img: string){
-    return this.http.post(this.baseUrl + "/" + id + "/img", img, { headers: this.headersImg }).map(res => {
+  putImg(id: number, img: string){
+    return this.http.put(this.baseUrl + "/" + id + "/img", img, { headers: this.headersImg }).map(res => {
       console.log(res.status);
-      return "postIMG" + res.status;
+      return "putIMG" + res.status;
     });
   }
   
