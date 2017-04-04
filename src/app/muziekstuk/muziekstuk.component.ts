@@ -108,11 +108,11 @@ export class MuziekstukComponent {
         // upload xml
         readerXML.onload = (e) => {
           // console.log(readerXML.result);
-          this.muziekstukService.postXml(this.muziekstukId, readerXML.result).subscribe(nr => {
+          this.muziekstukService.putXml(this.muziekstukId, readerXML.result).subscribe(nr => {
             console.log("statusXML: " + nr);
             if (fileImg != null) {
               console.log("image uploaden... ");
-              this.muziekstukService.postImg(this.muziekstukId, this.stringImgBase64).subscribe(nr => {
+              this.muziekstukService.putImg(this.muziekstukId, this.stringImgBase64).subscribe(nr => {
                 console.log("statusIMG: " + nr);
               });
               readerIMG.readAsDataURL(fileImg);
