@@ -5,9 +5,10 @@ import { MuziekstukService } from './muziekstuk.service';
 
 
 @Component({
-  selector: 'muziekstuk',
-  templateUrl: './muziekstuk.component.html',
-  providers: [MuziekstukService]
+  selector:         'muziekstuk',
+  templateUrl:      './muziekstuk.component.html',
+  providers:        [MuziekstukService],
+  styleUrls:        ['./muziekstuk.component.css']
 })
 
 export class MuziekstukComponent {
