@@ -9,6 +9,8 @@
             <div class="jumbotron">
                 <h1>Leerling</h1>
                 <p>Hier komt de inhoud van de leerlingen.</p>
+                <h3>Hier komt de compositie</h3>
+                <p>{{tempTxt}}</p>
                 <h2>Leerlingenlijst</h2>
                 <select class="control-input input-text" (change)="updateLeerling($event)">
                     <option *ngFor='let leerling of leerlingen' value='{{ leerling.id }}' [selected]="leerling.id == 3">{{ leerling.gebruikersnaam }}</option> 
@@ -25,7 +27,8 @@
                     <tr>
                         <td>Naam</td>
                         <td>{{ leerlingSelected.voornaam }} {{ leerlingSelected.tussenvoegsel }} {{ leerlingSelected.achternaam
-                            }}</td>
+                            }}
+                        </td>
                     </tr>
                 </table>
                 <br>
@@ -42,10 +45,15 @@
         </div>
         <div *ngIf="allMuziekstuk" class="col-md-3 divCol" id="divColSideBar">
             <h2>Muziekstukken</h2>
-                <p *ngFor="let muziekstuk of allMuziekstuk">{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</p>
+            <ul class="list-group">
+                <li class="list-group-item"
+                    *ngFor="let muziekstuk of allMuziekstuk"
+                    (click)="showCompositie(muziekstuk)">
+                    {{ muziekstuk.artiest }} - {{ muziekstuk.titel }}
+                </li>
+            </ul>
         </div>
 
         <router-outlet name="sidemenu"></router-outlet>
     </div>
 </div>
-

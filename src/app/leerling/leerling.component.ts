@@ -14,9 +14,10 @@ import { Muziekstuk } from '../muziekstuk/muziekstuk';
 })
 export class LeerlingComponent implements OnInit {
   title = 'leerling';
-  leerlingen: Leerling[] = [];
-  leerlingSelected: Leerling;
-  allMuziekstuk: Muziekstuk[];
+  leerlingen        : Leerling[] = [];
+  leerlingSelected  : Leerling;
+  allMuziekstuk     : Muziekstuk[];
+  tempTxt           : string;
 
   constructor(private leerlingService: LeerlingService, private muziekstukService: MuziekstukService) {
   }
@@ -35,6 +36,10 @@ export class LeerlingComponent implements OnInit {
 
   updateLeerling($event) {
     this.leerlingService.getLeerlingById($event.target.value).subscribe(data => this.leerlingSelected = data);
+  }
+
+  showCompositie(muziekstuk: Muziekstuk){
+    this.tempTxt = "Gekozen compositie: " + muziekstuk.id + " " + muziekstuk.artiest + " " + muziekstuk.titel;
   }
 }
 
