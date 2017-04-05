@@ -19,6 +19,7 @@ import { LeerlingAanmakenComponent }    from './docent/leerlingaanmaken.componen
 import { LogoutComponent }              from './home/logout.component';
 import { VerzoekComponent }             from "./verzoek/verzoek.component";
 import { NavigatieComponent }           from "./home/navigatie.component";
+import { MuziekstukoverzichtComponent } from "./muziekstuk/muziekstukoverzicht.component";
 import { AppGlobalService }             from './app.global.service';
 
 
@@ -36,6 +37,8 @@ import { AppGlobalService }             from './app.global.service';
     NotenbalkComponent,
     LeerlingAanmakenComponent,
     VerzoekComponent,
+    MuziekstukComponent,
+    MuziekstukoverzichtComponent,
     NavigatieComponent,
 
   ],

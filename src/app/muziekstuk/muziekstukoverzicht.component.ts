@@ -1,17 +1,17 @@
 import { Component }          from '@angular/core';
-
 import { Muziekstuk }        from './muziekstuk';
 import { MuziekstukService } from './muziekstuk.service';
 
 
 @Component({
-  selector:                        'muziekstuk',
-  templateUrl:                     './muziekstuk.component.html',
+  selector:                        'muziekstukoverzicht',
+  templateUrl:                     './muziekstukoverzicht.component.html',
   providers:                      [MuziekstukService],
   styleUrls:                      ['./muziekstuk.component.css']
+
 })
 
-export class MuziekstukComponent {
+export class MuziekstukoverzichtComponent {
   title = 'Upload';
 
   allMuziekstuk     : Muziekstuk[];
@@ -23,9 +23,7 @@ export class MuziekstukComponent {
   stringImgBase64   : string;
   noXml             : string;
 
-  //private base64textString: String = "";
-
-  constructor(private muziekstukService: MuziekstukService) { }
+   constructor(private muziekstukService: MuziekstukService) { }
 
   getMuziekstuk() {
     this.muziekstukService.getMuziekstuk().subscribe(allMuziekstuk => {
