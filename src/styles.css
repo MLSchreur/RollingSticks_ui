@@ -1,3 +1,4 @@
+@import url('http://fonts.googleapis.com/css?family=Lato');
 h1 {
   color: #904;
   font-family: 'Times New Roman', Times, serif;
@@ -28,7 +29,7 @@ div.divCol {
 }
 
 #divPage {
-  background-color: #ffffff;
+ */ background-color: #ffffff; 
 }
 
 #divRowTitle {
@@ -63,7 +64,7 @@ div.divCol {
 }
 
 .navbar-alignit .navbar-header {
-	  -webkit-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
   height: 50px;
@@ -99,4 +100,9 @@ body {
 .button:hover {
     background-color: #008CBA;
     color: white;
+}
+body, html{
+  height: 100%;
+  background: #222222; 
+	font-family: 'Lato', sans-serif;
 }

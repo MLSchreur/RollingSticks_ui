@@ -5,6 +5,7 @@ h1 {
 
 h1, div{
     margin: 10px;
+    background: white; 
 }
 
 input{
