@@ -40,15 +40,12 @@
             <a class="nav-link" routerLink="/home" routerLinkActive="active">Huiswerk</a><br>
             <a class="nav-link" routerLink="/loguit" routerLinkActive="active">Log uit</a><br>
         </div>
-        <div >
-            <h2>Alle muziekstukken</h2>
-            <ul>
-                <li *ngFor="let muziekstuk of allMuziekstuk">{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</li>
-            </ul>
+        <div *ngIf="allMuziekstuk" class="col-md-3 divCol" id="divColSideBar">
+            <h2>Muziekstukken</h2>
+                <p *ngFor="let muziekstuk of allMuziekstuk">{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</p>
         </div>
 
         <router-outlet name="sidemenu"></router-outlet>
     </div>
 </div>
 
-<!--*ngIf="allMuziekstuk"-->
