@@ -97,6 +97,7 @@ div.divCol {
 
 .button:hover {
     background-color: #008CBA;
+
     color: red;
 }
 body, html{
@@ -112,4 +113,5 @@ body, html{
 }
 .nav-item:hover{
   border-top: 5px solid #008CBA;
+
 }

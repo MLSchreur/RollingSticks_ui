@@ -5,18 +5,31 @@
                 <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
                 <li class="breadcrumb-item active">Leerling</li>
             </ol>
-               <a class="btn btn-sm btn-info" routerLink="/leerling" > terug </a>
+            <a class="btn btn-sm btn-info" routerLink="/leerling"> terug </a>
             <div class="jumbotron">
                 <h1>Leerling</h1>
                 <p>Hier komt de inhoud van de leerlingen.</p>
+                <h3>Hier komt de compositie</h3>
+                <p>{{tempTxt}}</p>
                 <h2>Leerlingenlijst</h2>
-                <select  class="control-input input-text" (change)="updateLeerling($event)">
+                <select class="control-input input-text" (change)="updateLeerling($event)">
                     <option *ngFor='let leerling of leerlingen' value='{{ leerling.id }}' [selected]="leerling.id == 3">{{ leerling.gebruikersnaam }}</option> 
                 </select>
                 <table *ngIf='leerlingSelected'>
-                    <tr><td>id</td>            <td>{{ leerlingSelected.id }}</td></tr>
-                    <tr><td>Gebruikersnaam</td><td>{{ leerlingSelected.gebruikersnaam }}</td></tr>
-                    <tr><td>Naam</td>          <td>{{ leerlingSelected.voornaam }} {{ leerlingSelected.tussenvoegsel }} {{ leerlingSelected.achternaam }}</td></tr>
+                    <tr>
+                        <td>id</td>
+                        <td>{{ leerlingSelected.id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gebruikersnaam</td>
+                        <td>{{ leerlingSelected.gebruikersnaam }}</td>
+                    </tr>
+                    <tr>
+                        <td>Naam</td>
+                        <td>{{ leerlingSelected.voornaam }} {{ leerlingSelected.tussenvoegsel }} {{ leerlingSelected.achternaam
+                            }}
+                        </td>
+                    </tr>
                 </table>
                 <br>
                 <!--hier komt notenbalk component-->
@@ -30,7 +43,17 @@
             <a class="nav-link" routerLink="/home" routerLinkActive="active">Huiswerk</a><br>
             <a class="nav-link" routerLink="/loguit" routerLinkActive="active">Log uit</a><br>
         </div>
+        <div *ngIf="allMuziekstuk" class="col-md-3 divCol" id="divColSideBar">
+            <h2>Muziekstukken</h2>
+            <ul class="list-group">
+                <li class="list-group-item"
+                    *ngFor="let muziekstuk of allMuziekstuk"
+                    (click)="showCompositie(muziekstuk)">
+                    {{ muziekstuk.artiest }} - {{ muziekstuk.titel }}
+                </li>
+            </ul>
+        </div>
+
         <router-outlet name="sidemenu"></router-outlet>
     </div>
 </div>
-
