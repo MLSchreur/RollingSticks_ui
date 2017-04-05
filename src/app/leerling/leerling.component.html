@@ -5,18 +5,28 @@
                 <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
                 <li class="breadcrumb-item active">Leerling</li>
             </ol>
-               <a class="btn btn-sm btn-info" routerLink="/leerling" > terug </a>
+            <a class="btn btn-sm btn-info" routerLink="/leerling"> terug </a>
             <div class="jumbotron">
                 <h1>Leerling</h1>
                 <p>Hier komt de inhoud van de leerlingen.</p>
                 <h2>Leerlingenlijst</h2>
-                <select  class="control-input input-text" (change)="updateLeerling($event)">
+                <select class="control-input input-text" (change)="updateLeerling($event)">
                     <option *ngFor='let leerling of leerlingen' value='{{ leerling.id }}' [selected]="leerling.id == 3">{{ leerling.gebruikersnaam }}</option> 
                 </select>
                 <table *ngIf='leerlingSelected'>
-                    <tr><td>id</td>            <td>{{ leerlingSelected.id }}</td></tr>
-                    <tr><td>Gebruikersnaam</td><td>{{ leerlingSelected.gebruikersnaam }}</td></tr>
-                    <tr><td>Naam</td>          <td>{{ leerlingSelected.voornaam }} {{ leerlingSelected.tussenvoegsel }} {{ leerlingSelected.achternaam }}</td></tr>
+                    <tr>
+                        <td>id</td>
+                        <td>{{ leerlingSelected.id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gebruikersnaam</td>
+                        <td>{{ leerlingSelected.gebruikersnaam }}</td>
+                    </tr>
+                    <tr>
+                        <td>Naam</td>
+                        <td>{{ leerlingSelected.voornaam }} {{ leerlingSelected.tussenvoegsel }} {{ leerlingSelected.achternaam
+                            }}</td>
+                    </tr>
                 </table>
                 <br>
                 <!--hier komt notenbalk component-->
@@ -30,7 +40,15 @@
             <a class="nav-link" routerLink="/home" routerLinkActive="active">Huiswerk</a><br>
             <a class="nav-link" routerLink="/loguit" routerLinkActive="active">Log uit</a><br>
         </div>
+        <div >
+            <h2>Alle muziekstukken</h2>
+            <ul>
+                <li *ngFor="let muziekstuk of allMuziekstuk">{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</li>
+            </ul>
+        </div>
+
         <router-outlet name="sidemenu"></router-outlet>
     </div>
 </div>
 
+<!--*ngIf="allMuziekstuk"-->
