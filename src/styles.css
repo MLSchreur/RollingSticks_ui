@@ -81,14 +81,12 @@ div.divCol {
 
 .navbar-nav>li>.dropdown-menu {
 	z-index: 9999;
-}
-
-body {
-  font-family: "Lato";
+  color: red;
 }
 
 .navbar .navbar-inverse .navbar-static-top {
 	position: fixed;
+   
 }
 
 .button {
@@ -99,10 +97,19 @@ body {
 
 .button:hover {
     background-color: #008CBA;
-    color: white;
+    color: red;
 }
 body, html{
   height: 100%;
- background: #222222; 
+  background: #1675AD; 
 	font-family: 'Lato', sans-serif; 
+  background-image: url(./afbeeldingen/menu-bg.png) ;
+  background-repeat: no-repeat;
+}
+.navbar-inverse .navbar-nav>li>a{
+  color: white;
+  font-weight: bold;
+}
+.nav-item:hover{
+  border-top: 5px solid #008CBA;
 }
