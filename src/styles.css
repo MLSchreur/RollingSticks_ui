@@ -1,3 +1,4 @@
+@import url('http://fonts.googleapis.com/css?family=Lato');
 h1 {
   color: #904;
   font-family: 'Times New Roman', Times, serif;
@@ -28,7 +29,7 @@ div.divCol {
 }
 
 #divPage {
-  background-color: #ffffff;
+ */ background-color: #ffffff; 
 }
 
 #divRowTitle {
@@ -37,7 +38,7 @@ div.divCol {
 
 #divRowBody {
   background-color: #ffffff;
-}
+} 
 
 	@media only screen and (max-width : 768px){
  .navbar-brand {
@@ -63,7 +64,7 @@ div.divCol {
 }
 
 .navbar-alignit .navbar-header {
-	  -webkit-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
   height: 50px;
@@ -80,14 +81,12 @@ div.divCol {
 
 .navbar-nav>li>.dropdown-menu {
 	z-index: 9999;
-}
-
-body {
-  font-family: "Lato";
+  color: red;
 }
 
 .navbar .navbar-inverse .navbar-static-top {
 	position: fixed;
+   
 }
 
 .button {
@@ -98,5 +97,21 @@ body {
 
 .button:hover {
     background-color: #008CBA;
-    color: white;
+
+    color: red;
+}
+body, html{
+  height: 100%;
+  background: #1675AD; 
+	font-family: 'Lato', sans-serif; 
+  background-image: url(./afbeeldingen/menu-bg.png) ;
+  background-repeat: no-repeat;
+}
+.navbar-inverse .navbar-nav>li>a{
+  color: white;
+  font-weight: bold;
+}
+.nav-item:hover{
+  border-top: 5px solid #008CBA;
+
 }
