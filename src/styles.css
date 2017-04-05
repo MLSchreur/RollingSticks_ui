@@ -38,7 +38,7 @@ div.divCol {
 
 #divRowBody {
   background-color: #ffffff;
-}
+} 
 
 	@media only screen and (max-width : 768px){
  .navbar-brand {
@@ -103,6 +103,6 @@ body {
 }
 body, html{
   height: 100%;
-  background: #222222; 
-	font-family: 'Lato', sans-serif;
+ background: #222222; 
+	font-family: 'Lato', sans-serif; 
 }
