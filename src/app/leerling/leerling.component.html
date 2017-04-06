@@ -7,8 +7,6 @@
             </ol>
             <a class="btn btn-sm btn-info" routerLink="/leerling"> terug </a>
             <div class="jumbotron">
-                <h1>Leerling</h1>
-                <p>Hier komt de inhoud van de leerlingen.</p>
                 <h3>Hier komt de compositie</h3>
                 <p>{{tempTxt}}</p>
                 <h2>Leerlingenlijst</h2>
@@ -32,16 +30,17 @@
                     </tr>
                 </table>
                 <br>
+                <br>
                 <!--hier komt notenbalk component-->
                 <my-notenbalk></my-notenbalk>
             </div>
         </div>
         <div class="col-md-3 divCol" id="divColSideBar">
             <h2>Leerling Menu</h2>
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Muziekoverzicht</a><br>
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Muziekles</a><br>
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Huiswerk</a><br>
-            <a class="nav-link" routerLink="/loguit" routerLinkActive="active">Log uit</a><br>
+            <a class="nav-link" routerLink="muziekoverzicht"          routerLinkActive="active">Muziekoverzicht</a><br>
+            <a class="nav-link" routerLink="muziekles"                routerLinkActive="active">Muziekles</a><br>
+            <a class="nav-link" routerLink="huiswerkleerling"         routerLinkActive="active">Huiswerk</a><br>
+            <a class="nav-link" routerLink="/loguit"                  routerLinkActive="active">Log uit</a><br>
         </div>
         <div *ngIf="allMuziekstuk" class="col-md-3 divCol" id="divColSideBar">
             <h2>Muziekstukken</h2>
