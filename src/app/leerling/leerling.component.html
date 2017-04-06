@@ -6,6 +6,7 @@
                 <li class="breadcrumb-item active">Leerling</li>
             </ol>
             <a class="btn btn-sm btn-info" routerLink="/leerling"> terug </a>
+            <router-outlet></router-outlet>
             <div class="jumbotron">
                 <h3>Hier komt de compositie</h3>
                 <p>{{tempTxt}}</p>
@@ -28,7 +29,9 @@
                             }}
                         </td>
                     </tr>
-                </table>
+                </table> <button (click)="playMuziekstuk()">Speel Muziekstuk</button><br>	
+                <div id="tempo"><div id="snelheid"></div>
+	</div>
                 <br>
                 <br>
                 <!--hier komt notenbalk component-->
@@ -38,9 +41,9 @@
                 <!--Hier komt de side menu voor de leerlingen-->
         <div class="col-md-3 divCol" id="divColSideBar">
             <h2>Leerling Menu</h2>
-            <a class="nav-link" routerLink="muziekoverzicht"          routerLinkActive="active">Muziekoverzicht</a><br>
-            <a class="nav-link" routerLink="muziekles"                routerLinkActive="active">Muziekles</a><br>
-            <a class="nav-link" routerLink="huiswerkleerling"         routerLinkActive="active">Huiswerk</a><br>
+            <a class="nav-link" routerLink="home"                     routerLinkActive="active">Muziekles</a><br>
+            <a class="nav-link" routerLink="home"                     routerLinkActive="active">Muziekoverzicht</a><br>   
+            <a class="nav-link" routerLink="home"                     routerLinkActive="active">Huiswerk</a><br>
             <a class="nav-link" routerLink="/loguit"                  routerLinkActive="active">Log uit</a><br>
         </div>
         <div *ngIf="allMuziekstuk" class="col-md-3 divCol" id="divColSideBar">

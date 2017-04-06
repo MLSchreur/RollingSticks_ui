@@ -43,4 +43,7 @@ export class LeerlingComponent implements OnInit {
   }
 }
 
+//   playMuziekstuk( ) {
+
+// }
 

@@ -26,16 +26,16 @@ export const routes: Routes = [
   { path: 'verzoek'         , component: VerzoekComponent   },
   { path: 'leerling'        , component: LeerlingComponent,  children: [
 
-      { path: 'leerlingoverzicht'       ,   component: LeerlingComponent},
-      { path: 'muziekles'               ,   component: LeerlingComponent},
-      { path: 'huiswerkleerling'        ,   component: LeerlingComponent   },
+      { path: 'leerlingoverzicht'       ,   component: MuziekstukoverzichtComponent   },
+      { path: 'muziekles'               ,   component: MuziekstukoverzichtComponent   },
+      { path: 'huiswerkleerling'        ,   component: MuziekstukoverzichtComponent   },
       { path: 'muziekoverzichtleerling' ,   component: MuziekstukoverzichtComponent   },
   ]},
          { path: 'docent'               ,     component: DocentComponent,  children: [
 
-      { path: 'leerlingoverzicht'       ,   component: LeerlingOverzichtComponent},
-      { path: 'leerlingaanmaken'        ,   component: LeerlingAanmakenComponent},
-      { path: 'muziekupload'            ,   component: MuziekstukComponent   },
+      { path: 'leerlingoverzicht'       ,   component: LeerlingOverzichtComponent     },
+      { path: 'leerlingaanmaken'        ,   component: LeerlingAanmakenComponent      },
+      { path: 'muziekupload'            ,   component: MuziekstukComponent            },
       { path: 'muziekoverzicht'         ,   component: MuziekstukoverzichtComponent   },
   ]},
          { path: '**'                   , redirectTo: '/home', pathMatch: 'full' }
