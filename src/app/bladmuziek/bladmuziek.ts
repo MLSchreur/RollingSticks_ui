@@ -9,7 +9,7 @@ export class Bladmuziek {
   padMp3:           string;
   padXml:           string;
   padPictogram:     string;
-  //mp3:              string;
+  //mp3:            string;
   xml:              string;
-  //pictogram:        string;
+  //pictogram:      string;
 }
