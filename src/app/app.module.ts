@@ -21,10 +21,12 @@ import { VerzoekComponent }             from "./verzoek/verzoek.component";
 import { NavigatieComponent }           from "./home/navigatie.component";
 import { MuziekstukoverzichtComponent } from "./muziekstuk/muziekstukoverzicht.component";
 import { AppGlobalService }             from './app.global.service';
+import { CompositieComponent }          from './compositie/compositie.component';
 
 
 @NgModule({
   declarations: [
+    CompositieComponent,
     AppComponent,
     BladmuziekComponent,
     LoginComponent,
