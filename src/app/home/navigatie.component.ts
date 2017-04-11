@@ -42,6 +42,12 @@ export class NavigatieComponent {
       this.router.navigate(['loguit']);
     }
   }
+
+  checkVerzoek() {
+    if (this.appGlobalService.getLoginStatus() == 2) {
+      this.router.navigate(['verzoek']);
+    }
+  }
 }
 
 
