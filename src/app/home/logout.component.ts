@@ -32,7 +32,8 @@ export class LogoutComponent implements OnInit {
   source = Observable.interval(1000).map(() => {
     this.counter--;
     if (this.counter < 1) {
-      window.location.href = window.location.hostname;
+      //window.location.href = this.appGlobalService.location.origin;
+      window.open(this.appGlobalService.location.origin, "_self")
     } else {
       document.getElementById("countDown").textContent = "Terug naar login pagina in " + this.counter + " seconden!";
     }

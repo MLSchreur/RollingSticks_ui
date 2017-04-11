@@ -3,6 +3,8 @@ import { Injectable }               from '@angular/core';
 @Injectable()
 export class AppGlobalService {
   public baseUrl : string; 
+  public locationOrigin: string;
+  public location: Location;
   private loginStatus: number = 0;  // 0 = not, 1 = leerling, 2 = docent
 
   constructor() {
@@ -10,8 +12,10 @@ export class AppGlobalService {
   }
 
   private defineBaseUrl() {
+    this.locationOrigin = window.location.origin;
+    this.location = window.location;
     let hostName: string = window.location.hostname;
-    console.log(hostName);
+    console.log("Hostname: " + hostName + "   Origin: " + this.locationOrigin + "   Location: " + this.location);
     switch(hostName.substring(0,6)) {
 //      lokaal testen op backend
 //      case "localh": this.baseUrl = "http://http://localhost:8082/api"; break;
