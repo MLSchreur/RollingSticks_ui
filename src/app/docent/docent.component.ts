@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppGlobalService }  from '../app.global.service';
 
 @Component({
   selector:               'docent',
@@ -7,7 +8,6 @@ import { Component } from '@angular/core';
 })
 export class DocentComponent {
   title =                 'docent';
-
 }
 
 

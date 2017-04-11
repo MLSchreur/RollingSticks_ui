@@ -2,11 +2,12 @@ import { Injectable }               from '@angular/core';
 
 @Injectable()
 export class AppGlobalService {
+  public baseUrl : string; 
+  private loginStatus: number = 0;  // 0 = not, 1 = leerling, 2 = docent
+
   constructor() {
     this.defineBaseUrl();
   }
-
-  public baseUrl : string; 
 
   private defineBaseUrl() {
     let hostName: string = window.location.hostname;
@@ -19,6 +20,13 @@ export class AppGlobalService {
       case "acc.ui": this.baseUrl = "http://rollingsticks.acc.carpago.nl/api"; break;
     }
     console.log("Base url: " + this.baseUrl);
+  }
+
+  public setLoginStatus(status) {
+    this.loginStatus = status;
+  }
+  public getLoginStatus() {
+    return this.loginStatus;
   }
 }
 

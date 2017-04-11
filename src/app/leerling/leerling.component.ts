@@ -5,6 +5,7 @@ import { LeerlingService } from './leerling.service';
 import { Leerling } from './leerling';
 import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
 import { Muziekstuk } from '../muziekstuk/muziekstuk';
+import { AppGlobalService }  from '../app.global.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LeerlingComponent implements OnInit {
   allMuziekstuk     : Muziekstuk[];
   tempTxt           : string;
 
-  constructor(private leerlingService: LeerlingService, private muziekstukService: MuziekstukService) {
+  constructor(private leerlingService: LeerlingService, private muziekstukService: MuziekstukService, private appGlobalService: AppGlobalService) {
   }
 
   ngOnInit() {
