@@ -39,5 +39,14 @@ export class LeerlingComponent implements OnInit {
   updateLeerling($event) {
     this.leerlingService.getLeerlingById($event.target.value).subscribe(data => this.leerlingSelected = data);
   }
+
+  showCompositie(muziekstuk: Muziekstuk){
+    console.log(muziekstuk)
+    console.log(muziekstuk.id)
+    this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
+      console.log("Compositie, succes!");
+      console.log(compositie);
+    });
+  }
 }
 

@@ -2,7 +2,6 @@ import { Component, OnInit }  from '@angular/core';
 import { CompositieService }  from './compositie.service';
 import { ViewEncapsulation }  from '@angular/core';
 
-import { Muziekstuk }         from '../muziekstuk/muziekstuk';
 import { Maat }               from './maat';
 import { Noot }               from './noot';
 
@@ -90,14 +89,4 @@ export class CompositieComponent implements OnInit {
     diff = diff*1000 + (d.getMilliseconds() - this.d1.getMilliseconds());
     document.getElementById("time").textContent = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds() + " ---- Time elapsed (ms): " + diff;
   }
-
-  showCompositie(muziekstuk: Muziekstuk){
-    console.log(muziekstuk)
-    console.log(muziekstuk.id)
-    this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
-      console.log("Compositie, succes!");
-      console.log(compositie);
-    });
-  }
-
 }
