@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CompositieService } from './compositie.service';
-import { ViewEncapsulation } from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
+import { CompositieService }  from './compositie.service';
+import { ViewEncapsulation }  from '@angular/core';
 
-import { Maat }  from './maat';
-import { Noot }  from './noot';
+import { Muziekstuk }         from '../muziekstuk/muziekstuk';
+import { Maat }               from './maat';
+import { Noot }               from './noot';
 
 @Component({
   selector: 'compositie',
@@ -88,6 +89,15 @@ export class CompositieComponent implements OnInit {
     let diff = (d.getMinutes()-this.d1.getMinutes())*60 + (d.getSeconds() - this.d1.getSeconds());
     diff = diff*1000 + (d.getMilliseconds() - this.d1.getMilliseconds());
     document.getElementById("time").textContent = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds() + " ---- Time elapsed (ms): " + diff;
+  }
+
+  showCompositie(muziekstuk: Muziekstuk){
+    console.log(muziekstuk)
+    console.log(muziekstuk.id)
+    this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
+      console.log("Compositie, succes!");
+      console.log(compositie);
+    });
   }
 
 }

@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { NotenbalkComponent } from '../notenbalk/notenbalk.component';
+import { Component, OnInit }    from '@angular/core';
+import { NotenbalkComponent }   from '../notenbalk/notenbalk.component';
 
-import { LeerlingService } from './leerling.service';
-import { Leerling } from './leerling';
-import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
-import { Muziekstuk } from '../muziekstuk/muziekstuk';
-import { AppGlobalService }  from '../app.global.service';
-import { CompositieService } from '../compositie/compositie.service';
+import { LeerlingService }      from './leerling.service';
+import { Leerling }             from './leerling';
+import { MuziekstukService }    from '../muziekstuk/muziekstuk.service';
+import { Muziekstuk }           from '../muziekstuk/muziekstuk';
+import { AppGlobalService }     from '../app.global.service';
+import { CompositieService }    from '../compositie/compositie.service';
 
 
 @Component({
@@ -38,16 +38,6 @@ export class LeerlingComponent implements OnInit {
 
   updateLeerling($event) {
     this.leerlingService.getLeerlingById($event.target.value).subscribe(data => this.leerlingSelected = data);
-  }
-
-  showCompositie(muziekstuk: Muziekstuk){
-    console.log(muziekstuk)
-    console.log(muziekstuk.id)
-    this.tempTxt = "ID = " + muziekstuk.id;
-    this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
-      console.log("Compositie, succes!");
-      console.log(compositie);
-    });
   }
 }
 
