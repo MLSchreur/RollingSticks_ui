@@ -5,6 +5,7 @@ import { ViewEncapsulation }  from '@angular/core';
 import { Maat }               from './maat';
 import { Noot }               from './noot';
 
+
 @Component({
   selector: 'compositie',
   templateUrl: './compositie.component.html',

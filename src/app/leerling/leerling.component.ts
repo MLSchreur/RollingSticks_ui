@@ -7,7 +7,8 @@ import { MuziekstukService }    from '../muziekstuk/muziekstuk.service';
 import { Muziekstuk }           from '../muziekstuk/muziekstuk';
 import { AppGlobalService }     from '../app.global.service';
 import { CompositieService }    from '../compositie/compositie.service';
-import { Compositie }           from '../compositie/compositie';
+import { element } from 'protractor';
+
 
 
 @Component({
@@ -22,7 +23,7 @@ export class LeerlingComponent implements OnInit {
   allMuziekstuk     : Muziekstuk[];
   tempTxt           : String;
   tempCompositieTxt : string;
-  compositie        : Compositie;
+
   
   constructor(private compositieService: CompositieService, private leerlingService: LeerlingService, private muziekstukService: MuziekstukService, private appGlobalService: AppGlobalService) {
   }
@@ -50,8 +51,20 @@ export class LeerlingComponent implements OnInit {
     this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
       console.log("Compositie, succes!");
       console.log(compositie);
-      if (compositie == "2") 
-      console.log("het is een 2");
+      if (compositie == "1"){
+        this.tempCompositieTxt = "Muziekstuk met opgegeven id bestaat niet";
+      } else if (compositie == "2"){
+        this.tempCompositieTxt = "Muziekstuk bevat geen XML bestand";
+      } else if (compositie == "3"){
+        this.tempCompositieTxt = "Fout opgetreden in de XML Parser. Waarschijnlijk ongeldige XML";
+      }
+      console.log("het is een fout");
+        
+
+
+      // if (compositie == "2") 
+      // console.log("het is een 2");
+      // this.tempCompositieTxt = "Het is een 2"
     });
   }
 }
