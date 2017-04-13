@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NotenbalkComponent } from '../notenbalk/notenbalk.component';
+import { Component, OnInit }    from '@angular/core';
+import { NotenbalkComponent }   from '../notenbalk/notenbalk.component';
 
-import { LeerlingService } from './leerling.service';
-import { Leerling } from './leerling';
-import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
-import { Muziekstuk } from '../muziekstuk/muziekstuk';
-import { AppGlobalService }  from '../app.global.service';
+import { LeerlingService }      from './leerling.service';
+import { Leerling }             from './leerling';
+import { MuziekstukService }    from '../muziekstuk/muziekstuk.service';
+import { Muziekstuk }           from '../muziekstuk/muziekstuk';
+import { AppGlobalService }     from '../app.global.service';
 
 
 @Component({
