@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CompositieService } from './compositie.service';
-import { ViewEncapsulation } from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
+import { CompositieService }  from './compositie.service';
+import { ViewEncapsulation }  from '@angular/core';
 
-import { Maat }  from './maat';
-import { Noot }  from './noot';
+import { Maat }               from './maat';
+import { Noot }               from './noot';
 
 @Component({
   selector: 'compositie',
