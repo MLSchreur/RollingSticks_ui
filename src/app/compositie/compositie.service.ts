@@ -103,6 +103,11 @@ export class CompositieService {
   }
 
   parseXml(id: number): Observable<string> {
-    return this.http.get(this.baseUrl + "/" + id + "/parsedxml").map(res => res.json());
+    return this.http.get(this.baseUrl + "/" + id + "/parsedxml").map(res => {
+      return res.json();
+    }).catch((error: any)=>{
+      console.log(error._body);
+      return error._body;
+    });
   }
 }

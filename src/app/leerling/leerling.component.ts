@@ -7,6 +7,7 @@ import { MuziekstukService }    from '../muziekstuk/muziekstuk.service';
 import { Muziekstuk }           from '../muziekstuk/muziekstuk';
 import { AppGlobalService }     from '../app.global.service';
 import { CompositieService }    from '../compositie/compositie.service';
+import { Compositie }           from '../compositie/compositie';
 
 
 @Component({
@@ -19,8 +20,10 @@ export class LeerlingComponent implements OnInit {
   leerlingen        : Leerling[] = [];
   leerlingSelected  : Leerling;
   allMuziekstuk     : Muziekstuk[];
-  tempTxt           : string;
-
+  tempTxt           : String;
+  tempCompositieTxt : string;
+  compositie        : Compositie;
+  
   constructor(private compositieService: CompositieService, private leerlingService: LeerlingService, private muziekstukService: MuziekstukService, private appGlobalService: AppGlobalService) {
   }
 
@@ -43,9 +46,12 @@ export class LeerlingComponent implements OnInit {
   showCompositie(muziekstuk: Muziekstuk){
     console.log(muziekstuk)
     console.log(muziekstuk.id)
+    this.tempTxt = "ID: " + muziekstuk.id + "*** Artiest: " + muziekstuk.artiest + "*** Titel: " + muziekstuk.artiest;
     this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
       console.log("Compositie, succes!");
       console.log(compositie);
+      if (compositie == "2") 
+      console.log("het is een 2");
     });
   }
 }
