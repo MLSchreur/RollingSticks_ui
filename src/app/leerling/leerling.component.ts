@@ -7,7 +7,7 @@ import { MuziekstukService }    from '../muziekstuk/muziekstuk.service';
 import { Muziekstuk }           from '../muziekstuk/muziekstuk';
 import { AppGlobalService }     from '../app.global.service';
 import { CompositieService }    from '../compositie/compositie.service';
-import { element } from 'protractor';
+import { Compositie }           from '../compositie/compositie';
 
 
 
@@ -47,24 +47,25 @@ export class LeerlingComponent implements OnInit {
   showCompositie(muziekstuk: Muziekstuk){
     console.log(muziekstuk)
     console.log(muziekstuk.id)
-    this.tempTxt = "ID: " + muziekstuk.id + "*** Artiest: " + muziekstuk.artiest + "*** Titel: " + muziekstuk.artiest;
+    // this.tempTxt = "ID: " + muziekstuk.id + "*** Artiest: " + muziekstuk.artiest + "*** Titel: " + muziekstuk.artiest;
     this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
       console.log("Compositie, succes!");
       console.log(compositie);
-      if (compositie == "1"){
-        this.tempCompositieTxt = "Muziekstuk met opgegeven id bestaat niet";
-      } else if (compositie == "2"){
-        this.tempCompositieTxt = "Muziekstuk bevat geen XML bestand";
-      } else if (compositie == "3"){
-        this.tempCompositieTxt = "Fout opgetreden in de XML Parser. Waarschijnlijk ongeldige XML";
+      if (typeof compositie === 'string'){
+        console.log("het is een string");
+        let tempcomp: string = compositie;
+        if (compositie == "1") {
+          this.tempCompositieTxt = "Muziekstuk met opgegeven id bestaat niet";
+        } else if (compositie == "2") {
+          this.tempCompositieTxt = "Muziekstuk bevat geen XML bestand";
+        } else if (compositie == "3") {
+          this.tempCompositieTxt = "Fout opgetreden in de XML Parser. Waarschijnlijk ongeldige XML";
+        }
+      } else {
+        this.tempCompositieTxt = muziekstuk.artiest + " - " + muziekstuk.titel + " *** " + compositie.title;
+    
       }
       console.log("het is een fout");
-        
-
-
-      // if (compositie == "2") 
-      // console.log("het is een 2");
-      // this.tempCompositieTxt = "Het is een 2"
     });
   }
 }

@@ -7,6 +7,7 @@ import { AppGlobalService }         from '../app.global.service';
 
 import { Maat }  from './maat';
 import { Noot }  from './noot';
+import { Compositie } from './compositie';
 
 @Injectable()
 export class CompositieService {
@@ -102,7 +103,7 @@ export class CompositieService {
     }
   }
 
-  parseXml(id: number): Observable<string> {
+  parseXml(id: number): Observable<Compositie> {
     return this.http.get(this.baseUrl + "/" + id + "/parsedxml").map(res => {
       return res.json();
     }).catch((error: any)=>{
