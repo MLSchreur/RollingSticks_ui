@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { NotenbalkComponent } from '../notenbalk/notenbalk.component';
+import { Component, OnInit }    from '@angular/core';
+import { NotenbalkComponent }   from '../notenbalk/notenbalk.component';
 
-import { LeerlingService } from './leerling.service';
-import { Leerling } from './leerling';
-import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
-import { Muziekstuk } from '../muziekstuk/muziekstuk';
-import { AppGlobalService }  from '../app.global.service';
+import { LeerlingService }      from './leerling.service';
+import { Leerling }             from './leerling';
+import { MuziekstukService }    from '../muziekstuk/muziekstuk.service';
+import { Muziekstuk }           from '../muziekstuk/muziekstuk';
+import { AppGlobalService }     from '../app.global.service';
+import { CompositieService }    from '../compositie/compositie.service';
 
 
 @Component({
   selector: 'leerling',
   templateUrl: './leerling.component.html',
-  providers: [LeerlingService, MuziekstukService]
+  providers: [CompositieService, LeerlingService, MuziekstukService]
 })
 export class LeerlingComponent implements OnInit {
   title = 'leerling';
@@ -20,7 +21,7 @@ export class LeerlingComponent implements OnInit {
   allMuziekstuk     : Muziekstuk[];
   tempTxt           : string;
 
-  constructor(private leerlingService: LeerlingService, private muziekstukService: MuziekstukService, private appGlobalService: AppGlobalService) {
+  constructor(private compositieService: CompositieService, private leerlingService: LeerlingService, private muziekstukService: MuziekstukService, private appGlobalService: AppGlobalService) {
   }
 
   ngOnInit() {
@@ -40,11 +41,12 @@ export class LeerlingComponent implements OnInit {
   }
 
   showCompositie(muziekstuk: Muziekstuk){
-    this.tempTxt = "Gekozen compositie: " + muziekstuk.id + " " + muziekstuk.artiest + " " + muziekstuk.titel;
+    console.log(muziekstuk)
+    console.log(muziekstuk.id)
+    this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
+      console.log("Compositie, succes!");
+      console.log(compositie);
+    });
   }
 }
-
-//   playMuziekstuk( ) {
-
-// }
 
