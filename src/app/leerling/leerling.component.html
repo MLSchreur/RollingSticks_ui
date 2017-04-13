@@ -16,7 +16,6 @@
 
                 <h3>Hier komt de compositie</h3>
 
-                <p>{{tempTxt}}</p>
                 <h2>Leerlingenlijst</h2>
                 <select class="control-input input-text" (change)="updateLeerling($event)">
                     <option *ngFor='let leerling of leerlingen' value='{{ leerling.id }}' [selected]="leerling.id == 3">{{ leerling.gebruikersnaam }}</option> 

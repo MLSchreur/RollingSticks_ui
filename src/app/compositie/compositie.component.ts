@@ -89,4 +89,5 @@ export class CompositieComponent implements OnInit {
     diff = diff*1000 + (d.getMilliseconds() - this.d1.getMilliseconds());
     document.getElementById("time").textContent = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds() + " ---- Time elapsed (ms): " + diff;
   }
+
 }
