@@ -20,7 +20,12 @@ export class CompositieComponent implements OnInit {
   lft = 0;
   tp = 0;
   source;
-  message : string;
+  message: string;
+  titel: string;
+  tempo: number;
+  beats: string;
+  beatType: string;
+  mode: string;
 
   ngOnInit() {
     this.loadMusic();
@@ -111,6 +116,12 @@ export class CompositieComponent implements OnInit {
       } else {
         this.message = muziekstuk.artiest + " - " + muziekstuk.titel + " *** " + compositie.title;
       }
+      this.titel = compositie.title;
+      this.tempo = compositie.tempo;
+      this.beats = compositie.beats.toString();
+      this.beatType = compositie.beatType.toString();
+      this.mode = compositie.mode;
+      this.maten = compositie.maten;
     });
   }
 }
