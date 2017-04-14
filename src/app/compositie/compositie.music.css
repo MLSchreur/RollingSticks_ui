@@ -2,12 +2,20 @@
   margin-bottom: 50px;
 }
 
-#cursor {
-  border-right: 3px solid red;
+#cursor, #cursorStart, #cursorEnd {
   z-index: 2;  
   width: 2px;
   margin-left: 0px;
   margin-right: 0px;
+}
+#cursor {
+  border-right: 3px solid red;
+}
+#cursorStart {
+  border-right: 2px solid blue;
+}
+#cursorEnd {
+  border-right: 2px solid purple;
 }
 /* ============================================*/
 /*.bar is vertikaal scheidingsteken            */
