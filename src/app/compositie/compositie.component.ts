@@ -94,7 +94,6 @@ export class CompositieComponent implements OnInit {
   }
 
   showCompositie(muziekstuk: Muziekstuk) {
-    console.log("in showCompositie");
     console.log(muziekstuk);
     console.log(muziekstuk.id);
     this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
@@ -112,7 +111,6 @@ export class CompositieComponent implements OnInit {
       } else {
         this.message = muziekstuk.artiest + " - " + muziekstuk.titel + " *** " + compositie.title;
       }
-      console.log("het is een fout");
     });
   }
 }
