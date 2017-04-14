@@ -14,10 +14,14 @@ export class LeerlingService {
   private baseUrl: string   = this.appGlobalService.baseUrl + "/leerling"; 
 
   getLeerlingById(id: number): Observable<Leerling> {
-    return this.http.get(this.baseUrl+"/" + id).map(res => res.json());
+    return this.http.get(this.baseUrl+"/" + id).map(res => res.json()).catch((error:any) => {
+      return error.json();
+    });
   }
 
   getLeerlingen(): Observable<Leerling[]> {
-    return this.http.get(this.baseUrl).map(res => res.json());
+    return this.http.get(this.baseUrl).map(res => res.json()).catch((error:any) => {
+      return error.json();
+    });
   }
 }

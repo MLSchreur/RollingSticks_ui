@@ -16,15 +16,37 @@ import { Noot }               from './noot';
 export class CompositieComponent implements OnInit {
   maten: Maat[] = [];
   d1: Date = new Date();
-  lft = 0;
-  tp = 0;
+  cursorLeft: number = 0;
+  cursorTop : number = 0;
+  partLeft  : number;
+  partTop   : number;
+  markerStartLeft: number;
+  markerStartTop : number;
+  markerEndLeft  : number;
+  markerEndTop   : number;
   source;
+
+  constructor(private compositieService: CompositieService) {
+  }
 
   ngOnInit() {
     this.loadMusic();
+    this.partLeft = 50 + Math.round(document.getElementById("part").getBoundingClientRect().left);
+    this.partTop  = 50 + Math.round(document.getElementById("part").getBoundingClientRect().top);
+    console.log("PART: left=" + this.partLeft + " top=" + this.partTop);
+    this.setMarkers();
   }
 
-  constructor(private compositieService: CompositieService) {
+  setMarkers() {
+    this.markerStartLeft = Math.round(document.getElementById("cursorStart").getBoundingClientRect().left);
+    this.markerStartTop  = Math.round(document.getElementById("cursorStart").getBoundingClientRect().top);
+    this.markerEndLeft   = Math.round(document.getElementById("cursorEnd").getBoundingClientRect().left);
+    this.markerEndTop    = Math.round(document.getElementById("cursorEnd").getBoundingClientRect().top);
+    this.cursorLeft = this.markerStartLeft - this.partLeft;
+    this.cursorTop  = this.markerStartTop - this.partTop;
+    console.log("MARKER START: left=" + this.markerStartLeft + " top=" + this.markerStartTop);
+    console.log("MARKER END  : left=" + this.markerEndLeft   + " top=" + this.markerEndTop);
+    console.log("CURSOR      : left=" + this.cursorLeft      + " top=" + this.cursorTop);
   }
 
   loadMusic() {
@@ -53,7 +75,9 @@ export class CompositieComponent implements OnInit {
         cursor = document.createElement("div");
         cursor.setAttribute("id", "cursorEnd");
         cursor.setAttribute("class", "bar");
-        staff.appendChild(cursor);      
+        staff.appendChild(cursor); 
+        cursor.style.left = "384px";
+        cursor.style.top  = "160px";
       }
       for (let j=0 ; j<this.maten[i].noten.length ; j++) {
         let note = document.createElement("div");
@@ -64,46 +88,42 @@ export class CompositieComponent implements OnInit {
       bar.setAttribute("class", "bar");
       staff.appendChild(bar);
     }
-    this.getElementPositionLeft(document.getElementById("cursor"));
-    this.getElementPositionTop(document.getElementById("cursorStart"));
-    this.getElementPositionTop(document.getElementById("cursorEnd"));
-  }
-
-  getElementPositionLeft(el: Element): number {
-    let offsetX: number = el.getBoundingClientRect().left - document.body.getBoundingClientRect().left;
-    console.log(el.id + ": left=" + offsetX);
-    return offsetX;
-  }
-  getElementPositionTop(el): number {
-    let offsetY: number = el.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
-    console.log(el.id + " top=" + offsetY);
-    return offsetY;
   }
 
   playMusic() {
     this.d1 = new Date();
     console.log("Play Music");
+    if (this.compositieService.source == undefined) {
+      this.compositieService.setInterval(parseInt(document.getElementById("setTempo").getAttribute("value")));
+      this.compositieService.createInterval();
+    }
     this.source = this.compositieService.source.subscribe(data => {
-      //console.log(data);
       if (data.height != "") {
         document.getElementById("playingNote").textContent = data.length + " " + data.height;
       }
       this.printTime();
-      this.lft += 8;
-      if (this.lft > 384) {
-        this.lft = 0;
-        this.tp += 80;
-        if (this.tp > 160) {
-          this.tp = 0;
+      this.cursorLeft += 8;
+      if ((this.cursorLeft > 384) || ( (this.cursorLeft > this.markerEndLeft - this.partLeft) && (this.cursorTop == this.markerEndTop - this.partTop)) ) {
+        if (this.cursorTop == this.markerEndTop - this.partTop) {
+          this.cursorLeft = this.markerStartLeft - this.partLeft;
+          this.cursorTop  = this.markerStartTop  - this.partTop;
+        }  else {
+          this.cursorLeft = 0;
+          this.cursorTop += 80;
+          if (this.cursorTop > 160) {
+            this.cursorTop = this.markerStartTop - this.partTop;
+          }
         }
       }
-      document.getElementById("cursor").style.left = this.lft + "px";
-      document.getElementById("cursor").style.top = this.tp + "px";
+      document.getElementById("cursor").style.left = this.cursorLeft + "px";
+      document.getElementById("cursor").style.top = this.cursorTop + "px";
     });
   }
 
   pauseMusic() {
-    this.source.unsubscribe();
+    if (this.compositieService.source != undefined) {
+      this.source.unsubscribe();
+    }
   }
 
   printTime() {
@@ -114,50 +134,52 @@ export class CompositieComponent implements OnInit {
   }
 
   markStart() {
-    document.getElementById("part").addEventListener("click", this.setStart);
-  }
+    let t = this;
+    document.getElementById("part").addEventListener("click", function($event) { 
+      document.getElementById("part").removeEventListener("click");
 
-  setStart($event) {
-    let clickX = $event.screenX;
-    let clickY = $event.screenY;
-    let part = document.getElementById("part");
-    document.getElementById("part").removeEventListener("click", this.setStart);
-    let posX = part.getBoundingClientRect().left - document.body.getBoundingClientRect().left + 50;
-    let posY = part.getBoundingClientRect().top  - document.body.getBoundingClientRect().top + 100;
-    console.log("clickX=" + clickX + " posX=" + posX + " clickY=" + clickY + " posY=" + posY);
-
-    let cursorStart = document.getElementById("cursorStart");
-    cursorStart.style.left = (clickX - posX) + "px";
-    if ((clickY - posY) < 80) {
-      cursorStart.style.top = "0px";
-    } else if ((clickY - posY) < 160) {
-      cursorStart.style.top = "80px";
-    } else {
-      cursorStart.style.top = "160px";
-    }
+      let cursorStart = document.getElementById("cursorStart");
+      let clickX = $event.screenX;
+      let clickY = $event.screenY;
+      cursorStart.style.left = (clickX - t.partLeft) + "px";
+      if ((clickY - t.partTop) < 80) {
+        cursorStart.style.top = "0px";
+      } else if ((clickY - t.partTop) < 160) {
+        cursorStart.style.top = "80px";
+      } else {
+        cursorStart.style.top = "160px";
+      }
+      t.setMarkers();
+    });
   }
 
   markEnd() {
-    document.getElementById("part").addEventListener("click", this.setEnd);
+    let t = this;
+    document.getElementById("part").addEventListener("click", function($event) { 
+      document.getElementById("part").removeEventListener("click");
+
+      let cursorEnd = document.getElementById("cursorEnd");
+      let clickX = $event.screenX;
+      let clickY = $event.screenY;
+      cursorEnd.style.left = (clickX - t.partLeft) + "px";
+      if ((clickY - t.partTop) < 80) {
+        cursorEnd.style.top = "0px";
+      } else if ((clickY - t.partTop) < 160) {
+        cursorEnd.style.top = "80px";
+      } else {
+        cursorEnd.style.top = "160px";
+      }
+      t.setMarkers();
+    });
   }
 
-  setEnd($event) {
-    let clickX = $event.screenX;
-    let clickY = $event.screenY;
-    let part = document.getElementById("part");
-    document.getElementById("part").removeEventListener("click", this.setStart);
-    let posX = part.getBoundingClientRect().left - document.body.getBoundingClientRect().left + 50;
-    let posY = part.getBoundingClientRect().top  - document.body.getBoundingClientRect().top + 100;
-    console.log("clickX=" + clickX + " posX=" + posX + " clickY=" + clickY + " posY=" + posY);
-
-    let cursorEnd = document.getElementById("cursorEnd");
-    cursorEnd.style.left = (clickX - posX) + "px";
-    if ((clickY - posY) < 80) {
-      cursorEnd.style.top = "0px";
-    } else if ((clickY - posY) < 160) {
-      cursorEnd.style.top = "80px";
-    } else {
-      cursorEnd.style.top = "160px";
+  setTempo(tempo) {
+    this.compositieService.setInterval(tempo);
+    if (this.compositieService.source != undefined) {    
+      this.pauseMusic();
+      this.compositieService.createInterval();
+      this.playMusic();
     }
-  }  
+  }
 }
+

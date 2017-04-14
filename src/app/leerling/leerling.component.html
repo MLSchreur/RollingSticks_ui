@@ -15,7 +15,8 @@
                 <h4>Gekozen muziekstuk:</h4>
                 <p>{{ tempCompositieTxt }}</p>
 
-                <compositie></compositie>
+                <compositie #comp></compositie>
+                <button (click)="comp.setMarkers()">TEST</button>
 
                 <h2>Leerlingenlijst</h2>
                 <select class="control-input input-text" (change)="updateLeerling($event)">

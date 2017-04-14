@@ -19,34 +19,50 @@ export class CompositieService {
   }
 
   private baseUrl: string     = this.appGlobalService.baseUrl + "/muziekstuk";
-  maten: Maat[] = [];
-  emptyNote: Noot = new Noot;
-  nootNr: number = 0;
-  maatNr: number = 0;
-  counter: number = 0;
+  private maten: Maat[] = [];
+  private emptyNote: Noot = new Noot;
+  private nootNr  : number = 0;
+  private maatNr  : number = 0;
+  private counter : number = 0;
+  private interval: number = 100;
+  public source;
 
-  source = Observable.interval(100).map(() => {
-    let returnNote: Noot;
-    if (this.counter==0) {
-      if (this.nootNr >= this.maten[this.maatNr].noten.length) {
-        this.nootNr = 0;
-        if (++this.maatNr >= 12) {
-          this.maatNr = 0;
+  resetCompositie() {
+    this.nootNr  = 0;
+    this.maatNr  = 0;
+    this.counter = 0;
+  }
+
+  createInterval() {
+    console.log("Interval will be: " + this.interval);
+    this.source = Observable.interval(this.interval).map(() => {
+      let returnNote: Noot;
+      if (this.counter==0) {
+        if (this.nootNr >= this.maten[this.maatNr].noten.length) {
+          this.nootNr = 0;
+          if (++this.maatNr >= 12) {
+            this.maatNr = 0;
+          }
         }
+        let ln = this.maten[this.maatNr].noten[this.nootNr].length;
+        if (ln == "whole") this.counter = 11;
+        if (ln == "half") this.counter = 5;
+        if (ln == "quarter") this.counter = 2;
+        returnNote = this.maten[this.maatNr].noten[this.nootNr++];
+      } else {
+        this.counter--;
+        returnNote = this.emptyNote;
       }
-      let ln = this.maten[this.maatNr].noten[this.nootNr].length;
-      if (ln == "whole") this.counter = 11;
-      if (ln == "half") this.counter = 5;
-      if (ln == "quarter") this.counter = 2;
-      returnNote = this.maten[this.maatNr].noten[this.nootNr++];
-    } else {
-      this.counter--;
-      returnNote = this.emptyNote;
-    }
-    return returnNote;
-  });
+      return returnNote;
+    });
+  }
 
-  
+  setInterval(tempo: number) {
+    if (tempo>=30 && tempo <=200) {
+      this.interval = (60*100)/tempo;
+      console.log("Interval = " + this.interval);
+    }
+  }
 
   generateRandomNotes() {
     for (let i=0; i<12 ; i++) {
