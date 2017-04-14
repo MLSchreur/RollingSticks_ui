@@ -6,10 +6,8 @@ import { Leerling }             from './leerling';
 import { MuziekstukService }    from '../muziekstuk/muziekstuk.service';
 import { Muziekstuk }           from '../muziekstuk/muziekstuk';
 import { AppGlobalService }     from '../app.global.service';
-<<<<<<< HEAD
-=======
 import { CompositieService }    from '../compositie/compositie.service';
->>>>>>> develop
+
 
 
 @Component({

@@ -47,6 +47,7 @@ export class NavigatieComponent {
     if (this.appGlobalService.getLoginStatus() == 2) {
       this.router.navigate(['verzoek']);
     }
+    
   }
 }
 
