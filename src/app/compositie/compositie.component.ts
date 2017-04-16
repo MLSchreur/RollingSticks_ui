@@ -26,6 +26,8 @@ export class CompositieComponent implements OnInit {
   beats: string;
   beatType: string;
   mode: string;
+  maatSoort: string;
+  pictogram: string;
 
   ngOnInit() {
     this.loadMusic();
@@ -120,8 +122,10 @@ export class CompositieComponent implements OnInit {
       this.tempo = compositie.tempo;
       this.beats = compositie.beats.toString();
       this.beatType = compositie.beatType.toString();
+      this.maatSoort = this.beats+"/"+this.beatType;
       this.mode = compositie.mode;
       this.maten = compositie.maten;
+      this.pictogram = muziekstuk.pictogram;
     });
   }
 }
