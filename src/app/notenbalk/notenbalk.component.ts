@@ -4,11 +4,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
     selector: 'my-notenbalk',
     encapsulation: ViewEncapsulation.None,
     templateUrl: './notenbalk.component.html', 
-    styleUrls: ['./color.css', 
-                './music.css'
-    ]
-
+    styleUrls: [ './music.css']
 })
+
 export class NotenbalkComponent {
     noten = [
         "bar end", 
