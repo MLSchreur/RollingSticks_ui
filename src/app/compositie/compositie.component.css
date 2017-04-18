@@ -36,3 +36,7 @@ h1 {
   color: forestgreen;
   margin-top: 5px;
 }
+
+#pictogram {
+  float: right;
+}
