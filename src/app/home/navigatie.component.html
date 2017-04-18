@@ -1,24 +1,24 @@
 <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand text-hide" href="#">Brand Text</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item"><a class="nav-link" routerLink="home"     routerlinkActive="active"><span class="vervelend">Home</span></a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="docent"   routerlinkActive="active">Docent</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="leerling" routerlinkActive="active">Leerling</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="loguit"   routerlinkActive="active">Uitloggen</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="verzoek"   routerlinkActive="active">Verzoeken</a></li>
-        </ul>
-      </div>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand text-hide" href="#">Brand Text</a>
     </div>
-  </nav>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"><a class="nav-link" routerlinkActive="active" (click)="checkHome()"><span class="vervelend">Home</span></a></li>
+        <li class="nav-item"><a class="nav-link" routerlinkActive="active" (click)="checkDocent()">Docent</a></li>
+        <li class="nav-item"><a class="nav-link" routerlinkActive="active" (click)="checkLeerling()">Leerling</a></li>
+        <li class="nav-item"><a class="nav-link" routerlinkActive="active" (click)="checkLoguit()">Uitloggen</a></li>
+        <li class="nav-item"><a class="nav-link" routerlinkActive="active" (click)="checkVerzoek()">Verzoeken</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
   
