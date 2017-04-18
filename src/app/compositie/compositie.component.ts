@@ -5,6 +5,7 @@ import { ViewEncapsulation }  from '@angular/core';
 import { Maat }               from './maat';
 import { Noot }               from './noot';
 import { Muziekstuk }         from '../muziekstuk/muziekstuk';
+import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
 
 @Component({
   selector: 'compositie',
@@ -20,13 +21,20 @@ export class CompositieComponent implements OnInit {
   lft = 0;
   tp = 0;
   source;
-  message : string;
+  message: string;
+  titel: string;
+  tempo: number;
+  beats: string;
+  beatType: string;
+  mode: string;
+  maatSoort: string;
+
 
   ngOnInit() {
     this.loadMusic();
   }
 
-  constructor(private compositieService: CompositieService) {
+  constructor(private compositieService: CompositieService, private muziekstukService: MuziekstukService) {
   }
 
   loadMusic() {
@@ -108,9 +116,18 @@ export class CompositieComponent implements OnInit {
         } else if (compositie == "3") {
           this.message = "Fout opgetreden in de XML Parser. Waarschijnlijk ongeldige XML";
         }
-      } else {
-        this.message = muziekstuk.artiest + " - " + muziekstuk.titel + " *** " + compositie.title;
       }
+      this.titel = compositie.title;
+      this.tempo = compositie.tempo;
+      this.beats = compositie.beats.toString();
+      this.beatType = compositie.beatType.toString();
+      this.maatSoort = this.beats+"/"+this.beatType;
+      this.mode = compositie.mode;
+      this.maten = compositie.maten;
+    });
+    this.muziekstukService.getMuziekstukImgById(muziekstuk.id).subscribe(img => {
+      muziekstuk.pictogram = img;
+      document.getElementById("imgFromServer").setAttribute("src", img);
     });
   }
 }
