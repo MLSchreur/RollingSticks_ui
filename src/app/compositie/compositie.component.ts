@@ -5,6 +5,7 @@ import { ViewEncapsulation }  from '@angular/core';
 import { Maat }               from './maat';
 import { Noot }               from './noot';
 import { Muziekstuk }         from '../muziekstuk/muziekstuk';
+import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
 
 @Component({
   selector: 'compositie',
@@ -27,13 +28,13 @@ export class CompositieComponent implements OnInit {
   beatType: string;
   mode: string;
   maatSoort: string;
-  pictogram: string;
+
 
   ngOnInit() {
     this.loadMusic();
   }
 
-  constructor(private compositieService: CompositieService) {
+  constructor(private compositieService: CompositieService, private muziekstukService: MuziekstukService) {
   }
 
   loadMusic() {
@@ -125,8 +126,11 @@ export class CompositieComponent implements OnInit {
       this.maatSoort = this.beats+"/"+this.beatType;
       this.mode = compositie.mode;
       this.maten = compositie.maten;
-      this.pictogram = muziekstuk.pictogram;
-      document.getElementById("pictogram").setAttribute("src", this.pictogram);
     });
-  }
+    this.muziekstukService.getMuziekstukImgById(muziekstuk.id).subscribe(img => {
+      console.log("Muziekstuk per stuk - IMG, succes!");
+      muziekstuk.pictogram = img;
+      document.getElementById("imgFromServer").setAttribute("src", img);
+    });
+}
 }
