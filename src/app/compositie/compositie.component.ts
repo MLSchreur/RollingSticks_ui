@@ -116,8 +116,6 @@ export class CompositieComponent implements OnInit {
         } else if (compositie == "3") {
           this.message = "Fout opgetreden in de XML Parser. Waarschijnlijk ongeldige XML";
         }
-      } else {
-        this.message = muziekstuk.artiest + " - " + muziekstuk.titel + " *** " + compositie.title;
       }
       this.titel = compositie.title;
       this.tempo = compositie.tempo;
@@ -128,9 +126,8 @@ export class CompositieComponent implements OnInit {
       this.maten = compositie.maten;
     });
     this.muziekstukService.getMuziekstukImgById(muziekstuk.id).subscribe(img => {
-      console.log("Muziekstuk per stuk - IMG, succes!");
       muziekstuk.pictogram = img;
       document.getElementById("imgFromServer").setAttribute("src", img);
     });
-}
+  }
 }
