@@ -126,6 +126,7 @@ export class CompositieComponent implements OnInit {
       this.mode = compositie.mode;
       this.maten = compositie.maten;
       this.pictogram = muziekstuk.pictogram;
+      document.getElementById("pictogram").setAttribute("src", this.pictogram);
     });
   }
 }
