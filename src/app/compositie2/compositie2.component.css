@@ -1,0 +1,42 @@
+label.button {
+  padding: 5px 10px;
+  border-color: palegreen;
+  border-radius: 10px;
+}
+
+label.button:hover {
+  background-color: palegreen;
+  color: black;
+}
+
+#part {
+  display: inline-block; 
+  width: 660px; 
+  height: 300px; 
+  background-color: palegreen; 
+  border-radius: 20px 20px 0px 0px;
+  margin-bottom: 0px;
+  padding: 50px; 
+  text-align: left;
+}
+
+#divPlayingNote {
+  display: inline-block; 
+  width: 660px; 
+  border-radius: 0px 0px 20px 20px;
+  margin-top: 0px;
+  border:3px solid palegreen;
+}
+
+h1 {
+  font-family: Courier New, Courier, monospace;
+  font-weight: bold;
+  font-size: 50px;
+  letter-spacing: 0.5em;
+  color: forestgreen;
+  margin-top: 5px;
+}
+
+#pictogram {
+  float: right;
+}
