@@ -1,21 +1,21 @@
 import { Component, OnInit }  from '@angular/core';
-import { CompositieService }  from './compositie.service';
+import { CompositieService2 } from './compositie2.service';
 import { ViewEncapsulation }  from '@angular/core';
 
-import { Maat }               from './maat';
-import { Noot }               from './noot';
+import { Maat }               from '../compositie/maat';
+import { Noot }               from '../compositie/noot';
 import { Muziekstuk }         from '../muziekstuk/muziekstuk';
 import { MuziekstukService }  from '../muziekstuk/muziekstuk.service';
 
 @Component({
-  selector: 'compositie',
-  templateUrl: './compositie.component.html',
+  selector: 'compositie2',
+  templateUrl: './compositie2.component.html',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [ './compositie.component.css', './compositie.music.css' ],
-  providers: [ CompositieService ]
+  styleUrls: [ './compositie2.component.css', './compositie2.music.css' ],
+  providers: [ CompositieService2 ]
 })
 
-export class CompositieComponent implements OnInit {
+export class CompositieComponent2 implements OnInit {
   maten: Maat[] = [];
   d1: Date = new Date();
   lft = 0;
@@ -34,11 +34,11 @@ export class CompositieComponent implements OnInit {
     this.loadMusic();
   }
 
-  constructor(private compositieService: CompositieService, private muziekstukService: MuziekstukService) {
+  constructor(private compositieService2: CompositieService2, private muziekstukService: MuziekstukService) {
   }
 
   loadMusic() {
-//    this.maten = this.compositieService.getNotes();
+    this.maten = this.compositieService2.getNotes();
     let part = document.getElementById("part");
     part.innerHTML = "";
     for (let i=0 ; i<this.maten.length ; i++) {
@@ -58,18 +58,10 @@ export class CompositieComponent implements OnInit {
         staff.appendChild(cursor);
       }
       for (let j=0 ; j<this.maten[i].noten.length ; j++) {
-        if (this.maten[i].noten[j].chord == false) {
-          if (this.maten[i].noten[j].nootNaam == "onbekend") {
-            console.log("Probleem, nootNaam is onbekend.");
-            console.log(this.maten[i].noten[j]);
-          }
-          let note = document.createElement("div");
-          // later lengte omzetten in noot.ts naar number. Dan hoeft hier
-          // de + niet meer toegevoegd te worden.
-          let length = this.getLength(+this.maten[i].noten[j].length);
-          note.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
-          staff.appendChild(note);
-        }
+        console.log(this.maten[i].noten[j]);
+        let note = document.createElement("div");
+        note.setAttribute("class", this.maten[i].noten[j].length + " note " + this.maten[i].noten[j].height);
+        staff.appendChild(note);
       }
       let bar = document.createElement("div");
       bar.setAttribute("class", "bar");
@@ -77,23 +69,10 @@ export class CompositieComponent implements OnInit {
     }
   }
 
-  getLength(length: number) {
-    switch(length) {
-      case 1:   return "l1";
-      case 2:   return "l2";
-      case 4:   return "l4";
-      case 8:   return "l8";
-      case 16:  return "l16";
-      case 32:  return "l32";
-      case 64:  return "l64";
-      default:  console.log("lengte onbekend: " + length); return "";
-    }
-  }
-
   playMusic() {
     this.d1 = new Date();
     console.log("Play Music");
-    this.source = this.compositieService.source.subscribe(data => {
+    this.source = this.compositieService2.source.subscribe(data => {
       //console.log(data);
       if (data.height != "") {
         document.getElementById("playingNote").textContent = data.length + " " + data.height;
@@ -127,7 +106,7 @@ export class CompositieComponent implements OnInit {
   showCompositie(muziekstuk: Muziekstuk) {
     console.log(muziekstuk);
     console.log(muziekstuk.id);
-    this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
+    this.compositieService2.parseXml(muziekstuk.id).subscribe(compositie => {
       console.log("Compositie, succes!");
       console.log(compositie);
       this.message = "";

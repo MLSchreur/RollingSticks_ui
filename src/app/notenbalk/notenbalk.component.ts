@@ -3,9 +3,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'my-notenbalk',
     encapsulation: ViewEncapsulation.None,
-    templateUrl: './notenbalk.component.html', 
-    styleUrls: ['./music.css'
-    ]
+    templateUrl: './notenbalk.component.html'
+    // css tijdelijk uitzetten. css van compositie.music.css gebruiken.
+    // styleUrls: ['./music.css'
+    // ]
 
 })
 export class NotenbalkComponent {
