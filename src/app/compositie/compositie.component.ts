@@ -64,6 +64,7 @@ export class CompositieComponent implements OnInit {
       }
       let note;
       let subnote;
+      let vorigeNootNaam;
       for (let j=0 ; j<this.maten[i].noten.length ; j++) {
         // nootNaam onbekend -> er is iets mis met de XML, noot wordt overgeslagen.
         if (this.maten[i].noten[j].nootNaam == "onbekend") {
@@ -71,23 +72,54 @@ export class CompositieComponent implements OnInit {
           console.log(this.maten[i].noten[j]);
         } else if (this.maten[i].noten[j].chord == false) {           // chord == false -> begin van een nieuw akkoord!
           note = document.createElement("div");
-          // later lengte omzetten in noot.ts naar number. Dan hoeft hier
-          // de + niet meer toegevoegd te worden.
+          // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
           let length = this.getLength(+this.maten[i].noten[j].length);
           note.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
-          // code voor subnotes
+          // methode getPositieNootNaam bepaalt de plaats op de notenbalk
+          let topPositie = this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
+          note.style.top = topPositie + "px";
+
           staff.appendChild(note);
+          
+          vorigeNootNaam = this.maten[i].noten[j].nootNaam;           // naam van de noot bewaren voor de volgende noot van het akkoord
+
         } else {                                                      // chord == true -> vervolg van het akkoord, dus als subnoot toevoegen.
           subnote = document.createElement("div");
+          // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
           let length = this.getLength(+this.maten[i].noten[j].length);
           subnote.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
-          subnote.style.top = "-24px";
+          // Positie van de volgende noot in het akkoord is de positie van de nootNaam minus de positie van de vorige noot.
+          // Hiermee bepalen we het verschil in positie tussen de 2 noten, zodat de nieuwe noot op de juiste plek komt te staan.
+          let topPositie = (this.getPositieNootNaam(this.maten[i].noten[j].nootNaam) - this.getPositieNootNaam(vorigeNootNaam));
+          subnote.style.top = topPositie + "px";
+          
           note.appendChild(subnote);
+
+          vorigeNootNaam = this.maten[i].noten[j].nootNaam;           // naam van de noot bewaren voor de volgende noot van het akkoord
         }
       }
       let bar = document.createElement("div");
       bar.setAttribute("class", "bar");
       staff.appendChild(bar);
+    }
+  }
+
+  getPositieNootNaam(nootNaam: string) {
+    switch(nootNaam) {
+      case "c6": return -20;
+      case "b5": return -16;
+      case "a5": return -12;
+      case "g5": return  -8;
+      case "f5": return  -4;
+      case "e5": return   0;
+      case "d5": return   4;
+      case "c5": return   8;
+      case "b4": return  12;
+      case "a4": return  16;
+      case "g4": return  20;
+      case "f4": return  24;
+      case "e4": return  28;
+      case "d4": return  32;
     }
   }
 

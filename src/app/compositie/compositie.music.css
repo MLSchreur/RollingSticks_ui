@@ -204,52 +204,6 @@
   height: 24px;
 }
 
-/* ============================================*/
-/* Vertical position                           */
-/* =========================================== */
-.note.c6 {
-  top: -20px;
-}
-.note.b5 {
-  top: -16px;
-}
-.note.a5 {
-  top: -12px;
-}
-.note.g5 {
-  top: -8px;
-}
-.note.f5 {
-  top: -4px;
-}
-.note.e5 {
-  top: 0px;
-}
-.note.d5 {
-  top: 4px;
-}
-.note.c5 {
-  top: 8px;
-}
-.note.b4 {
-  top: 12px;
-}
-.note.a4 {
-  top: 16px;
-}
-.note.g4 {
-  top: 20px;
-}
-.note.f4 {
-  top: 24px;
-}
-.note.e4 {
-  top: 28px;
-}
-.note.d4 {
-  top: 32px;      
-}
-
 /*vertikale verplaatsing stok*/
 /**/
 /* Door de top: #px wordt de vertikale positie van de stok aangepast.
