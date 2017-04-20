@@ -7,7 +7,7 @@
   z-index: 2;  
   width: 2px;
   margin-left: 0px;
-  margin-right: 0px;
+  margin-right: 4px;
 }
 /* ============================================*/
 /*.bar is vertikaal scheidingsteken            */
@@ -18,6 +18,8 @@
   width: 2px;
   height: 32px;
   margin: 0px;
+  /*testen voor margins naar rechts*/
+  margin-right: 4px;
   margin-bottom: 48px;
   width: 2px;
   border-right: 1px solid black;
@@ -65,23 +67,23 @@
 /* =========================================== */
 .note.l1,
 .note.whole {
-  margin-left: 2px;
-  margin-right: 114px;
+  margin-left: 0px;
+  margin-right: 116px;
 }
 .note.l2,
 .note.half {
-  margin-left: 2px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 52px;
 }
 .note.l4,
 .note.quarter {
-  margin-left: 2px;
-  margin-right: 18px;
+  margin-left: 0px;
+  margin-right: 20px;
 }
 .note.l8,
 .note.quarter {
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 0px;
+  margin-right: 4px;
 }
 
 /* ============================================*/
@@ -125,8 +127,8 @@
 .half.note::before {
   box-sizing: border-box;
   border: 1px solid black;
-  border-top-width: 2.18181818px;
-  border-bottom-width: 2.18181818px;
+  /*border-top-width: 2.18181818px;
+  border-bottom-width: 2.18181818px;*/
 }
 .l4.note::before,
 .l8.note::before,
@@ -144,7 +146,7 @@
 .half.note::after,
 .quarter.note::after {
   content: "";
-  height: 28px;
+  /*height: 28px;*/
   width: 1px;
   background-color: black;
   position: absolute;
@@ -152,53 +154,54 @@
        4 met std lengte is streepje onder het balletje van de noot
        Streep gaat ALTIJD van boven naar beneden!!*/
   top: 4px;
-  right: -12;
+  right: 11px;
 }
 
 /* ============================================*/
-/* Vertical position                           */
+/* ::after specifieke hoogte voor elke noot    */
+/* Stokken eindigen dan op dezelfde hoogte     */
 /* =========================================== */
-.note.c6 {
-  top: -20px;
+.note.c6::after {
+  height: 76px;
 }
-.note.b5 {
-  top: -16px;
+.note.b5::after {
+  height: 72px;
 }
-.note.a5 {
-  top: -12px;
+.note.a5::after {
+  height: 68px;
 }
-.note.g5 {
-  top: -8px;
+.note.g5::after {
+  height: 64px;
 }
-.note.f5 {
-  top: -4px;
+.note.f5::after {
+  height: 60px;
 }
-.note.e5 {
-  top: 0px;
+.note.e5::after {
+  height: 56px;
 }
-.note.d5 {
-  top: 4px;
+.note.d5::after {
+  height: 52px;
 }
-.note.c5 {
-  top: 8px;
+.note.c5::after {
+  height: 48px;
 }
-.note.b4 {
-  top: 12px;
+.note.b4::after {
+  height: 44px;
 }
-.note.a4 {
-  top: 16px;
+.note.a4::after {
+  height: 40px;
 }
-.note.g4 {
-  top: 20px;
+.note.g4::after {
+  height: 36px;
 }
-.note.f4 {
-  top: 24px;
+.note.f4::after {
+  height: 32px;
 }
-.note.e4 {
-  top: 28px;
+.note.e4::after {
+  height: 28px;
 }
-.note.d4 {
-  top: 32px;      
+.note.d4::after {
+  height: 24px;
 }
 
 /*vertikale verplaatsing stok*/
