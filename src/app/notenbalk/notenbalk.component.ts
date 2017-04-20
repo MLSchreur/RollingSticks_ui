@@ -7,7 +7,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
     // css tijdelijk uitzetten. css van compositie.music.css gebruiken.
     // styleUrls: ['./music.css'
     // ]
-
 })
 export class NotenbalkComponent {
     noten = [
