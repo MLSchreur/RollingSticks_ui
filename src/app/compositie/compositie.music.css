@@ -144,7 +144,7 @@
 .half.note::after,
 .quarter.note::after {
   content: "";
-  height: 28px;
+  /*height: 28px;*/
   width: 1px;
   background-color: black;
   position: absolute;
@@ -153,6 +153,53 @@
        Streep gaat ALTIJD van boven naar beneden!!*/
   top: 4px;
   right: -12;
+}
+
+/* ============================================*/
+/* ::after specifieke hoogte voor elke noot    */
+/* Stokken eindigen dan op dezelfde hoogte     */
+/* =========================================== */
+.note.c6::after {
+  height: 76px;
+}
+.note.b5::after {
+  height: 72px;
+}
+.note.a5::after {
+  height: 68px;
+}
+.note.g5::after {
+  height: 64px;
+}
+.note.f5::after {
+  height: 60px;
+}
+.note.e5::after {
+  height: 56px;
+}
+.note.d5::after {
+  height: 52px;
+}
+.note.c5::after {
+  height: 48px;
+}
+.note.b4::after {
+  height: 44px;
+}
+.note.a4::after {
+  height: 40px;
+}
+.note.g4::after {
+  height: 36px;
+}
+.note.f4::after {
+  height: 32px;
+}
+.note.e4::after {
+  height: 28px;
+}
+.note.d4::after {
+  height: 24px;
 }
 
 /* ============================================*/
