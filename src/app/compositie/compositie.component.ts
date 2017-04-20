@@ -38,6 +38,11 @@ export class CompositieComponent implements OnInit {
   }
 
   loadMusic() {
+    let test2 = document.getElementById("test");
+    console.log(test2);
+    test2.style.top = "-24px";
+    console.log("test2.style.top" + test2.style.top);
+    
 //    this.maten = this.compositieService.getNotes();
     let part = document.getElementById("part");
     part.innerHTML = "";
@@ -57,18 +62,27 @@ export class CompositieComponent implements OnInit {
         cursor.setAttribute("class", "bar");
         staff.appendChild(cursor);
       }
+      let note;
+      let subnote;
       for (let j=0 ; j<this.maten[i].noten.length ; j++) {
-        if (this.maten[i].noten[j].chord == false) {
-          if (this.maten[i].noten[j].nootNaam == "onbekend") {
-            console.log("Probleem, nootNaam is onbekend.");
-            console.log(this.maten[i].noten[j]);
-          }
-          let note = document.createElement("div");
+        // nootNaam onbekend -> er is iets mis met de XML, noot wordt overgeslagen.
+        if (this.maten[i].noten[j].nootNaam == "onbekend") {
+          console.log("Probleem, nootNaam is onbekend.");
+          console.log(this.maten[i].noten[j]);
+        } else if (this.maten[i].noten[j].chord == false) {           // chord == false -> begin van een nieuw akkoord!
+          note = document.createElement("div");
           // later lengte omzetten in noot.ts naar number. Dan hoeft hier
           // de + niet meer toegevoegd te worden.
           let length = this.getLength(+this.maten[i].noten[j].length);
           note.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
+          // code voor subnotes
           staff.appendChild(note);
+        } else {                                                      // chord == true -> vervolg van het akkoord, dus als subnoot toevoegen.
+          subnote = document.createElement("div");
+          let length = this.getLength(+this.maten[i].noten[j].length);
+          subnote.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
+          subnote.style.top = "-24px";
+          note.appendChild(subnote);
         }
       }
       let bar = document.createElement("div");

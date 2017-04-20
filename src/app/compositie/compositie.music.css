@@ -7,7 +7,7 @@
   z-index: 2;  
   width: 2px;
   margin-left: 0px;
-  margin-right: 0px;
+  margin-right: 4px;
 }
 /* ============================================*/
 /*.bar is vertikaal scheidingsteken            */
@@ -18,6 +18,8 @@
   width: 2px;
   height: 32px;
   margin: 0px;
+  /*testen voor margins naar rechts*/
+  margin-right: 4px;
   margin-bottom: 48px;
   width: 2px;
   border-right: 1px solid black;
@@ -65,23 +67,23 @@
 /* =========================================== */
 .note.l1,
 .note.whole {
-  margin-left: 2px;
-  margin-right: 114px;
+  margin-left: 0px;
+  margin-right: 116px;
 }
 .note.l2,
 .note.half {
-  margin-left: 2px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 52px;
 }
 .note.l4,
 .note.quarter {
-  margin-left: 2px;
-  margin-right: 18px;
+  margin-left: 0px;
+  margin-right: 20px;
 }
 .note.l8,
 .note.quarter {
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 0px;
+  margin-right: 4px;
 }
 
 /* ============================================*/
@@ -125,8 +127,8 @@
 .half.note::before {
   box-sizing: border-box;
   border: 1px solid black;
-  border-top-width: 2.18181818px;
-  border-bottom-width: 2.18181818px;
+  /*border-top-width: 2.18181818px;
+  border-bottom-width: 2.18181818px;*/
 }
 .l4.note::before,
 .l8.note::before,
@@ -152,7 +154,7 @@
        4 met std lengte is streepje onder het balletje van de noot
        Streep gaat ALTIJD van boven naar beneden!!*/
   top: 4px;
-  right: -12;
+  right: 11px;
 }
 
 /* ============================================*/
