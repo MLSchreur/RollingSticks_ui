@@ -16,7 +16,7 @@ import { MuziekstukoverzichtComponent }  from "app/muziekstuk/muziekstukoverzich
 import './rxjs-extensions';
 
 
-// Route Confiratie van de menu's
+// Route Configuratie van de menu's
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home'            , component: HomeComponent      },
@@ -31,7 +31,7 @@ export const routes: Routes = [
       { path: 'huiswerkleerling'        ,   component: MuziekstukoverzichtComponent   },
       { path: 'muziekoverzichtleerling' ,   component: MuziekstukoverzichtComponent   },
   ]},
-         { path: 'docent'               ,     component: DocentComponent,  children: [
+  { path: 'docent'               ,     component: DocentComponent,  children: [
 
       { path: 'leerlingoverzicht'       ,   component: LeerlingOverzichtComponent     },
       { path: 'leerlingaanmaken'        ,   component: LeerlingAanmakenComponent      },

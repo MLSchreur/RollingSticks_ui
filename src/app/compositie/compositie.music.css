@@ -19,7 +19,8 @@
   height: 32px;
   margin: 0px;
   /*testen voor margins naar rechts*/
-  margin-right: 4px;
+  margin-left: 2px;
+  margin-right: 6px;
   margin-bottom: 48px;
   width: 2px;
   border-right: 1px solid black;
@@ -53,6 +54,10 @@
 /* ============================================*/
 /* Notes general                               */
 /* ============================================*/
+/*  Breedte van een noot is standaard 12 px    */
+/*  Voor 1/8 noot komt hier 4 px bij voor      */
+/*  ruimte richting de volgende noot.          */
+/*  Een hele noot is dan uiteraard 128px breed.*/
 .note {
   position: relative;
   display: inline-block;
@@ -65,25 +70,21 @@
 /* Set margins for notes to ensure width       */
 /*   between bars is equal regardless of notes */
 /* =========================================== */
-.note.l1,
-.note.whole {
+.note.l1 {
   margin-left: 0px;
-  margin-right: 116px;
+  width: 128px;
 }
-.note.l2,
-.note.half {
+.note.l2 {
   margin-left: 0px;
-  margin-right: 52px;
+  width: 64px;
 }
-.note.l4,
-.note.quarter {
+.note.l4 {
   margin-left: 0px;
-  margin-right: 20px;
+  width: 32px;
 }
-.note.l8,
-.note.quarter {
+.note.l8 {
   margin-left: 0px;
-  margin-right: 4px;
+  width: 16px;
 }
 
 /* ============================================*/
@@ -95,10 +96,9 @@
 }
 
 /* ============================================*/
-/* Notes specific: whole                       */
+/* Notes specific: whole (l1)                  */
 /* =========================================== */
-.l1.note::before,
-.whole.note::before {
+.l1.note::before {
   position: absolute;
   content: "";
   box-sizing: border-box;
@@ -115,24 +115,20 @@
 /* ::before is for circle at the bottom        */
 .l2.note::before,
 .l4.note::before,
-.l8.note::before,
-.half.note::before,
-.quarter.note::before {
+.l8.note::before {
   position: absolute;
   content: "";
   transform: rotatez(-15deg);
   border-radius: 50%;
 }
-.l2.note::before,
-.half.note::before {
+.l2.note::before {
   box-sizing: border-box;
   border: 1px solid black;
   /*border-top-width: 2.18181818px;
   border-bottom-width: 2.18181818px;*/
 }
 .l4.note::before,
-.l8.note::before,
-.quarter.note::before {
+.l8.note::before {
   background-color: black;
 }
 
@@ -154,7 +150,18 @@
        4 met std lengte is streepje onder het balletje van de noot
        Streep gaat ALTIJD van boven naar beneden!!*/
   top: 4px;
-  right: 11px;
+}
+.l1.note::after {
+  right: 127px;
+}
+.l2.note::after {
+  right: 63px;
+}
+.l4.note::after {
+  right: 31px;
+}
+.l8.note::after {
+  right: 15px;
 }
 
 /* ============================================*/
@@ -162,46 +169,106 @@
 /* Stokken eindigen dan op dezelfde hoogte     */
 /* =========================================== */
 .note.c6::after {
-  height: 76px;
-}
-.note.b5::after {
   height: 72px;
 }
-.note.a5::after {
+.note.b5::after {
   height: 68px;
 }
-.note.g5::after {
+.note.a5::after {
   height: 64px;
 }
-.note.f5::after {
+.note.g5::after {
   height: 60px;
 }
-.note.e5::after {
+.note.f5::after {
   height: 56px;
 }
-.note.d5::after {
+.note.e5::after {
   height: 52px;
 }
-.note.c5::after {
+.note.d5::after {
   height: 48px;
 }
-.note.b4::after {
+.note.c5::after {
   height: 44px;
 }
-.note.a4::after {
+.note.b4::after {
   height: 40px;
 }
-.note.g4::after {
+.note.a4::after {
   height: 36px;
 }
-.note.f4::after {
+.note.g4::after {
   height: 32px;
 }
-.note.e4::after {
+.note.f4::after {
   height: 28px;
 }
-.note.d4::after {
+.note.e4::after {
   height: 24px;
+}
+.note.d4::after {
+  height: 20px;
+}
+
+/* ============================================*/		
+/* Vertical position                           */		
+/* =========================================== */		
+.note.c6 {		
+  height: 76px;
+  margin-bottom: 4px;
+}		
+.note.b5 {		
+  height: 72px;
+  margin-bottom: 8px;
+}		
+.note.a5 {		
+  height: 68px;
+  margin-bottom: 12px;
+}		
+.note.g5 {		
+  height: 64px;
+  margin-bottom: 16px;
+}		
+.note.f5 {		
+  height: 60px;
+  margin-bottom: 20px;
+}		
+.note.e5 {		
+  height: 56px;
+  margin-bottom: 24px;
+}		
+.note.d5 {		
+  height: 52px;
+  margin-bottom: 28px;
+}		
+.note.c5 {		
+  height: 48px;
+  margin-bottom: 32px;
+}		
+.note.b4 {		
+  height: 44px;
+  margin-bottom: 36px;
+}		
+.note.a4 {		
+  height: 40px;
+  margin-bottom: 40px;
+}		
+.note.g4 {		
+  height: 36px;
+  margin-bottom: 44px;
+}		
+.note.f4 {		
+  height: 32px;
+  margin-bottom: 48px;
+}		
+.note.e4 {		
+  height: 28px;
+  margin-bottom: 52px;
+}		
+.note.d4 {		
+  height: 24px;
+  margin-bottom: 56px;
 }
 
 /*vertikale verplaatsing stok*/

@@ -38,12 +38,6 @@ export class CompositieComponent implements OnInit {
   }
 
   loadMusic() {
-    let test2 = document.getElementById("test");
-    console.log(test2);
-    test2.style.top = "-24px";
-    console.log("test2.style.top" + test2.style.top);
-    
-//    this.maten = this.compositieService.getNotes();
     let part = document.getElementById("part");
     part.innerHTML = "";
     for (let i=0 ; i<this.maten.length ; i++) {
@@ -68,35 +62,47 @@ export class CompositieComponent implements OnInit {
       for (let j=0 ; j<this.maten[i].noten.length ; j++) {
         // nootNaam onbekend -> er is iets mis met de XML, noot wordt overgeslagen.
         if (this.maten[i].noten[j].nootNaam == "onbekend") {
-          console.log("Probleem, nootNaam is onbekend.");
+          console.log("Probleem, nootNaam is onbekend. - " + this.maten[i].noten[j].instrument);
           console.log(this.maten[i].noten[j]);
-        } else if (this.maten[i].noten[j].chord == false) {           // chord == false -> begin van een nieuw akkoord!
-          note = document.createElement("div");
+        } else {
           // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
           let length = this.getLength(+this.maten[i].noten[j].length);
-          note.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
-          // methode getPositieNootNaam bepaalt de plaats op de notenbalk
-          let topPositie = this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
-          note.style.top = topPositie + "px";
 
-          staff.appendChild(note);
-          
+          // chord == false -> begin van een nieuw akkoord! 
+          if (this.maten[i].noten[j].chord == false) {
+            note = document.createElement("div");
+            note.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
+            // methode getPositieNootNaam bepaalt de plaats op de notenbalk
+            let topPositie = this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
+            note.style.top = topPositie + "px";
+
+            // // aanpassen van hoogte div box - werkt nog niet, nu nog via css
+            // console.log("top pos:" + note.style.top);
+            // let nieuweHoogte = 56 - topPositie;
+            // let nieuweMargin = 24 + topPositie;
+            // note.style.height = nieuweHoogte + "px";
+            // note.style.marginBottom = nieuweMargin + "px";
+            // Tonen beam (dwarsstreep)
+            if (this.maten[i].noten[j].beam == "begin" || this.maten[i].noten[j].beam == "continue") {
+              note.style.borderBottom = "4px solid black";
+            }
+            // klaar, dus noot toevoegen aan staff(notenbalk)
+            staff.appendChild(note);
+            
+
+          } else {                                                      // chord == true -> vervolg van het akkoord, dus als subnoot toevoegen.
+            subnote = document.createElement("div");
+            subnote.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
+            // Positie van de volgende noot in het akkoord is de positie van de nootNaam minus de positie van de vorige noot.
+            // Hiermee bepalen we het verschil in positie tussen de 2 noten, zodat de nieuwe noot op de juiste plek komt te staan.
+            let topPositie = (this.getPositieNootNaam(this.maten[i].noten[j].nootNaam) - this.getPositieNootNaam(vorigeNootNaam));
+            subnote.style.top = topPositie + "px";
+
+            // klaar, dus subnoot van het akkoord toevoegen aan de noot
+            note.appendChild(subnote);
+          }
           vorigeNootNaam = this.maten[i].noten[j].nootNaam;           // naam van de noot bewaren voor de volgende noot van het akkoord
-
-        } else {                                                      // chord == true -> vervolg van het akkoord, dus als subnoot toevoegen.
-          subnote = document.createElement("div");
-          // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
-          let length = this.getLength(+this.maten[i].noten[j].length);
-          subnote.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
-          // Positie van de volgende noot in het akkoord is de positie van de nootNaam minus de positie van de vorige noot.
-          // Hiermee bepalen we het verschil in positie tussen de 2 noten, zodat de nieuwe noot op de juiste plek komt te staan.
-          let topPositie = (this.getPositieNootNaam(this.maten[i].noten[j].nootNaam) - this.getPositieNootNaam(vorigeNootNaam));
-          subnote.style.top = topPositie + "px";
-          
-          note.appendChild(subnote);
-
-          vorigeNootNaam = this.maten[i].noten[j].nootNaam;           // naam van de noot bewaren voor de volgende noot van het akkoord
-        }
+        } 
       }
       let bar = document.createElement("div");
       bar.setAttribute("class", "bar");
