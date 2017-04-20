@@ -76,12 +76,12 @@ export class CompositieComponent implements OnInit {
             let topPositie = this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
             note.style.top = topPositie + "px";
 
-            // // aanpassen van hoogte div box - werkt nog niet, nu nog via css
-            // console.log("top pos:" + note.style.top);
-            // let nieuweHoogte = 56 - topPositie;
-            // let nieuweMargin = 24 + topPositie;
-            // note.style.height = nieuweHoogte + "px";
-            // note.style.marginBottom = nieuweMargin + "px";
+            // aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
+            console.log("top pos:" + note.style.top);
+            let nieuweHoogte = 56 - topPositie;
+            let nieuweMargin = 24 + topPositie;
+            note.style.height = nieuweHoogte + "px";
+            note.style.marginBottom = nieuweMargin + "px";
             // Tonen beam (dwarsstreep)
             if (this.maten[i].noten[j].beam == "begin" || this.maten[i].noten[j].beam == "continue") {
               note.style.borderBottom = "4px solid black";
@@ -97,6 +97,12 @@ export class CompositieComponent implements OnInit {
             // Hiermee bepalen we het verschil in positie tussen de 2 noten, zodat de nieuwe noot op de juiste plek komt te staan.
             let topPositie = (this.getPositieNootNaam(this.maten[i].noten[j].nootNaam) - this.getPositieNootNaam(vorigeNootNaam));
             subnote.style.top = topPositie + "px";
+            // aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
+            console.log("top pos:" + note.style.top);
+            let nieuweHoogte = 56 - this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
+            let nieuweMargin = 24 + this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
+            subnote.style.height = nieuweHoogte + "px";
+            subnote.style.marginBottom = nieuweMargin + "px";
 
             // klaar, dus subnoot van het akkoord toevoegen aan de noot
             note.appendChild(subnote);
