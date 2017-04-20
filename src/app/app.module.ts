@@ -22,11 +22,13 @@ import { NavigatieComponent }           from "./home/navigatie.component";
 import { MuziekstukoverzichtComponent } from "./muziekstuk/muziekstukoverzicht.component";
 import { AppGlobalService }             from './app.global.service';
 import { CompositieComponent }          from './compositie/compositie.component';
+import { CompositieComponent2 }          from './compositie2/compositie2.component'; // tijdelijk om code Rosalynn in ere te houden.
 
 
 @NgModule({
   declarations: [
     CompositieComponent,
+    CompositieComponent2, // tijdelijk om code Rosalynn intact te houden
     AppComponent,
     BladmuziekComponent,
     LoginComponent,
