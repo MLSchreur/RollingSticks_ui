@@ -1,13 +1,24 @@
 import { Injectable }               from '@angular/core';
 import { Observable }               from 'rxjs/Rx';
 //import { Observable }               from 'rxjs/Observable'; //Dit was het
+import { Http, Response, Headers }  from '@angular/http';
+import { AppGlobalService }         from '../app.global.service';
 
 
 import { Maat }  from './maat';
 import { Noot }  from './noot';
+import { Compositie } from './compositie';
 
 @Injectable()
 export class CompositieService {
+
+  // Op deze manier (http van class Http) wordt een private field aangemaakt.
+  constructor(private http: Http, private appGlobalService: AppGlobalService) {
+    this.emptyNote.height = "";  
+    this.emptyNote.length = "";
+  }
+
+  private baseUrl: string     = this.appGlobalService.baseUrl + "/muziekstuk";
   maten: Maat[] = [];
   emptyNote: Noot = new Noot;
   nootNr: number = 0;
@@ -35,10 +46,7 @@ export class CompositieService {
     return returnNote;
   });
 
-  constructor() {
-    this.emptyNote.height = "";
-    this.emptyNote.length = "";
-  }
+  
 
   generateRandomNotes() {
     for (let i=0; i<12 ; i++) {
@@ -93,5 +101,14 @@ export class CompositieService {
       case 11: return "g5";
       default: return "b5";
     }
+  }
+
+  parseXml(id: number): Observable<Compositie> {
+    return this.http.get(this.baseUrl + "/" + id + "/parsedxml").map(res => {
+      return res.json();
+    }).catch((error: any)=>{
+      console.log(error._body);
+      return error._body;
+    });
   }
 }

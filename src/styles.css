@@ -7,7 +7,7 @@ h1 {
 }
 
 h2 {
-  color: #darkgrey;
+  color: darkgrey;
   font-family: Courier New, Courier, monospace;
   font-size: 175%;
   letter-spacing: 0.2em;
@@ -28,9 +28,9 @@ div.divCol {
   border-style: solid;
 }
 
-#divPage {
- */ background-color: #ffffff; 
-}
+/*#divPage {
+  background-color: #ffffff; 
+}*/
 
 #divRowTitle {
   text-align: center;
@@ -113,5 +113,8 @@ body, html{
 }
 .nav-item:hover{
   border-top: 5px solid #008CBA;
+}
 
+.list-group-item:hover {
+  background-color: #5bc0de;
 }

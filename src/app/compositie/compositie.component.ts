@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CompositieService } from './compositie.service';
-import { ViewEncapsulation } from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
+import { CompositieService }  from './compositie.service';
+import { ViewEncapsulation }  from '@angular/core';
 
-import { Maat }  from './maat';
-import { Noot }  from './noot';
+import { Maat }               from './maat';
+import { Noot }               from './noot';
+import { Muziekstuk }         from '../muziekstuk/muziekstuk';
+import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
 
 @Component({
   selector: 'compositie',
@@ -12,18 +14,27 @@ import { Noot }  from './noot';
   styleUrls: [ './compositie.component.css', './compositie.music.css' ],
   providers: [ CompositieService ]
 })
+
 export class CompositieComponent implements OnInit {
   maten: Maat[] = [];
   d1: Date = new Date();
   lft = 0;
   tp = 0;
   source;
+  message: string;
+  titel: string;
+  tempo: number;
+  beats: string;
+  beatType: string;
+  mode: string;
+  maatSoort: string;
+
 
   ngOnInit() {
     this.loadMusic();
   }
 
-  constructor(private compositieService: CompositieService) {
+  constructor(private compositieService: CompositieService, private muziekstukService: MuziekstukService) {
   }
 
   loadMusic() {
@@ -88,5 +99,35 @@ export class CompositieComponent implements OnInit {
     let diff = (d.getMinutes()-this.d1.getMinutes())*60 + (d.getSeconds() - this.d1.getSeconds());
     diff = diff*1000 + (d.getMilliseconds() - this.d1.getMilliseconds());
     document.getElementById("time").textContent = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds() + " ---- Time elapsed (ms): " + diff;
+  }
+
+  showCompositie(muziekstuk: Muziekstuk) {
+    console.log(muziekstuk);
+    console.log(muziekstuk.id);
+    this.compositieService.parseXml(muziekstuk.id).subscribe(compositie => {
+      console.log("Compositie, succes!");
+      console.log(compositie);
+      if (typeof compositie === 'string') {
+        console.log("het is een string");
+        if (compositie == "1") {
+          this.message = "Muziekstuk met opgegeven id bestaat niet";
+        } else if (compositie == "2") {
+          this.message = "Muziekstuk bevat geen XML bestand";
+        } else if (compositie == "3") {
+          this.message = "Fout opgetreden in de XML Parser. Waarschijnlijk ongeldige XML";
+        }
+      }
+      this.titel = compositie.title;
+      this.tempo = compositie.tempo;
+      this.beats = compositie.beats.toString();
+      this.beatType = compositie.beatType.toString();
+      this.maatSoort = this.beats+"/"+this.beatType;
+      this.mode = compositie.mode;
+      this.maten = compositie.maten;
+    });
+    this.muziekstukService.getMuziekstukImgById(muziekstuk.id).subscribe(img => {
+      muziekstuk.pictogram = img;
+      document.getElementById("imgFromServer").setAttribute("src", img);
+    });
   }
 }

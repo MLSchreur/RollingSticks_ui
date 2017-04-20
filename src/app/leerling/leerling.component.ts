@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
 import { NotenbalkComponent } from '../notenbalk/notenbalk.component';
 
-import { LeerlingService } from './leerling.service';
-import { Leerling } from './leerling';
-import { MuziekstukService } from '../muziekstuk/muziekstuk.service';
-import { Muziekstuk } from '../muziekstuk/muziekstuk';
-import { AppGlobalService }  from '../app.global.service';
+import { LeerlingService }    from './leerling.service';
+import { Leerling }           from './leerling';
+import { MuziekstukService }  from '../muziekstuk/muziekstuk.service';
+import { Muziekstuk }         from '../muziekstuk/muziekstuk';
+import { AppGlobalService }   from '../app.global.service';
 
 
 @Component({
@@ -13,14 +13,22 @@ import { AppGlobalService }  from '../app.global.service';
   templateUrl: './leerling.component.html',
   providers: [LeerlingService, MuziekstukService]
 })
+
 export class LeerlingComponent implements OnInit {
+  
   title = 'leerling';
+
   leerlingen        : Leerling[] = [];
   leerlingSelected  : Leerling;
   allMuziekstuk     : Muziekstuk[];
-  tempTxt           : string;
+  tempTxt           : String;
+  
 
-  constructor(private leerlingService: LeerlingService, private muziekstukService: MuziekstukService, private appGlobalService: AppGlobalService) {
+
+  constructor(
+    private leerlingService: LeerlingService,
+    private muziekstukService: MuziekstukService,
+    private appGlobalService: AppGlobalService) {
   }
 
   ngOnInit() {
@@ -38,13 +46,5 @@ export class LeerlingComponent implements OnInit {
   updateLeerling($event) {
     this.leerlingService.getLeerlingById($event.target.value).subscribe(data => this.leerlingSelected = data);
   }
-
-  showCompositie(muziekstuk: Muziekstuk){
-    this.tempTxt = "Gekozen compositie: " + muziekstuk.id + " " + muziekstuk.artiest + " " + muziekstuk.titel;
-  }
 }
-
-//   playMuziekstuk( ) {
-
-// }
 
