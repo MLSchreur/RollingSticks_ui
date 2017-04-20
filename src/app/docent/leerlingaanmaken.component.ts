@@ -8,9 +8,7 @@ import { Leerling }         from '../leerling/leerling';
 export class LeerlingAanmakenComponent {
 
   leerlingAanmaken  : Leerling = new Leerling();
-  postLeerling(){
-
-  }
+  postLeerling(){}
 
 
 }

@@ -5,7 +5,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None,
     templateUrl: './notenbalk.component.html', 
     styleUrls: ['./music.css']
-
 })
 export class NotenbalkComponent {
     noten = [
