@@ -26,24 +26,24 @@ export class CompositieService {
   counter: number = 0;
 
   source = Observable.interval(100).map(() => {
-    let returnNote: Noot;
-    if (this.counter==0) {
-      if (this.nootNr >= this.maten[this.maatNr].noten.length) {
-        this.nootNr = 0;
-        if (++this.maatNr >= 12) {
-          this.maatNr = 0;
-        }
-      }
-      let ln = this.maten[this.maatNr].noten[this.nootNr].length;
-      if (ln == "whole") this.counter = 11;
-      if (ln == "half") this.counter = 5;
-      if (ln == "quarter") this.counter = 2;
-      returnNote = this.maten[this.maatNr].noten[this.nootNr++];
-    } else {
-      this.counter--;
-      returnNote = this.emptyNote;
-    }
-    return returnNote;
+   //  let returnNote: Noot;
+    // if (this.counter==0) {
+    //   if (this.nootNr >= this.maten[this.maatNr].noten.length) {
+    //     this.nootNr = 0;
+    //     if (++this.maatNr >= 12) {
+    //       this.maatNr = 0;
+    //     }
+    //   }
+    //   let ln = this.maten[this.maatNr].noten[this.nootNr].length;
+    //   if (ln == "whole") this.counter = 11;
+    //   if (ln == "half") this.counter = 5;
+    //   if (ln == "quarter") this.counter = 2;
+    //   returnNote = this.maten[this.maatNr].noten[this.nootNr++];
+    // } else {
+    //   this.counter--;
+    //   returnNote = this.emptyNote;
+    // }
+    //  return returnNote;
   });
 
   

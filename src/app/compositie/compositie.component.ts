@@ -265,10 +265,10 @@ export class CompositieComponent implements OnInit {
     console.log("Play Music");
     this.source = this.compositieService.source.subscribe(data => {
       //console.log(data);
-      if (data.height != "") {
-        document.getElementById("playingNote").textContent = data.length + " " + data.height;
-      }
-      this.printTime();
+      // if (data.height != "") {
+      //   document.getElementById("playingNote").textContent = data.length + " " + data.height;
+      // }
+      // this.printTime();
       this.lft += 8;
       if (this.lft > 384) {
         this.lft = 0;
