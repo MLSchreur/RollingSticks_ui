@@ -95,12 +95,28 @@ div.divCol {
     color: black; 
     border: 2px solid #008CBA;
     border-radius: 5px;
-    margin: 5px;
+    margin: 5px 5px 5px 0;
 }
 
 .button:hover {
     background-color: #008CBA;
     color: white;
+}
+
+#opslaan {
+  background-color: lightblue;
+}
+
+#opslaan:hover {
+  background-color: #008CBA;
+}
+
+#opslaan a {
+  color: black;
+}
+
+#opslaan a:hover {
+  color: white;
 }
 
 body, html{
@@ -121,4 +137,17 @@ body, html{
 .list-group-item:hover {
   background-color: #008CBA;
   color: white;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#pictogram {
+  float: right;
+  background: none;
+  border: none;
+  padding: 0;
+  max-width: 100px;
+  margin-right: 20px;
 }

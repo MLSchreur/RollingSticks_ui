@@ -1,33 +1,42 @@
+<h1>
 
-
-<h1>{{ title }}</h1>
+    {{ title }}</h1>
 
 <div>
     <h2>Upload info</h2>
-    <input [(ngModel)]="muziekstukInvoer.titel" placeholder="Titel"><br>
-    <input [(ngModel)]="muziekstukInvoer.artiest" placeholder="Artiest"><br>
-    <input [(ngModel)]="muziekstukInvoer.omschrijving" placeholder="Omschrijving"><br>
+    <div id="col-md-2 divCol" id="pictogram">
+        <img id="imgToUpload" src="" style="max-width: 100%;">
+    </div>
+    <input class="invoer" [(ngModel)]="muziekstukInvoer.titel" placeholder="Titel"><br>
+    <input class="invoer" [(ngModel)]="muziekstukInvoer.artiest" placeholder="Artiest"><br>
+    <input class="invoer" [(ngModel)]="muziekstukInvoer.omschrijving" placeholder="Omschrijving"><br>
+
+
+
     <label class="button">
         <input  id="xml" type="file" (change)="updateFile($event)" accept=".xml">
         Selecteer XML-bestand
-    </label> <p>{{ noXml }}</p>
+    </label>
     <!--<input  id="img" type="file" (change)="updateFile($event)" accept=".png, .jpg, .jpeg"> accept voor img bestanden toevoegen-->
     <label class="button">
         <input  id="img" type="file" (change)="updateFile($event)" accept="image/*"> <!--accept voor img bestanden toevoegen-->
         Selecteer afbeelding
     </label>
-    <br>
-    <button (click)="postMuziekstuk()">Opslaan</button>
+
+    <label class="button" id="opslaan">
+        <a (click)="postMuziekstuk()">Opslaan</a>
+    </label>
+    <p id="message">{{ noXml }}</p>
 </div>
 
-<br><br>
+<!--<br><br>
 
 <div>
-    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="muziekstukId">
+    <label>Voer bladmuziek ID in: </label><input [(ngModel)]="muziekstukId">
     <button (click)="getMuziekstukById(muziekstukId)">Haal muziekstuk van invoerveld op</button><br>
-    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="muziekstukId">
+    <label>Voer bladmuziek ID in: </label><input [(ngModel)]="muziekstukId">
     <button (click)="getMuziekstukXMLById(muziekstukId)">Haal XML van muziekstuk op</button><br>
-    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="muziekstukId">
+    <label>Voer bladmuziek ID in: </label><input [(ngModel)]="muziekstukId">
     <button (click)="getMuziekstukImgById(muziekstukId)">Haal Pictogram van muziekstuk op</button><br>
 </div>
 <div *ngIf="muziekstuk">
@@ -38,10 +47,6 @@
 </div>
 
 <div class="col-md-2 divCol">
-    <h2>Image to Upload</h2>
-    <img id="imgToUpload" src="" style="max-width: 100%;">
-</div>
-<div class="col-md-2 divCol">
     <h2>Image from Server</h2>
     <img id="imgFromServer" src="" style="max-width: 100%;">
-</div>
+</div>-->

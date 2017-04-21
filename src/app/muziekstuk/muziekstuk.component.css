@@ -9,3 +9,13 @@ input[type="file"] {
     cursor: pointer;
     background: #008CBA;
 }
+
+.invoer {
+    width: 75%;
+    padding: 3px;
+    margin: 3px;
+}
+
+#message {
+    color: red;
+}
