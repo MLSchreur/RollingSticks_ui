@@ -29,6 +29,8 @@ export class CompositieComponent implements OnInit {
   mode: string;
   maatSoort: string;
 
+  private stdHoogteBox:     number = 80;
+  private stdAfwijkingTop:  number = 56;
 
   ngOnInit() {
     this.loadMusic();
@@ -64,6 +66,9 @@ export class CompositieComponent implements OnInit {
         if (this.maten[i].noten[j].nootNaam == "onbekend") {
           console.log("Probleem, nootNaam is onbekend. - " + this.maten[i].noten[j].instrument);
           console.log(this.maten[i].noten[j]);
+        } else if (this.maten[i].noten[j].nootNaam == null) {
+          console.log("Probleem, nootNaam is null. - " + this.maten[i].noten[j].instrument);
+          console.log(this.maten[i].noten[j]);
         } else {
           // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
           let length = this.getLength(+this.maten[i].noten[j].length);
@@ -72,16 +77,19 @@ export class CompositieComponent implements OnInit {
           if (this.maten[i].noten[j].chord == false) {
             note = document.createElement("div");
             note.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
-            // methode getPositieNootNaam bepaalt de plaats op de notenbalk
-            let topPositie = this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
-            note.style.top = topPositie + "px";
 
-            // aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
-            console.log("top pos:" + note.style.top);
-            let nieuweHoogte = 56 - topPositie;
-            let nieuweMargin = 24 + topPositie;
+            // Aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
+            // Op basis van de hoogte v/d noot (naamNoot) wordt zowel de hoogte als de marge bepaald.
+            // Samen moeten ze gelijk zijn aan de standaard hoogte van de notenbalk (stdHoogteBox)
+            let nieuweHoogte = this.getHoogteDivBox(this.maten[i].noten[j].nootNaam);
+            let nieuweMargin = this.stdHoogteBox - nieuweHoogte;
             note.style.height = nieuweHoogte + "px";
             note.style.marginBottom = nieuweMargin + "px";
+
+            // Het verschil tussen de de constante stdAfwijkingTop en de hoogte van de Div box levert de top positie van de noot op.
+            let topPositie = this.stdAfwijkingTop - nieuweHoogte;
+            note.style.top = topPositie + "px";
+
             // Tonen beam (dwarsstreep)
             if (this.maten[i].noten[j].beam == "begin" || this.maten[i].noten[j].beam == "continue") {
               note.style.borderBottom = "4px solid black";
@@ -93,16 +101,19 @@ export class CompositieComponent implements OnInit {
           } else {                                                      // chord == true -> vervolg van het akkoord, dus als subnoot toevoegen.
             subnote = document.createElement("div");
             subnote.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
-            // Positie van de volgende noot in het akkoord is de positie van de nootNaam minus de positie van de vorige noot.
-            // Hiermee bepalen we het verschil in positie tussen de 2 noten, zodat de nieuwe noot op de juiste plek komt te staan.
-            let topPositie = (this.getPositieNootNaam(this.maten[i].noten[j].nootNaam) - this.getPositieNootNaam(vorigeNootNaam));
-            subnote.style.top = topPositie + "px";
-            // aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
-            console.log("top pos:" + note.style.top);
-            let nieuweHoogte = 56 - this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
-            let nieuweMargin = 24 + this.getPositieNootNaam(this.maten[i].noten[j].nootNaam);
+
+            // Aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
+            // Op basis van de hoogte v/d noot (naamNoot) wordt zowel de hoogte als de marge bepaald.
+            // Samen moeten ze gelijk zijn aan de standaard hoogte van de notenbalk (stdHoogteBox)
+            let nieuweHoogte = this.getHoogteDivBox(this.maten[i].noten[j].nootNaam);
+            let nieuweMargin = this.stdHoogteBox - nieuweHoogte;
             subnote.style.height = nieuweHoogte + "px";
             subnote.style.marginBottom = nieuweMargin + "px";
+
+            // Positie van de volgende noot in het akkoord is de positie van de vorige noot minus de positie van de nootNaam (nieuwe noot).
+            // Hiermee bepalen we het verschil in positie tussen de 2 noten, zodat de nieuwe noot op de juiste plek komt te staan.
+            let topPositie = (this.getHoogteDivBox(vorigeNootNaam) - this.getHoogteDivBox(this.maten[i].noten[j].nootNaam));
+            subnote.style.top = topPositie + "px";
 
             // klaar, dus subnoot van het akkoord toevoegen aan de noot
             note.appendChild(subnote);
@@ -116,6 +127,8 @@ export class CompositieComponent implements OnInit {
     }
   }
 
+// anders opbouwen, omzetten naar hoogte van div box en dan berekening andere kant op voor positie noot zelf
+// later ook horizontaal streepje bepalen met code ipv css
   getPositieNootNaam(nootNaam: string) {
     switch(nootNaam) {
       case "c6": return -20;
@@ -132,6 +145,26 @@ export class CompositieComponent implements OnInit {
       case "f4": return  24;
       case "e4": return  28;
       case "d4": return  32;
+    }
+  }
+
+// Aan de had van de hoogte van de div box voor de specifieke noot, kan ook de marginBottom bepaald worden.
+  getHoogteDivBox(nootNaam: string) {
+    switch(nootNaam) {
+      case "c6": return 76;
+      case "b5": return 72;
+      case "a5": return 68;
+      case "g5": return 64;
+      case "f5": return 60;
+      case "e5": return 56;
+      case "d5": return 52;
+      case "c5": return 48;
+      case "b4": return 44;
+      case "a4": return 40;
+      case "g4": return 36;
+      case "f4": return 32;
+      case "e4": return 28;
+      case "d4": return 24;
     }
   }
 
