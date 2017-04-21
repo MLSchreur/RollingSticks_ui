@@ -9,3 +9,9 @@ input[type="file"] {
     cursor: pointer;
     background: #008CBA;
 }
+
+
+
+#message {
+    color: red;
+}
