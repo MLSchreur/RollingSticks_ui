@@ -70,13 +70,17 @@ export class CompositieComponent implements OnInit {
           console.log("Probleem, nootNaam is null. - " + this.maten[i].noten[j].instrument);
           console.log(this.maten[i].noten[j]);
         } else {
+          // 1e test voor instrument en icoon v/d noot!
+          let divSymbool = this.setSymbool(this.maten[i].noten[j].instrument);
+          let divSymbool2 = this.setSymbool2(this.maten[i].noten[j].instrument);
+
           // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
           let length = this.getLength(+this.maten[i].noten[j].length);
 
           // chord == false -> begin van een nieuw akkoord! 
           if (this.maten[i].noten[j].chord == false) {
             note = document.createElement("div");
-            note.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
+            note.setAttribute("class", length + " note " + " " + divSymbool2 + " " + this.maten[i].noten[j].nootNaam);
 
             // Aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
             // Op basis van de hoogte v/d noot (naamNoot) wordt zowel de hoogte als de marge bepaald.
@@ -95,12 +99,13 @@ export class CompositieComponent implements OnInit {
               note.style.borderBottom = "4px solid black";
             }
             // klaar, dus noot toevoegen aan staff(notenbalk)
+            note.appendChild(divSymbool);
             staff.appendChild(note);
             
 
           } else {                                                      // chord == true -> vervolg van het akkoord, dus als subnoot toevoegen.
             subnote = document.createElement("div");
-            subnote.setAttribute("class", length + " note " + this.maten[i].noten[j].nootNaam);
+            subnote.setAttribute("class", length + " note " + " " + divSymbool2 + " " + this.maten[i].noten[j].nootNaam);
 
             // Aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
             // Op basis van de hoogte v/d noot (naamNoot) wordt zowel de hoogte als de marge bepaald.
@@ -116,6 +121,7 @@ export class CompositieComponent implements OnInit {
             subnote.style.top = topPositie + "px";
 
             // klaar, dus subnoot van het akkoord toevoegen aan de noot
+            subnote.appendChild(divSymbool);
             note.appendChild(subnote);
           }
           vorigeNootNaam = this.maten[i].noten[j].nootNaam;           // naam van de noot bewaren voor de volgende noot van het akkoord
@@ -124,6 +130,79 @@ export class CompositieComponent implements OnInit {
       let bar = document.createElement("div");
       bar.setAttribute("class", "bar");
       staff.appendChild(bar);
+    }
+  }
+
+// methode voor het omzetten van instrument naar het juiste symbool
+  setSymbool(instrument: string) {
+    console.log("Instrument: "+ instrument);
+    let symbool1 = document.createElement("div");
+    let symbool2 = document.createElement("div");
+    let symbool3 = document.createElement("div");
+
+    symbool1.appendChild(symbool2);
+    symbool2.appendChild(symbool3);
+
+    switch(instrument) {
+      case "Crash Cymbal":
+      case "Crash Cymbal 2":
+        console.log("kruisje met horizontaal streepje"); 
+        symbool1.setAttribute("class", "cross");
+        symbool2.setAttribute("class", "crossing");
+        symbool3.setAttribute("class", "stripe");
+        return symbool1;
+      case "Hi-Hat%g Closed":
+      case "Ride Cymbal":
+      case "Hi-Hat%g Foot":
+        console.log("kruisje");
+        symbool2.setAttribute("class", "cross");
+        symbool3.setAttribute("class", "crossing");
+        return symbool2;
+      case "Snare%g Ghost Stroke":
+        console.log("bolletje tussen haakjes");
+        symbool2.setAttribute("class", "ghostCircle");
+        symbool3.setAttribute("class", "ghost");
+        return symbool2;
+      case "Snare%g Rim":           console.log("bolletje met cirkel er omheen");
+        symbool3.setAttribute("class", "rimCircle");
+        return symbool3;
+
+      // op oude manier afvangen
+      case "High Tom":
+      case "Low Tom":
+      case "Snare Drum":
+      case "Floor Tom 1":
+      case "Bass Drum":
+      case "Hi-Hat%g Open":         return symbool1;
+
+      default:                      console.log("Probleem, onbekend muziekinstrument: " + instrument); return symbool1;
+    }
+  }
+
+// methode voor het omzetten van instrument naar het juiste symbool
+  setSymbool2(instrument: string) {
+    console.log("Instrument: "+ instrument);
+
+    switch(instrument) {
+      case "High Tom":
+      case "Low Tom":
+      case "Snare Drum":
+      case "Floor Tom 1":
+      case "Bass Drum":
+        // console.log("dicht bolletje");
+        // symbool3.setAttribute("class", "closed");
+        return "closed";
+      case "Hi-Hat%g Open":
+        console.log("donut (whole)");
+        return "donut";
+      case "Snare%g Ghost Stroke":
+        // basis van de ghostNote (oftewel eerst closed en dan kleiner maken)
+        return "closed ghostNote";
+      case "Snare%g Rim":
+        // basis van de Rim (oftewel eerst closed en dan kleiner maken);
+        return "closed ghostNote";
+
+    default:                      return "";
     }
   }
 
@@ -186,10 +265,10 @@ export class CompositieComponent implements OnInit {
     console.log("Play Music");
     this.source = this.compositieService.source.subscribe(data => {
       //console.log(data);
-      if (data.height != "") {
-        document.getElementById("playingNote").textContent = data.length + " " + data.height;
-      }
-      this.printTime();
+      // if (data.height != "") {
+      //   document.getElementById("playingNote").textContent = data.length + " " + data.height;
+      // }
+      // this.printTime();
       this.lft += 8;
       if (this.lft > 384) {
         this.lft = 0;
