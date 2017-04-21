@@ -151,3 +151,9 @@ a:hover {
   max-width: 100px;
   margin-right: 20px;
 }
+
+.invoer {
+    width: 75%;
+    padding: 3px;
+    margin: 3px;
+}
