@@ -1,14 +1,3 @@
-label.button {
-  padding: 5px 10px;
-  border-color: palegreen;
-  border-radius: 10px;
-}
-
-label.button:hover {
-  background-color: palegreen;
-  color: black;
-}
-
 #part {
   display: inline-block; 
   width: 660px; 

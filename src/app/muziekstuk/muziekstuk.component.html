@@ -7,12 +7,12 @@
     <input [(ngModel)]="muziekstukInvoer.titel" placeholder="Titel"><br>
     <input [(ngModel)]="muziekstukInvoer.artiest" placeholder="Artiest"><br>
     <input [(ngModel)]="muziekstukInvoer.omschrijving" placeholder="Omschrijving"><br>
-    <label class="custom-file-upload">
-        <input  id="xml" type="file" (change)="updateFile($event)" accept=".txt,.xml">
+    <label class="button">
+        <input  id="xml" type="file" (change)="updateFile($event)" accept=".xml">
         Selecteer XML-bestand
     </label> <p>{{ noXml }}</p>
     <!--<input  id="img" type="file" (change)="updateFile($event)" accept=".png, .jpg, .jpeg"> accept voor img bestanden toevoegen-->
-    <label class="custom-file-upload">
+    <label class="button">
         <input  id="img" type="file" (change)="updateFile($event)" accept="image/*"> <!--accept voor img bestanden toevoegen-->
         Selecteer afbeelding
     </label>
