@@ -85,8 +85,7 @@ div.divCol {
 }
 
 .navbar .navbar-inverse .navbar-static-top {
-	position: fixed;
-   
+	position: fixed;   
 }
 
 .button {
@@ -130,6 +129,7 @@ body, html{
   color: white;
   font-weight: bold;
 }
+
 .nav-item:hover{
   border-top: 5px solid #008CBA;
 }
