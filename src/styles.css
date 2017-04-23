@@ -8,8 +8,7 @@ h1 {
 }
 
 h2 {
-  color: darkgrey;
-  font-family: Courier New, Courier, monospace;
+  color: dimgray;
   font-size: 175%;
   letter-spacing: 0.2em;
   font-variant: small-caps;
@@ -137,7 +136,6 @@ body, html{
 }
 
 .navbar-inverse{
-  background-color: transparent;
   border: none;
   background: url(./afbeeldingen/menu-bg.png) no-repeat center top ;
   height: 150px;
