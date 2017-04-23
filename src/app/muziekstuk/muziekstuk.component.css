@@ -1,0 +1,13 @@
+input[type="file"] {
+    display: none;
+}
+
+#message {
+    color: red;
+}
+
+#invoerId{
+    width: 50px;
+    padding: 3px;
+    margin: 3px;
+}

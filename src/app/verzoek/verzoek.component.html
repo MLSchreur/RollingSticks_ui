@@ -1,0 +1,113 @@
+<h1 class="h1">{{ title }}</h1><br>
+
+<!--Posten van nieuw verzoek-->
+    <div class="form-group">
+        <table width = "480px">
+            <tr>
+                <th><label for="aanvrager">Aanvrager: </label></th>
+                <td><input [(ngModel)]="verzoekInvoer.aanvrager" placeholder="Aanvrager"></td>
+            </tr>
+            <tr>
+                <th><label for="httpMethod">Request: </label></th>
+                <td><input [(ngModel)]="verzoekInvoer.httpMethod" placeholder="Http Method"></td>
+            </tr>
+            <tr>
+                <th><label for="url">Url: </label></th>
+                <td><input [(ngModel)]="verzoekInvoer.url" placeholder="Url"></td>
+            </tr>
+            <tr>
+                <th><label for="meegeven">Meegeven: </label></th>
+                <td><input [(ngModel)]="verzoekInvoer.meegeven" placeholder="Meegeven"></td>
+            </tr>
+            <tr>
+                <th><label for="terug"> Terug: </label></th>
+                <td><input [(ngModel)]="verzoekInvoer.terug" placeholder="Terug"></td>
+            </tr>
+            <tr>
+                <th><label for="omschrijving">Omschrijving:  </label></th>
+                <td><input [(ngModel)]="verzoekInvoer.omschrijving" placeholder="Omschrijving"></td>
+            </tr>
+        </table>
+        <br>
+        <button (click)="postVerzoek()">Plaats Verzoek</button>
+    </div>
+<br>
+
+<!--Tabel voor het weergeven/wijzigen van de verzoeken-->
+<!--Voor het wijzigen gebruiken van een editmodus-->
+<!--If 'verzoeken' array niet leeg is-->
+<div *ngIf="verzoeken">
+    <table class="table table-striped">
+        <!--headers van tabel-->
+        <tr>
+            <th></th>
+            <th width = 7%>Aanvrager</th>
+            <th width = 7%>Request</th>
+            <th width = 25%>Url</th>
+            <th width = 14%>Meegeven</th>
+            <th width = 14%>Terug</th>
+            <th width = 10%>Omschrijving</th>
+            <th width = 10%>Status</th>
+            <th width = 14%></th>
+        </tr>
+        <!--'verzoeken' array weergeven/wijzigen-->
+        <tr *ngFor="let verzoek of verzoeken; let i = index;" [ngClass]="{'is-active': verzoek.editModus}">
+            <td>    
+                <div width="5px" height="5px" class="circle {{verzoek.status}}"></div>
+            </td>
+            <td >
+                <p *ngIf="!verzoek.editModus" >{{verzoek.aanvrager}}</p>
+                <input *ngIf="verzoek.editModus" [(ngModel)]="verzoekPut.aanvrager" value="verzoek[i].aanvrager">
+            </td>
+            <td >
+                <p *ngIf="!verzoek.editModus" >{{verzoek.httpMethod}}</p>
+                <input *ngIf="verzoek.editModus" [(ngModel)]="verzoekPut.httpMethod" value="verzoek[i].httpMethod">
+            </td>
+            <td>
+                <p *ngIf="!verzoek.editModus" >{{verzoek.url}}</p>
+                <input *ngIf="verzoek.editModus" [(ngModel)]="verzoekPut.url">
+            </td>
+            <td>
+                <p *ngIf="!verzoek.editModus" >{{verzoek.meegeven}}</p>
+                <input *ngIf="verzoek.editModus" [(ngModel)]="verzoekPut.meegeven">
+            </td>
+            <td>
+                <p *ngIf="!verzoek.editModus" >{{verzoek.terug}}</p>
+                <input *ngIf="verzoek.editModus" [(ngModel)]="verzoekPut.terug">
+            </td>
+            <td>
+                <p *ngIf="!verzoek.editModus" >{{verzoek.omschrijving}}</p>
+                <input *ngIf="verzoek.editModus" [(ngModel)]="verzoekPut.omschrijving">
+            </td>
+            
+            <td>
+                <p *ngIf="!verzoek.editModus" >{{verzoek.status}}</p>
+                <!--Veranderen van de status-->
+                <select *ngIf="verzoek.editModus" [ngModel]="verzoek.status" (ngModelChange)="changeStatus($event)">
+                    <option [ngValue]="status" *ngFor="let status of verzoekStatus">{{status}}</option>
+                </select>
+            </td>
+            <!--
+            knoppen voor: 
+                - switchen van editmodus
+                - wijzigingen opslaan
+                - verwijderen van verzoek
+            -->
+            <td>
+                <button class="blue-fill" *ngIf="!verzoek.editModus" name="pencil" (click)="verzoek.editModus = !verzoek.editModus" (click)="fillMuziekInvoer(verzoek)">
+                    <span  id="pencil-icon{{i}}" class="glyphicon glyphicon-pencil white-icon"></span>
+                </button>
+                <button class="green-fill" *ngIf="verzoek.editModus" (click)="verzoek.editModus = !verzoek.editModus" (click)="putVerzoek(verzoekInvoer)">
+                    <span id="ok-icon{{i}}"class="glyphicon glyphicon-ok white-icon"></span>
+                </button>
+                <button *ngIf="!verzoek.editModus" class="red-fill" (click)="deleteVerzoek(verzoek.id)">
+                    <span  id="trash-icon{{i}}" class="glyphicon glyphicon-trash white-icon"></span>
+                </button>
+                <button *ngIf="verzoek.editModus" class="red-fill" (click)="verzoek.editModus = !verzoek.editModus" (click)="editModusOff()">
+                    <span  id="remove-icon{{i}}" class="glyphicon glyphicon-remove white-icon"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <br>
+</div>

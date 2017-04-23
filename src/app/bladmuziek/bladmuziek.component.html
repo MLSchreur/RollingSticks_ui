@@ -1,1 +1,30 @@
 <h1>{{ title }} - my-bladmuziek.component.html</h1>
+<div>
+    <h2>Ophalen bladmuziek (alles of per ID)</h2>
+    <button (click)="getBladmuziek()">Alle bladmuziek</button><br>
+    <button (click)="getBladmuziekById(bladmuziekId = 1)">Bladmuziek met id 1</button><br><br>
+    <p style="color: blue">bladmuziek ID {{ bladmuziekId }}</p>
+    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="bladmuziekId">
+    <button (click)="getBladmuziekById(bladmuziekId)">Haal bladmuziek van invoerveld op</button><br>
+</div>
+<div *ngIf="allBladmuziek">
+    <h2>Alle bladmuziek</h2>
+    <ul>
+        <li *ngFor="let bladmuziek of allBladmuziek">{{ bladmuziek.artiest }} - {{ bladmuziek.titel }} - {{ bladmuziek.lesonderdeel }}</li>
+        <!-- let = typescript versie van var (variabele)-->
+    </ul>
+</div>
+<div *ngIf="bladmuziek">
+    <h2>Bladmuziek met ID {{ bladmuziekId }}</h2>
+    <ul>
+        <li>{{ bladmuziek.artiest }} - {{ bladmuziek.titel }} - {{ bladmuziek.lesonderdeel }}</li>
+    </ul>
+</div>
+<div>
+    <input [(ngModel)]="bladmuziekInvoer.titel" placeholder="Titel">
+    <input [(ngModel)]="bladmuziekInvoer.artiest" placeholder="Artiest">
+    <input [(ngModel)]="bladmuziekInvoer.omschrijving" placeholder="Omschrijving">
+    <input [(ngModel)]="bladmuziekInvoer.lesonderdeel" placeholder="Lesonderdeel">
+    <button (click)="postBladmuziek()">Post Bladmuziek</button>
+</div>
+

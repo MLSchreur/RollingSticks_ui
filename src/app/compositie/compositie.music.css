@@ -1,0 +1,331 @@
+#cursor {
+  border-right: 3px solid red;
+  z-index: 2;  
+  width: 2px;
+  margin-left: 0px;
+  margin-right: 4px;
+}
+/* ============================================*/
+/*.bar is vertikaal scheidingsteken            */
+/* ============================================*/
+.bar {
+  position: relative;
+  display: inline-block;
+  width: 2px;
+  height: 32px;
+  margin: 0px;
+  /*testen voor margins naar rechts*/
+  margin-left: 2px;
+  margin-right: 6px;
+  margin-bottom: 48px;
+  width: 2px;
+  border-right: 1px solid black;
+}
+
+.bar.double,
+.bar.end {
+  border-left: 1px solid black;
+}
+
+.bar.end {
+  float: right;
+  border-right-width: 4px;
+  margin-right: 0;
+}
+
+/* ============================================*/
+/* Display background with lines               */
+/* ============================================*/
+.staff {
+  font-size: 0;
+  background-image: linear-gradient(180deg,
+   #999 0,    #999 1px,  transparent 1px,  transparent 8px,
+   #999 8px,  #999 9px,  transparent 9px,  transparent 16px,
+   #999 16px, #999 17px, transparent 17px, transparent 24px,
+   #999 24px, #999 25px, transparent 25px, transparent 32px,
+   #999 32px, #999 33px, transparent 33px);
+  background-size: 100% 80px;
+}
+
+/* ============================================*/
+/* Notes general                               */
+/* ============================================*/
+/*  Breedte van een noot is standaard 12 px    */
+/*  Voor 1/8 noot komt hier 4 px bij voor      */
+/*  ruimte richting de volgende noot.          */
+/*  Een hele noot is dan uiteraard 128px breed.*/
+.note {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 32px;
+  margin-bottom: 48px;
+}
+
+/*Algemeen voor closed, open en donut.*/
+.generic {
+  content: "";
+  position: relative;
+  border-radius: 50%;
+  width: 12px;
+  height: 8px;
+  top: 2px;
+}
+
+/*.closed {
+  position: absolute;
+  content: "";
+  transform: rotatez(-15deg);
+  border-radius: 50%;
+}*/
+
+/*Kruis ipv noot*/
+.cross{
+  left: 4px;
+  position: relative;
+  top: -1px;
+  height: 10px;
+  width: 1px;
+  background: black;
+  transform: rotate(45deg);
+}
+.crossing{
+  position: relative;
+  height: 10px;
+  width: 1px;
+  background: black;
+  transform: rotate(-90deg);
+}
+
+/*kruis met streep erdoorheen*/
+.stripe{
+  position:relative;
+  height: 10px;
+  width: 12px;
+  border-bottom: 1px solid black;
+  transform: rotate(45deg);
+  top: -3px;
+  left: -2px;
+
+}
+
+/*kruisje met cirkel*/
+.crossCircle{
+  position: relative;
+  height: 8px;
+  width: 8px;
+  top: 0;
+  left: -5px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+
+/*circle met een bolletje erin*/
+.rimCircle{
+  position: relative;
+  top: -3px;
+  left: -1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+/*ghost note*/
+.ghostNote{
+  width: 10px;
+  height: 7px;
+}
+
+.ghostCircle{
+  position: relative;
+  top:-4px;
+  left: -3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid black;
+
+}
+
+.ghost{
+  position: relative;
+  top: -1px;
+  left: 0px;
+  width: 16px;
+  height: 17px;
+  border-width: 4px 0;
+  border-color: rgb(238, 238, 238);
+  border-style: solid;
+  transform: rotate(0deg);
+}
+
+/* ============================================*/
+/* Set margins for notes to ensure width       */
+/*   between bars is equal regardless of notes */
+/* =========================================== */
+.note.l1 {
+  margin-left: 0px;
+  width: 128px;
+}
+.note.l2 {
+  margin-left: 0px;
+  width: 64px;
+}
+.note.l4 {
+  margin-left: 0px;
+  width: 32px;
+}
+.note.l8 {
+  margin-left: 0px;
+  width: 16px;
+}
+
+/* ============================================*/
+/* Define size box circle of the note          */
+/* =========================================== */
+.note::before {
+  height: 8px;
+  width: 12px;
+}
+
+/* ============================================*/
+/* Notes specific: whole (l1)                  */
+/* =========================================== */
+.donut.note::before {
+  position: absolute;
+  content: "";
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-left-width: 4px;
+  border-right-width: 4px;
+  border-radius: 50%;
+}
+
+/* ============================================*/
+/* Notes specific: half & quarter              */
+/*   1/8 temp the same as quarter              */
+/* =========================================== */
+/* ::before is for circle at the bottom        */
+.l2.note::before,
+/*.l4.note::before,*/
+.closed.note::before {
+  position: absolute;
+  content: "";
+  transform: rotatez(-15deg);
+  border-radius: 50%;
+}
+.l2.note::before {
+  box-sizing: border-box;
+  border: 1px solid black;
+  /*border-top-width: 2.18181818px;
+  border-bottom-width: 2.18181818px;*/
+}
+/*.l4.note::before,*/
+.closed.note::before {
+  background-color: black;
+}
+
+/*.l4.note::before,*/
+.closed.note.ghostNote::before {
+  width: 10px;
+  height: 7px;
+}
+
+/* ============================================*/
+/* ::after is for vertical staff               */
+/* =========================================== */
+.l1.note::after,
+.l2.note::after,
+.l4.note::after,
+.l8.note::after,
+.half.note::after,
+.quarter.note::after {
+  content: "";
+  /*height: 28px;*/
+  width: 1px;
+  background-color: black;
+  position: absolute;
+   /* -24 met std lengte is streepje boven het balletje van de noot
+       4 met std lengte is streepje onder het balletje van de noot
+       Streep gaat ALTIJD van boven naar beneden!!*/
+  top: 4px;
+}
+.l1.note::after {
+  right: 127px;
+}
+.l2.note::after {
+  right: 63px;
+}
+.l4.note::after {
+  right: 31px;
+}
+.l8.note::after {
+  right: 15px;
+}
+
+/* ============================================*/
+/* ::after specifieke hoogte voor elke noot    */
+/* Stokken eindigen dan op dezelfde hoogte     */
+/* =========================================== */
+.note.c6::after {
+  height: 72px;
+}
+.note.b5::after {
+  height: 68px;
+}
+.note.a5::after {
+  height: 64px;
+}
+.note.g5::after {
+  height: 60px;
+}
+.note.f5::after {
+  height: 56px;
+}
+.note.e5::after {
+  height: 52px;
+}
+.note.d5::after {
+  height: 48px;
+}
+.note.c5::after {
+  height: 44px;
+}
+.note.b4::after {
+  height: 40px;
+}
+.note.a4::after {
+  height: 36px;
+}
+.note.g4::after {
+  height: 32px;
+}
+.note.f4::after {
+  height: 28px;
+}
+.note.e4::after {
+  height: 24px;
+}
+.note.d4::after {
+  height: 20px;
+}
+
+/*vertikale verplaatsing stok*/
+/**/
+/* Door de top: #px wordt de vertikale positie van de stok aangepast.
+   Op -24 (met std 28 lengte) levert een stok op die boven de noot begint
+   Op 4 (met std 28 lengte) levert een stok op die onder de noot begint.
+*/
+/*.quarter.note.d5::after,
+.half.note.d5::after,
+.quarter.note.e5::after,
+.half.note.e5::after,
+.quarter.note.f5::after,
+.half.note.f5::after,
+.quarter.note.g5::after,
+.half.note.g5::after {
+  top: 4px;
+}*/
+

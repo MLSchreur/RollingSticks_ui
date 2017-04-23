@@ -1,1 +1,169 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('http://fonts.googleapis.com/css?family=Lato');
+
+h1 {
+  color: dimgray;
+  font-size: 250%;
+  font-variant: small-caps;
+}
+
+h2 {
+  color: dimgray;
+  font-size: 175%;
+  letter-spacing: 0.2em;
+  font-variant: small-caps;
+}
+
+div.row {
+  padding: 20px;
+}
+
+div.divCol {
+  padding: 10px;
+  background-color: #eeeeee;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/*#divPage {
+  background-color: #ffffff; 
+}*/
+
+#divRowTitle {
+  text-align: center;
+}
+
+#divRowBody {
+  background-color: #ffffff;
+} 
+
+@media only screen and (max-width : 768px){
+  .navbar-brand {
+    padding: 0px;
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+  }
+
+  .navbar-brand>img {
+    height: 100%;
+    width: auto;
+    padding: 7px 14px; 
+  }
+}
+
+.navbar{
+  margin-bottom: -30px;
+}
+
+.navbar-brand {
+  background: url(./afbeeldingen/logo.png) center;
+  background-repeat: no-repeat;
+  width: 100%;
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.navbar-alignit .navbar-header {
+	-webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  height: 50px;
+}
+
+.navbar-alignit .navbar-brand {
+	top: 50%;
+	display: block;
+	position: fixed;
+	height: auto;
+	transform: translate(0,-50%);
+	margin-right: 15px;
+  margin-left: 15px;
+}
+
+.navbar-nav>li>.dropdown-menu {
+	z-index: 9999;
+  color: red;
+}
+
+.navbar .navbar-inverse .navbar-static-top {
+	position: fixed;   
+}
+
+.button {
+    padding: 5px 10px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+    border-radius: 5px;
+    margin: 5px 5px 5px 0;
+}
+
+.button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+#opslaan {
+  background-color: lightblue;
+}
+
+#opslaan:hover {
+  background-color: #008CBA;
+}
+
+#opslaan a {
+  color: black;
+}
+
+#opslaan a:hover {
+  color: white;
+}
+
+body, html{
+  height: 100%;
+  background: #1675AD; 
+	font-family: 'Lato', sans-serif; 
+  
+}
+
+.navbar-inverse .navbar-nav>li>a{
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-inverse{
+  border: none;
+  background: url(./afbeeldingen/menu-bg.png) no-repeat center top ;
+  height: 150px;
+}
+
+.nav-item:hover{
+  border-top: 5px solid #008CBA;
+}
+
+.list-group-item:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#pictogram {
+  float: right;
+  background: none;
+  border: none;
+  padding: 0;
+  max-width: 100px;
+  margin-right: 20px;
+}
+
+.invoer {
+    width: 75%;
+    padding: 3px;
+    margin: 3px;
+}

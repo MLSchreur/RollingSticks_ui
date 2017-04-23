@@ -27,3 +27,38 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Adding ng2-bootstrap
+ 
+ - install `ng2-bootstrap` and `bootstrap`
+
+ ```bash
+   npm install ng2-bootstrap bootstrap --save
+ ```
+ 
+- open `src/app/app.module.ts` and add
+
+```typescript
+import { AlertModule } from 'ng2-bootstrap';
+...
+
+@NgModule({
+   ...
+   imports: [AlertModule.forRoot(), ... ],
+    ... 
+})
+```
+
+- open `.angular-cli.json` and insert a new entry into the styles array 
+
+```json
+      "styles": [
+         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "styles.css",
+      ],
+```
+
+- open `src/app/app.component.html` and add
+```
+<alert type="success">hello</alert>
+```

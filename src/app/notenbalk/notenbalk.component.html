@@ -1,0 +1,14 @@
+<div class="staff" id="voorbeeldbalk">
+    <div *ngFor="let noot of noten" class="{{ noot }}"></div>
+</div>
+
+<form name="Notenbalk">
+    <input *ngFor="let noot of noten" type="button" (click)="opbouwNotenbalk(noot)" value="{{ noot }}" />
+</form> 
+
+<br /><br />  
+
+<div class="staff" id="notenkeuze">
+    <!-- Pas na het opbouwen van een div met een noot, wordt de balk getoond.-->
+    <!-- Zou mooi zijn, als deze meteen getoond zou worden.-->
+</div>

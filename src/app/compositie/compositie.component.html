@@ -1,0 +1,32 @@
+
+<div>
+  <div class="col-md-2 divCol" id="pictogram">
+    <img id="imgFromServer" src="" style="max-width: 100%;"> 
+  </div>
+  <h1>Muziekstuk info</h1>
+  <h4>{{ message }}</h4>
+  <h4>Titel      : {{ titel }}</h4>
+  <h4>Tempo      : {{ tempo }}</h4>
+  <h4>Maatsoort  : {{ maatSoort }}</h4>
+  <h4>Sleutel    : {{ mode }}</h4>
+</div>
+
+<div style="text-align: center;">
+  <p id="time">Time</p>
+  <label class="button" id="loadMusic">Load Music
+    <input type="button" (click)="loadMusic()" style="display:none" />
+  </label>
+  <label class="button" id="playMusic">Play Music
+    <input type="button" (click)="playMusic()" style="display:none" />
+  </label>
+  <label class="button" id="pauseMusic">Pause Music
+    <input type="button" (click)="pauseMusic()" style="display:none" />
+  </label>
+  <div style="text-align: center;"> 
+    <div id="part">
+    </div>
+    <div id="divPlayingNote">
+      <h1 id="playingNote">...</h1>
+    </div>
+  </div>
+</div>
