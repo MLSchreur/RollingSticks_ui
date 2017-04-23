@@ -1,6 +1,5 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
-
         <div class="col-xs-12 col-sm-9">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
@@ -8,11 +7,14 @@
             </ol>
             <a class="btn btn-sm btn-info" routerLink="/leerling"> terug </a>
             <router-outlet></router-outlet>
+            
             <div class="jumbotron">
 
                 <compositie #comp></compositie>
 
-                <h2>Leerlingenlijst</h2>
+                <!--UItgeschakeld - is alleen om te testen-->
+
+                <!--<h2>Leerlingenlijst</h2>
                 <select class="control-input input-text" (change)="updateLeerling($event)">
                     <option *ngFor='let leerling of leerlingen' value='{{ leerling.id }}' [selected]="leerling.id == 3">{{ leerling.gebruikersnaam }}</option> 
                 </select>
@@ -32,15 +34,14 @@
                         </td>
                     </tr>
                 </table> <button (click)="playMuziekstuk()">Speel Muziekstuk</button><br>	
-                <div id="tempo"><div id="snelheid"></div>
-	</div>
+                <div id="tempo"><div id="snelheid"></div></div>
                 <br>
-                <br>
+                <br>-->
                 <!--hier komt notenbalk component-->
-                <my-notenbalk></my-notenbalk>
+                <!--<my-notenbalk></my-notenbalk>-->
             </div>
         </div>
-                <!--Hier komt de side menu voor de leerlingen-->
+
         <div class="col-md-3 divCol" id="divColSideBar">
             <h2>Leerling Menu</h2>
             <a class="nav-link" routerLink="home"                     routerLinkActive="active">Muziekles</a><br>

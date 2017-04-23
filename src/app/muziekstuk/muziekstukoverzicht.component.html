@@ -1,13 +1,14 @@
 <div>
     <h1>Muziek overzicht</h1>
-    <button (click)="getMuziekstuk()">Alle muziekstuk</button><br>
-    <button (click)="getMuziekstukById(muziekstukId = 1)">Muziekstuk met id 1</button><br><br>
-    <p style="color: blue">muziekstuk ID {{ muziekstukId }}</p>
-    <label>Voer bladmuzek ID in: </label><input [(ngModel)]="muziekstukId">
-    <button (click)="getMuziekstukById(muziekstukId)">Haal muziekstuk van invoerveld op</button><br>
+    
+    <input id="invoerId" [(ngModel)]="muziekstukId" placeholder="ID">
+    <button class="button" (click)="getMuziekstukById(muziekstukId)">Haal muziekstuk van invoerveld op</button>
+    <button class="button" (click)="getMuziekstuk()">Alle muziekstukken</button><br>
+    <!--<button class="button" (click)="getMuziekstukById(muziekstukId = 1)">Muziekstuk met id 1</button><br><br>
+    <p style="color: blue">muziekstuk ID {{ muziekstukId }}</p>-->
 </div>
 <div *ngIf="allMuziekstuk">
-    <h2>Alle muziekstuk</h2>
+    <h2>Alle muziekstukken</h2>
     <ul>
         <li *ngFor="let muziekstuk of allMuziekstuk">{{ muziekstuk.artiest }} - {{ muziekstuk.titel }}</li>
         <!-- let = typescript versie van var (variabele)-->
