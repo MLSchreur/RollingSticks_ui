@@ -53,12 +53,19 @@ div.divCol {
   }
 }
 
+.navbar{
+  margin-bottom: -30px;
+}
+
 .navbar-brand {
-  background: url(./afbeeldingen/logo.png) center / contain no-repeat;
-  width: 200px;
+  background: url(./afbeeldingen/logo.png) center;
+  background-repeat: no-repeat;
+  width: 100%;
   transform: translateX(-50%);
   left: 50%;
   position: absolute;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .navbar-alignit .navbar-header {
@@ -121,13 +128,19 @@ body, html{
   height: 100%;
   background: #1675AD; 
 	font-family: 'Lato', sans-serif; 
-  background-image: url(./afbeeldingen/menu-bg.png) ;
-  background-repeat: no-repeat;
+  
 }
 
 .navbar-inverse .navbar-nav>li>a{
   color: white;
   font-weight: bold;
+}
+
+.navbar-inverse{
+  background-color: transparent;
+  border: none;
+  background: url(./afbeeldingen/menu-bg.png) no-repeat center top ;
+  height: 150px;
 }
 
 .nav-item:hover{
