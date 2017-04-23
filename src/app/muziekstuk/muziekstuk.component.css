@@ -5,3 +5,9 @@ input[type="file"] {
 #message {
     color: red;
 }
+
+#invoerId{
+    width: 50px;
+    padding: 3px;
+    margin: 3px;
+}
