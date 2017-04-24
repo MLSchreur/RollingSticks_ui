@@ -1,6 +1,8 @@
 import { Component, OnInit }  from '@angular/core';
 import { CompositieService }  from './compositie.service';
 import { ViewEncapsulation }  from '@angular/core';
+// tijdelijk observable erbij. Kijken hoe dit anders kan.
+import { Observable }               from 'rxjs/Rx';
 
 import { Maat }               from './maat';
 import { Noot }               from './noot';
@@ -26,6 +28,7 @@ export class CompositieComponent implements OnInit {
   message:            string;
   titel:              string;
   tempo:              number;
+  pauze:              number;
   beats:              string;
   beatType:           string;
   mode:               string;
@@ -33,6 +36,9 @@ export class CompositieComponent implements OnInit {
 
   private stdHoogteBox:     number = 80;
   private stdAfwijkingTop:  number = 56;
+
+  afspelen = Observable.interval(this.tempo).map(() => {
+  });
 
   ngOnInit() {
     this.loadMusic();
@@ -231,8 +237,11 @@ export class CompositieComponent implements OnInit {
     let maxtp = this.aantalNotenbalken * 80;
     this.d1 = new Date();
     console.log("Play Music");
-    this.source = this.compositieService.source.subscribe(data => {
-      this.lft += 8;
+//    this.source = this.compositieService.source.subscribe(data => {
+//    this.source = this.afspelen.subscribe(data => {
+    this.pauze = 5000 / this.tempo;
+    this.source = Observable.interval(this.pauze).subscribe(data => {
+      this.lft += 4;
       // maat = 128 pixels breed, 4 maten -> 512 pixels
       // bar  = 10 pixels breed,  4 bars  ->  40 pixels
       //                           Totaal -> 552 pixels
