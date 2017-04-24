@@ -23,8 +23,9 @@ export class CompositieComponent implements OnInit {
   lft                           = 0;
   tp                            = 0;
   aantalNotenbalken:  number;
-
   source;
+  speeltAf:           boolean = false;
+
   message:            string;
   titel:              string;
   tempo:              number;
@@ -36,9 +37,6 @@ export class CompositieComponent implements OnInit {
 
   private stdHoogteBox:     number = 80;
   private stdAfwijkingTop:  number = 56;
-
-  afspelen = Observable.interval(this.tempo).map(() => {
-  });
 
   ngOnInit() {
     this.loadMusic();
@@ -236,10 +234,14 @@ export class CompositieComponent implements OnInit {
   playMusic() {
     let maxtp = this.aantalNotenbalken * 80;
     this.d1 = new Date();
-    console.log("Play Music");
 //    this.source = this.compositieService.source.subscribe(data => {
 //    this.source = this.afspelen.subscribe(data => {
     this.pauze = 5000 / this.tempo;
+    if (this.speeltAf) {          // Als er al afgespeeld wordt, dan wordt de muziek even op pauze gezet en wordt de observable met de nieuwe interval gestart.
+      this.pauseMusic();
+    }
+    console.log("Play Music");
+    this.speeltAf = true;       // Zal ongetwijfeld ook wel via de observable zelf kunnen, maar dit zal ook werken.
     this.source = Observable.interval(this.pauze).subscribe(data => {
       this.lft += 4;
       // maat = 128 pixels breed, 4 maten -> 512 pixels
@@ -259,6 +261,7 @@ export class CompositieComponent implements OnInit {
 
   pauseMusic() {
     this.source.unsubscribe();
+    this.speeltAf = false;
   }
 
   printTime() {
