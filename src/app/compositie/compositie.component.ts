@@ -16,18 +16,20 @@ import { MuziekstukService }  from '../muziekstuk/muziekstuk.service';
 })
 
 export class CompositieComponent implements OnInit {
-  maten: Maat[] = [];
-  d1: Date = new Date();
-  lft = 0;
-  tp = 0;
+  maten:              Maat[]    = [];
+  d1:                 Date      = new Date();
+  lft                           = 0;
+  tp                            = 0;
+  aantalNotenbalken:  number;
+
   source;
-  message: string;
-  titel: string;
-  tempo: number;
-  beats: string;
-  beatType: string;
-  mode: string;
-  maatSoort: string;
+  message:            string;
+  titel:              string;
+  tempo:              number;
+  beats:              string;
+  beatType:           string;
+  mode:               string;
+  maatSoort:          string;
 
   private stdHoogteBox:     number = 80;
   private stdAfwijkingTop:  number = 56;
@@ -40,6 +42,8 @@ export class CompositieComponent implements OnInit {
   }
 
   loadMusic() {
+    // vreemd dat deze regel code niet mag. snap hier niets van.
+    //this.aantalMaten = this.maten[this.maten.length -1].nummer;
     let part = document.getElementById("part");
     part.innerHTML = "";
     for (let i=0 ; i<this.maten.length ; i++) {
@@ -49,38 +53,35 @@ export class CompositieComponent implements OnInit {
         staff.setAttribute("id", "staff" + Math.floor(i/4));
         staff.setAttribute("class", "staff");
         part.appendChild(staff);
+
+        let cursor = document.createElement("div");
+        if (i==0) {
+          cursor.setAttribute("id", "cursor");
+          this.aantalNotenbalken = 0;
+        } else {
+          cursor.setAttribute("id", "leegBegin");
+        }
+        cursor.setAttribute("class", "bar");
+        staff.appendChild(cursor);
+        this.aantalNotenbalken++;
+
       } else {
         staff = document.getElementById("staff" + Math.floor(i/4));
       }
-      if (i==0) {
-        let cursor = document.createElement("div");
-        cursor.setAttribute("id", "cursor");
-        cursor.setAttribute("class", "bar");
-        staff.appendChild(cursor);
-      }
-      let note;
-      let subnote;
-      let vorigeNootNaam;
+
+      let note;             // begin van het akkoord (chord == false) [meerdere noten op hetzelfde moment]
+      let subnote;          // vervolg van het akkoord (chord == true)
+      let vorigeNootNaam;   // vorigeNootNaam nodig om relatief de positie van de volgende noot in hetzelfde akkoord te bepalen.
       for (let j=0 ; j<this.maten[i].noten.length ; j++) {
-        // nootNaam onbekend -> er is iets mis met de XML, noot wordt overgeslagen.
-        if (this.maten[i].noten[j].nootNaam == "onbekend") {
-          console.log("Probleem, nootNaam is onbekend. - " + this.maten[i].noten[j].instrument);
-          console.log(this.maten[i].noten[j]);
-        } else if (this.maten[i].noten[j].nootNaam == null) {
-          console.log("Probleem, nootNaam is null. - " + this.maten[i].noten[j].instrument);
+        // nootNaam onbekend/null -> er is iets mis met de XML, noot wordt overgeslagen.
+        if (this.maten[i].noten[j].nootNaam == "onbekend" || this.maten[i].noten[j].nootNaam == null) {
+          console.log("Probleem, nootNaam is " + this.maten[i].noten[j].nootNaam + ". - " + this.maten[i].noten[j].instrument);
           console.log(this.maten[i].noten[j]);
         } else {
-          // 1e test voor instrument en icoon v/d noot!
-          let divSymbool = this.setSymbool(this.maten[i].noten[j].instrument);
-          let divSymbool2 = this.setSymbool2(this.maten[i].noten[j].instrument);
-
-          // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
-          let length = this.getLength(+this.maten[i].noten[j].length);
-
           // chord == false -> begin van een nieuw akkoord! 
           if (this.maten[i].noten[j].chord == false) {
-            note = document.createElement("div");
-            note.setAttribute("class", length + " note " + " " + divSymbool2 + " " + this.maten[i].noten[j].nootNaam);
+            // Bepalen van de juiste attributen voor het opbouwen van de noot
+            note = this.bepaalAttribuutNoot(this.maten[i].noten[j]);
 
             // Aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
             // Op basis van de hoogte v/d noot (naamNoot) wordt zowel de hoogte als de marge bepaald.
@@ -99,13 +100,12 @@ export class CompositieComponent implements OnInit {
               note.style.borderBottom = "4px solid black";
             }
             // klaar, dus noot toevoegen aan staff(notenbalk)
-            note.appendChild(divSymbool);
             staff.appendChild(note);
             
 
           } else {                                                      // chord == true -> vervolg van het akkoord, dus als subnoot toevoegen.
-            subnote = document.createElement("div");
-            subnote.setAttribute("class", length + " note " + " " + divSymbool2 + " " + this.maten[i].noten[j].nootNaam);
+            // Bepalen van de juiste attributen voor het opbouwen van de noot
+            subnote = this.bepaalAttribuutNoot(this.maten[i].noten[j]);
 
             // Aanpassen van hoogte & marge-bottom div box - deze overschrijft de css. css kan in principe daarop geleegd worden.
             // Op basis van de hoogte v/d noot (naamNoot) wordt zowel de hoogte als de marge bepaald.
@@ -121,7 +121,6 @@ export class CompositieComponent implements OnInit {
             subnote.style.top = topPositie + "px";
 
             // klaar, dus subnoot van het akkoord toevoegen aan de noot
-            subnote.appendChild(divSymbool);
             note.appendChild(subnote);
           }
           vorigeNootNaam = this.maten[i].noten[j].nootNaam;           // naam van de noot bewaren voor de volgende noot van het akkoord
@@ -133,9 +132,9 @@ export class CompositieComponent implements OnInit {
     }
   }
 
-// methode voor het omzetten van instrument naar het juiste symbool
-  setSymbool(instrument: string) {
-    console.log("Instrument: "+ instrument);
+
+// methode voor het omzetten van instrument naar het juiste symbool (1e gedeelte div)
+  bepaalAttribuutNoot(noot: Noot) {
     let symbool1 = document.createElement("div");
     let symbool2 = document.createElement("div");
     let symbool3 = document.createElement("div");
@@ -143,87 +142,55 @@ export class CompositieComponent implements OnInit {
     symbool1.appendChild(symbool2);
     symbool2.appendChild(symbool3);
 
-    switch(instrument) {
+    // Later lengte omzetten in noot.ts naar number. Dan hoeft hier de + niet meer toegevoegd te worden.
+    let length = this.getLength(+noot.length);
+
+    switch(noot.instrument) {
+
+      // Kruisje met horizontaal streepje
       case "Crash Cymbal":
-      case "Crash Cymbal 2":
-        console.log("kruisje met horizontaal streepje"); 
-        symbool1.setAttribute("class", "cross");
+      case "Crash Cymbal 2":          // console.log("kruisje met horizontaal streepje");"
+        symbool1.setAttribute("class", length + " note cross " + noot.nootNaam);
         symbool2.setAttribute("class", "crossing");
         symbool3.setAttribute("class", "stripe");
         return symbool1;
+
+      // Kruisje
       case "Hi-Hat%g Closed":
       case "Ride Cymbal":
-      case "Hi-Hat%g Foot":
-        console.log("kruisje");
-        symbool2.setAttribute("class", "cross");
+      case "Hi-Hat%g Foot":           // console.log("kruisje");
+        symbool2.setAttribute("class", length + " note cross " + noot.nootNaam);
         symbool3.setAttribute("class", "crossing");
         return symbool2;
-      case "Snare%g Ghost Stroke":
-        console.log("bolletje tussen haakjes");
+
+      // Bolletje tussen haakjes
+      case "Snare%g Ghost Stroke":  // console.log("bolletje tussen haakjes");
+        symbool1.setAttribute("class", length + " note closed ghostNote " + noot.nootNaam);
         symbool2.setAttribute("class", "ghostCircle");
         symbool3.setAttribute("class", "ghost");
-        return symbool2;
-      case "Snare%g Rim":           console.log("bolletje met cirkel er omheen");
+        return symbool1;
+
+      // Bolletje met met cirkel er omheen
+      case "Snare%g Rim":           // console.log("bolletje met cirkel er omheen");
+        symbool2.setAttribute("class", length + " note closed ghostNote " + noot.nootNaam);
         symbool3.setAttribute("class", "rimCircle");
+        return symbool2;
+
+      // Klassieke kwartnoot (dicht bolletje - closed)
+      case "High Tom":
+      case "Low Tom":
+      case "Snare Drum":
+      case "Floor Tom 1":
+      case "Bass Drum":             // console.log("dicht bolletje");
+        symbool3.setAttribute("class", length + " note closed " + noot.nootNaam);
         return symbool3;
 
-      // op oude manier afvangen
-      case "High Tom":
-      case "Low Tom":
-      case "Snare Drum":
-      case "Floor Tom 1":
-      case "Bass Drum":
-      case "Hi-Hat%g Open":         return symbool1;
+      // Klassieke hele noot (donut)
+      case "Hi-Hat%g Open":         // console.log("donut (whole)");
+        symbool3.setAttribute("class", length + " note donut " + noot.nootNaam);
+        return symbool3;
 
-      default:                      console.log("Probleem, onbekend muziekinstrument: " + instrument); return symbool1;
-    }
-  }
-
-// methode voor het omzetten van instrument naar het juiste symbool
-  setSymbool2(instrument: string) {
-    console.log("Instrument: "+ instrument);
-
-    switch(instrument) {
-      case "High Tom":
-      case "Low Tom":
-      case "Snare Drum":
-      case "Floor Tom 1":
-      case "Bass Drum":
-        // console.log("dicht bolletje");
-        // symbool3.setAttribute("class", "closed");
-        return "closed";
-      case "Hi-Hat%g Open":
-        console.log("donut (whole)");
-        return "donut";
-      case "Snare%g Ghost Stroke":
-        // basis van de ghostNote (oftewel eerst closed en dan kleiner maken)
-        return "closed ghostNote";
-      case "Snare%g Rim":
-        // basis van de Rim (oftewel eerst closed en dan kleiner maken);
-        return "closed ghostNote";
-
-    default:                      return "";
-    }
-  }
-
-// anders opbouwen, omzetten naar hoogte van div box en dan berekening andere kant op voor positie noot zelf
-// later ook horizontaal streepje bepalen met code ipv css
-  getPositieNootNaam(nootNaam: string) {
-    switch(nootNaam) {
-      case "c6": return -20;
-      case "b5": return -16;
-      case "a5": return -12;
-      case "g5": return  -8;
-      case "f5": return  -4;
-      case "e5": return   0;
-      case "d5": return   4;
-      case "c5": return   8;
-      case "b4": return  12;
-      case "a4": return  16;
-      case "g4": return  20;
-      case "f4": return  24;
-      case "e4": return  28;
-      case "d4": return  32;
+      default:                      console.log("Probleem, onbekend muziekinstrument: " + noot.instrument); return symbool3;
     }
   }
 
@@ -249,31 +216,30 @@ export class CompositieComponent implements OnInit {
 
   getLength(length: number) {
     switch(length) {
-      case 1:   return "l1";
-      case 2:   return "l2";
-      case 4:   return "l4";
-      case 8:   return "l8";
-      case 16:  return "l16";
-      case 32:  return "l32";
-      case 64:  return "l64";
-      default:  console.log("lengte onbekend: " + length); return "";
+      case 1:
+      case 2:
+      case 4:
+      case 8:
+      case 16:
+      case 32:
+      case 64:  return "l" + length;
+      default:  console.log("Probleem: lengte onbekend: " + length); return "";
     }
   }
 
   playMusic() {
+    let maxtp = this.aantalNotenbalken * 80;
     this.d1 = new Date();
     console.log("Play Music");
     this.source = this.compositieService.source.subscribe(data => {
-      //console.log(data);
-      // if (data.height != "") {
-      //   document.getElementById("playingNote").textContent = data.length + " " + data.height;
-      // }
-      // this.printTime();
       this.lft += 8;
-      if (this.lft > 384) {
+      // maat = 128 pixels breed, 4 maten -> 512 pixels
+      // bar  = 10 pixels breed,  4 bars  ->  40 pixels
+      //                           Totaal -> 552 pixels
+      if (this.lft > 552) {
         this.lft = 0;
         this.tp += 80;
-        if (this.tp > 160) {
+        if (this.tp >= maxtp) {
           this.tp = 0;
         }
       }

@@ -5,6 +5,13 @@
   margin-left: 0px;
   margin-right: 4px;
 }
+#leegBegin {
+  border-right: 3px;
+  z-index: 2;  
+  width: 3px;
+  margin-left: 0px;
+  margin-right: 4px;
+}
 /* ============================================*/
 /*.bar is vertikaal scheidingsteken            */
 /* ============================================*/
@@ -18,7 +25,6 @@
   margin-left: 2px;
   margin-right: 6px;
   margin-bottom: 48px;
-  width: 2px;
   border-right: 1px solid black;
 }
 
@@ -48,12 +54,13 @@
 }
 
 /* ============================================*/
-/* Notes general                               */
+/* Noten generiek                              */
 /* ============================================*/
 /*  Breedte van een noot is standaard 12 px    */
 /*  Voor 1/8 noot komt hier 4 px bij voor      */
 /*  ruimte richting de volgende noot.          */
 /*  Een hele noot is dan uiteraard 128px breed.*/
+/* ============================================*/
 .note {
   position: relative;
   display: inline-block;
@@ -63,7 +70,7 @@
 }
 
 /*Algemeen voor closed, open en donut.*/
-.generic {
+/*.generic {
   content: "";
   position: relative;
   border-radius: 50%;
@@ -71,73 +78,88 @@
   height: 8px;
   top: 2px;
 }
+*/
+/* ============================================*/
+/* Marges voor de noten voor de juiste breedte */
+/* Ruimte tussen de bars is dan altijd gelijk  */
+/* =========================================== */
+.note.l1 {
+  margin-left: 0px;
+  width: 128px;
+}
+.note.l2 {
+  margin-left: 0px;
+  width: 64px;
+}
+.note.l4 {
+  margin-left: 0px;
+  width: 32px;
+}
+.note.l8 {
+  margin-left: 0px;
+  width: 16px;
+}
 
-/*.closed {
+/* ============================================*/
+/* Grootte van de box voor het symbool v/d noot*/
+/* =========================================== */
+.note::before {
+  height: 8px;
+  width: 12px;
+}
+
+/* ============================================*/
+/* ::before is voor het symbool van de noot    */
+/* =========================================== */
+/* Noten specifek                              */
+/* Donut (gebaseerd op de hele noot (whole)    */
+/* =========================================== */
+.donut.note::before {
   position: absolute;
   content: "";
-  transform: rotatez(-15deg);
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-left-width: 4px;
+  border-right-width: 4px;
   border-radius: 50%;
+}
+
+/* ============================================*/
+/* Notes specifiekic: closed                   */
+/*   Gebaseerd op de originele quarter note    */
+/*   Originele css voor half note laten staan  */
+/*   Wellicht later nog handig.                */ 
+/* =========================================== */
+/*.half.note::before,*/
+.closed.note::before {
+  position: absolute;
+  content: "";
+  transform: rotate(-15deg);
+  border-radius: 50%;
+}
+/*.half.note::before {
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-top-width: 2.18181818px;
+  border-bottom-width: 2.18181818px;
 }*/
-
-/*Kruis ipv noot*/
-.cross{
-  left: 4px;
-  position: relative;
-  top: -1px;
-  height: 10px;
-  width: 1px;
-  background: black;
-  transform: rotate(45deg);
-}
-.crossing{
-  position: relative;
-  height: 10px;
-  width: 1px;
-  background: black;
-  transform: rotate(-90deg);
+.closed.note::before {
+  background-color: black;
 }
 
-/*kruis met streep erdoorheen*/
-.stripe{
-  position:relative;
-  height: 10px;
-  width: 12px;
-  border-bottom: 1px solid black;
-  transform: rotate(45deg);
-  top: -3px;
-  left: -2px;
-
-}
-
-/*kruisje met cirkel*/
-.crossCircle{
-  position: relative;
-  height: 8px;
-  width: 8px;
-  top: 0;
-  left: -5px;
-  border: 1px solid black;
-  border-radius: 50%;
-}
-
-
-/*circle met een bolletje erin*/
-.rimCircle{
-  position: relative;
-  top: -3px;
-  left: -1px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid black;
-}
-
-/*ghost note*/
-.ghostNote{
+/* ============================================*/
+/* Notes specifiek: ghoste noot en rim         */
+/*   Gelijk aan closed, maar iets kleiner      */
+/*   Gevolgd door haakjes voor ghost note en   */
+/*   een rondje voor rim                       */
+/* ============================================*/
+.closed.note.ghostNote::before {
   width: 10px;
   height: 7px;
 }
-
+/* ============================================*/
+/* Notes specifiek: vervolg ghost noot         */
+/* ============================================*/
 .ghostCircle{
   position: relative;
   top:-4px;
@@ -162,86 +184,73 @@
 }
 
 /* ============================================*/
-/* Set margins for notes to ensure width       */
-/*   between bars is equal regardless of notes */
-/* =========================================== */
-.note.l1 {
-  margin-left: 0px;
-  width: 128px;
-}
-.note.l2 {
-  margin-left: 0px;
-  width: 64px;
-}
-.note.l4 {
-  margin-left: 0px;
-  width: 32px;
-}
-.note.l8 {
-  margin-left: 0px;
-  width: 16px;
-}
-
+/* Notes specifiek: vervolg rim                */
+/*  circle met een bolletje erin               */
 /* ============================================*/
-/* Define size box circle of the note          */
-/* =========================================== */
-.note::before {
-  height: 8px;
+.rimCircle{
+  position: relative;
+  top: -3px;
+  left: -1px;
   width: 12px;
-}
-
-/* ============================================*/
-/* Notes specific: whole (l1)                  */
-/* =========================================== */
-.donut.note::before {
-  position: absolute;
-  content: "";
-  box-sizing: border-box;
-  border: 1px solid black;
-  border-left-width: 4px;
-  border-right-width: 4px;
+  height: 12px;
   border-radius: 50%;
-}
-
-/* ============================================*/
-/* Notes specific: half & quarter              */
-/*   1/8 temp the same as quarter              */
-/* =========================================== */
-/* ::before is for circle at the bottom        */
-.l2.note::before,
-/*.l4.note::before,*/
-.closed.note::before {
-  position: absolute;
-  content: "";
-  transform: rotatez(-15deg);
-  border-radius: 50%;
-}
-.l2.note::before {
-  box-sizing: border-box;
   border: 1px solid black;
-  /*border-top-width: 2.18181818px;
-  border-bottom-width: 2.18181818px;*/
 }
-/*.l4.note::before,*/
-.closed.note::before {
+/* ============================================*/
+/* Notes specifiek: kruisje en kruis/streep    */
+/* Eerst streep 45gr (.cross) en dan nog één   */
+/*  de andere richting (-90gr) (.crossing)     */
+/*  maakt een kruis.                           */
+/* /stripe erna is kruis met streep.           */
+/* =========================================== */
+/*Kruis ipv noot*/
+.cross.note::before,
+.crossing {
+  position: absolute;
+  left: 4px;
+  top: -1px;
+  height: 10px;
+  width: 1px;
+  content: "";
   background-color: black;
 }
-
-/*.l4.note::before,*/
-.closed.note.ghostNote::before {
-  width: 10px;
-  height: 7px;
+.cross.note::before {
+  transform: rotate(45deg);
+}
+.crossing{
+  transform: rotate(-45deg);
 }
 
+/*kruis met streep erdoorheen*/
+.stripe{
+  position:absolute;
+  height: 10px;
+  width: 12px;
+  border-bottom: 1px solid black;
+  transform: rotate(45deg);
+  top: -3px;
+  left: -2px;
+
+}
+
+/*kruisje met cirkel*/ /* waarschijnlijk niet nodig?? */
+/*.crossCircle{
+  position: relative;
+  height: 8px;
+  width: 8px;
+  top: 0;
+  left: -5px;
+  border: 1px solid black;
+  border-radius: 50%;
+}*/
+
 /* ============================================*/
-/* ::after is for vertical staff               */
+/* ::after is voor vertikale stok              */
 /* =========================================== */
 .l1.note::after,
 .l2.note::after,
 .l4.note::after,
-.l8.note::after,
-.half.note::after,
-.quarter.note::after {
+.l8.note::after {
   content: "";
   /*height: 28px;*/
   width: 1px;
@@ -251,6 +260,9 @@
        4 met std lengte is streepje onder het balletje van de noot
        Streep gaat ALTIJD van boven naar beneden!!*/
   top: 4px;
+}
+.cross.note::after {
+  top: 8px;
 }
 .l1.note::after {
   right: 127px;
@@ -268,48 +280,66 @@
 /* ============================================*/
 /* ::after specifieke hoogte voor elke noot    */
 /* Stokken eindigen dan op dezelfde hoogte     */
+/*  Na cross moet het stokje 4px kleiner en    */
+/*  lager. Kijken of dit niet slimmer kan.     */
 /* =========================================== */
 .note.c6::after {
   height: 72px;
 }
+.note.cross.c6::after,
 .note.b5::after {
   height: 68px;
 }
+.note.cross.b5::after,
 .note.a5::after {
   height: 64px;
 }
+.note.cross.a5::after,
 .note.g5::after {
   height: 60px;
 }
+.note.cross.g5::after,
 .note.f5::after {
   height: 56px;
 }
+.note.cross.f5::after,
 .note.e5::after {
   height: 52px;
 }
+.note.cross.e5::after,
 .note.d5::after {
   height: 48px;
 }
+.note.cross.d5::after,
 .note.c5::after {
   height: 44px;
 }
+.note.cross.c5::after,
 .note.b4::after {
   height: 40px;
 }
+.note.cross.b4::after,
 .note.a4::after {
   height: 36px;
 }
+.note.cross.a4::after,
 .note.g4::after {
   height: 32px;
 }
+.note.cross.g4::after,
 .note.f4::after {
   height: 28px;
 }
+.note.cross.f4::after,
 .note.e4::after {
   height: 24px;
 }
+.note.cross.e4::after,
 .note.d4::after {
   height: 20px;
+}
+.note.cross.d4::after {
+  height: 16px;
 }
 
 /*vertikale verplaatsing stok*/
