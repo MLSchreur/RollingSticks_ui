@@ -27,7 +27,7 @@ export class CompositieComponent implements OnInit {
   speeltAf:           boolean = false;
 
   message:            string;
-  titel:              string;
+  titel:              string = "Muziekstuk Info";
   tempo:              number;
   pauze:              number;
   beats:              string;
@@ -194,6 +194,11 @@ export class CompositieComponent implements OnInit {
         symbool3.setAttribute("class", length + " note donut " + noot.nootNaam);
         return symbool3;
 
+      // Rustnoot (Rest) - symbool moet nog ontworpen worden
+      case "Rest":                  // console.log("rustnoot (Rest)");
+        symbool3.setAttribute("class", length + " note rest ");
+        return symbool3;
+
       default:                      console.log("Probleem, onbekend muziekinstrument: " + noot.instrument); return symbool3;
     }
   }
@@ -215,6 +220,7 @@ export class CompositieComponent implements OnInit {
       case "f4": return 32;
       case "e4": return 28;
       case "d4": return 24;
+      case "Rest": return 80;   // voor rustnoot (Rest)
     }
   }
 
