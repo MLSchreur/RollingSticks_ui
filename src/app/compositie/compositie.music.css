@@ -14,6 +14,7 @@
 }
 /* ============================================*/
 /*.bar is vertikaal scheidingsteken            */
+/*  Totale hoogte moet 100 zijn                */
 /* ============================================*/
 .bar {
   position: relative;
@@ -24,7 +25,7 @@
   /*testen voor margins naar rechts*/
   margin-left: 2px;
   margin-right: 6px;
-  margin-bottom: 48px;
+  margin-bottom: 68px;
   border-right: 1px solid black;
 }
 
@@ -50,7 +51,7 @@
    #999 16px, #999 17px, transparent 17px, transparent 24px,
    #999 24px, #999 25px, transparent 25px, transparent 32px,
    #999 32px, #999 33px, transparent 33px);
-  background-size: 100% 80px;
+  background-size: 100% 100px;
 }
 
 /* ============================================*/
@@ -66,7 +67,7 @@
   display: inline-block;
   width: 12px;
   height: 32px;
-  margin-bottom: 48px;
+  margin-bottom: 68px;
 }
 
 /*Algemeen voor closed, open en donut.*/

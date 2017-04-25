@@ -1,6 +1,8 @@
 import { Component, OnInit }  from '@angular/core';
 import { CompositieService }  from './compositie.service';
 import { ViewEncapsulation }  from '@angular/core';
+// tijdelijk observable erbij. Kijken hoe dit anders kan.
+import { Observable }               from 'rxjs/Rx';
 
 import { Maat }               from './maat';
 import { Noot }               from './noot';
@@ -21,17 +23,19 @@ export class CompositieComponent implements OnInit {
   lft                           = 0;
   tp                            = 0;
   aantalNotenbalken:  number;
-
   source;
+  speeltAf:           boolean = false;
+
   message:            string;
-  titel:              string;
+  titel:              string = "Muziekstuk Info";
   tempo:              number;
+  pauze:              number;
   beats:              string;
   beatType:           string;
   mode:               string;
   maatSoort:          string;
 
-  private stdHoogteBox:     number = 80;
+  private stdHoogteBox:     number = 100;
   private stdAfwijkingTop:  number = 56;
 
   ngOnInit() {
@@ -190,6 +194,11 @@ export class CompositieComponent implements OnInit {
         symbool3.setAttribute("class", length + " note donut " + noot.nootNaam);
         return symbool3;
 
+      // Rustnoot (Rest) - symbool moet nog ontworpen worden
+      case "Rest":                  // console.log("rustnoot (Rest)");
+        symbool3.setAttribute("class", length + " note rest ");
+        return symbool3;
+
       default:                      console.log("Probleem, onbekend muziekinstrument: " + noot.instrument); return symbool3;
     }
   }
@@ -211,6 +220,7 @@ export class CompositieComponent implements OnInit {
       case "f4": return 32;
       case "e4": return 28;
       case "d4": return 24;
+      case "Rest": return 80;   // voor rustnoot (Rest)
     }
   }
 
@@ -228,17 +238,23 @@ export class CompositieComponent implements OnInit {
   }
 
   playMusic() {
-    let maxtp = this.aantalNotenbalken * 80;
+    let maxtp = this.aantalNotenbalken * this.stdHoogteBox;
     this.d1 = new Date();
+    // factor 7000 is afgestemd op Blof muziekstuk
+    this.pauze = 7000 / this.tempo;
+    if (this.speeltAf) {          // Als er al afgespeeld wordt, dan wordt de muziek even op pauze gezet en wordt de observable met de nieuwe interval gestart.
+      this.pauseMusic();
+    }
     console.log("Play Music");
-    this.source = this.compositieService.source.subscribe(data => {
-      this.lft += 8;
+    this.speeltAf = true;       // Zal ongetwijfeld ook wel via de observable zelf kunnen, maar dit zal ook werken.
+    this.source = Observable.interval(this.pauze).subscribe(data => {
+      this.lft += 4;
       // maat = 128 pixels breed, 4 maten -> 512 pixels
       // bar  = 10 pixels breed,  4 bars  ->  40 pixels
       //                           Totaal -> 552 pixels
       if (this.lft > 552) {
         this.lft = 0;
-        this.tp += 80;
+        this.tp += this.stdHoogteBox;
         if (this.tp >= maxtp) {
           this.tp = 0;
         }
@@ -250,6 +266,7 @@ export class CompositieComponent implements OnInit {
 
   pauseMusic() {
     this.source.unsubscribe();
+    this.speeltAf = false;
   }
 
   printTime() {
