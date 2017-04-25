@@ -4,11 +4,13 @@
     <img id="imgFromServer" src="" style="max-width: 100%;"> 
   </div>
   <h1>Muziekstuk info</h1>
-  <h4>{{ message }}</h4>
-  <h4>Titel      : {{ titel }}</h4>
-  <h4>Tempo      : <input [(ngModel)]="tempo"></h4>
-  <h4>Maatsoort  : {{ maatSoort }}</h4>
-  <h4>Sleutel    : {{ mode }}</h4>
+  <div visible="hidden">
+    <h4>{{ message }}</h4>
+    <h4>Titel                   : {{ titel }}</h4>
+    <h4 *ngIf="titel">Tempo     : <input [(ngModel)]="tempo"></h4>
+    <h4>Maatsoort               : {{ maatSoort }}</h4>
+    <h4>Sleutel                 : {{ mode }}</h4>
+  </div>
 </div>
 
 <div style="text-align: center;">

@@ -35,7 +35,7 @@ export class CompositieComponent implements OnInit {
   mode:               string;
   maatSoort:          string;
 
-  private stdHoogteBox:     number = 80;
+  private stdHoogteBox:     number = 100;
   private stdAfwijkingTop:  number = 56;
 
   ngOnInit() {
@@ -232,11 +232,10 @@ export class CompositieComponent implements OnInit {
   }
 
   playMusic() {
-    let maxtp = this.aantalNotenbalken * 80;
+    let maxtp = this.aantalNotenbalken * this.stdHoogteBox;
     this.d1 = new Date();
-//    this.source = this.compositieService.source.subscribe(data => {
-//    this.source = this.afspelen.subscribe(data => {
-    this.pauze = 5000 / this.tempo;
+    // factor 7000 is afgestemd op Blof muziekstuk
+    this.pauze = 7000 / this.tempo;
     if (this.speeltAf) {          // Als er al afgespeeld wordt, dan wordt de muziek even op pauze gezet en wordt de observable met de nieuwe interval gestart.
       this.pauseMusic();
     }
@@ -249,7 +248,7 @@ export class CompositieComponent implements OnInit {
       //                           Totaal -> 552 pixels
       if (this.lft > 552) {
         this.lft = 0;
-        this.tp += 80;
+        this.tp += this.stdHoogteBox;
         if (this.tp >= maxtp) {
           this.tp = 0;
         }
