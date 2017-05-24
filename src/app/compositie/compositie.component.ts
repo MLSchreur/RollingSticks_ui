@@ -264,9 +264,19 @@ export class CompositieComponent implements OnInit {
     });
   }
 
+  resetMusic(){
+    this.pauseMusic();
+    this.lft = this.lft - this.lft;
+    this.tp = this.tp - this.tp;
+    document.getElementById("cursor").style.left = this.lft + "px";
+    document.getElementById("cursor").style.top = this.tp + "px";
+    console.log("Reset Music");
+  }
+
   pauseMusic() {
     this.source.unsubscribe();
     this.speeltAf = false;
+    console.log("Pause Music");
   }
 
   printTime() {
