@@ -275,7 +275,18 @@ export class CompositieComponent implements OnInit {
     }
   }
 
-  resetMusic(){
+  tempoPlus(){
+    if (this.speeltAf) {
+      this.pauseMusic();
+      ++this.tempo;
+      console.log("Play Music");
+      this.playMusic();
+    } else {
+        ++this.tempo;
+    }
+  }
+
+  stopMusic(){
     if(this.speeltAf) {
       this.pauseMusic();
     }
@@ -283,7 +294,7 @@ export class CompositieComponent implements OnInit {
     this.tp = this.tp - this.tp;
     document.getElementById("cursor").style.left = this.lft + "px";
     document.getElementById("cursor").style.top = this.tp + "px";
-    console.log("Reset Music");
+    console.log("Stop Music");
   }
 
   pauseMusic() {

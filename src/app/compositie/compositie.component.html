@@ -15,17 +15,17 @@
 <div style="text-align: center;">
   <p></p>
   <!--<p id="time">Time</p>-->
-  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="loadMusic">Load Music
+  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="loadMusic">Load
     <input type="button" (click)="loadMusic()" style="display:none" />
   </label>
-  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="playMusic">Play Music
+  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="playMusic">Play
     <input type="button" (click)="playMusic()" style="display:none" />
   </label>
-  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="pauseMusic">Pause Music
+  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="pauseMusic">Pause
     <input type="button" (click)="pauseMusic()" style="display:none" />
   </label>
-  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="resetMusic">Reset Music
-    <input type="button" (click)="resetMusic()" style="display:none" />
+  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="stopMusic">Stop
+    <input type="button" (click)="stopMusic()" style="display:none" />
   </label>
   <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="tempoMin">Tempo -
     <input type="button" (click)="tempoMin()" style="display:none" />
@@ -35,9 +35,6 @@
   </label>
   <div style="text-align: center;"> 
     <div id="part">
-    </div>
-    <div *ngIf="titel != 'Muziekstuk Info'" id="divPlayingNote">
-      <h1 id="playingNote">...</h1>
     </div>
   </div>
 </div>
