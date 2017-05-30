@@ -239,7 +239,6 @@ export class CompositieComponent implements OnInit {
 
   playMusic() {
     let maxtp = this.aantalNotenbalken * this.stdHoogteBox;
-
     // factor 7000 is afgestemd op Blof muziekstuk
     this.pauze = 7000/this.tempo;
     if (this.speeltAf) {          // Als er al afgespeeld wordt, dan wordt de muziek even op pauze gezet en wordt de observable met de nieuwe interval gestart.
@@ -267,11 +266,11 @@ export class CompositieComponent implements OnInit {
   tempoMin(){
     if (this.speeltAf) {
       this.pauseMusic();
-      this.tempo = --this.tempo;
+      --this.tempo;
       console.log("Play Music");
       this.playMusic();
     } else {
-        this.tempo = --this.tempo;
+        --this.tempo;
     }
   }
 
