@@ -27,6 +27,12 @@
   <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="resetMusic">Reset Music
     <input type="button" (click)="resetMusic()" style="display:none" />
   </label>
+  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="tempoMin">Tempo -
+    <input type="button" (click)="tempoMin()" style="display:none" />
+  </label>
+  <label *ngIf="titel != 'Muziekstuk Info'" class="button" id="tempoPlus">Tempo +
+    <input type="button" (click)="tempoPlus()" style="display:none" />
+  </label>
   <div style="text-align: center;"> 
     <div id="part">
     </div>

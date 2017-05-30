@@ -19,7 +19,6 @@ import { MuziekstukService }  from '../muziekstuk/muziekstuk.service';
 
 export class CompositieComponent implements OnInit {
   maten:              Maat[]    = [];
-  d1:                 Date      = new Date();
   lft                           = 0;
   tp                            = 0;
   aantalNotenbalken:  number;
@@ -199,7 +198,8 @@ export class CompositieComponent implements OnInit {
         symbool3.setAttribute("class", length + " note rest ");
         return symbool3;
 
-      default:                      console.log("Probleem, onbekend muziekinstrument: " + noot.instrument); return symbool3;
+      default:
+        console.log("Probleem, onbekend muziekinstrument: " + noot.instrument); return symbool3;
     }
   }
 
@@ -239,9 +239,9 @@ export class CompositieComponent implements OnInit {
 
   playMusic() {
     let maxtp = this.aantalNotenbalken * this.stdHoogteBox;
-    this.d1 = new Date();
+
     // factor 7000 is afgestemd op Blof muziekstuk
-    this.pauze = 7000 / this.tempo;
+    this.pauze = 7000/this.tempo;
     if (this.speeltAf) {          // Als er al afgespeeld wordt, dan wordt de muziek even op pauze gezet en wordt de observable met de nieuwe interval gestart.
       this.pauseMusic();
     }
@@ -264,8 +264,21 @@ export class CompositieComponent implements OnInit {
     });
   }
 
+  tempoMin(){
+    if (this.speeltAf) {
+      this.pauseMusic();
+      this.tempo = --this.tempo;
+      console.log("Play Music");
+      this.playMusic();
+    } else {
+        this.tempo = --this.tempo;
+    }
+  }
+
   resetMusic(){
-    this.pauseMusic();
+    if(this.speeltAf) {
+      this.pauseMusic();
+    }
     this.lft = this.lft - this.lft;
     this.tp = this.tp - this.tp;
     document.getElementById("cursor").style.left = this.lft + "px";
@@ -279,12 +292,6 @@ export class CompositieComponent implements OnInit {
     console.log("Pause Music");
   }
 
-  printTime() {
-    let d = new Date();
-    let diff = (d.getMinutes()-this.d1.getMinutes())*60 + (d.getSeconds() - this.d1.getSeconds());
-    diff = diff*1000 + (d.getMilliseconds() - this.d1.getMilliseconds());
-    document.getElementById("time").textContent = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds() + " ---- Time elapsed (ms): " + diff;
-  }
 
   // tonen van algemene compositie gegevens
   showCompositie(muziekstuk: Muziekstuk) {
