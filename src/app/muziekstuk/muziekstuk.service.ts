@@ -10,8 +10,7 @@ import { AppGlobalService }         from '../app.global.service';
 export class MuziekstukService {
 
   // Op deze manier (http van class Http) wordt een private field aangemaakt.
-  constructor(private http: Http, private appGlobalService: AppGlobalService) {
-  }
+  constructor(private http: Http, private appGlobalService: AppGlobalService) {}
 
   private baseUrl: string     = this.appGlobalService.baseUrl + "/muziekstuk"; 
   private headers             = new Headers({ 'Content-Type': 'application/json' });  
