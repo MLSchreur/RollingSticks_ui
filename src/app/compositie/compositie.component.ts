@@ -264,36 +264,54 @@ export class CompositieComponent implements OnInit {
   }
 
   tempoMin(){
+    console.log("tempoMin()");
     if (this.speeltAf) {
       this.pauseMusic();
       --this.tempo;
-      console.log("Play Music");
       this.playMusic();
     } else {
         --this.tempo;
     }
-  }
+  }  
 
   tempoPlus(){
-    if (this.speeltAf) {
-      this.pauseMusic();
-      ++this.tempo;
-      console.log("Play Music");
-      this.playMusic();
-    } else {
-        ++this.tempo;
-    }
+    let tempo: number = this.tempo;
+    console.log("tempoPlus1()");
+    let obj = document.getElementById("tempoPlus");
+    console.log("obj = " + obj)
+    let jojo;
+    console.log("jojo = " + jojo)
+    //let tempTempo = this.tempo;
+    console.log("tempo = " + tempo)
+    obj.onmousedown = function() {
+      do{
+        jojo = setInterval(++tempo), 100 ;
+      } while(onmousedown)
+      console.log("tempo = " + tempo)
+      // console.log("in mousedown")
+      // jojo = setInterval(function(){ ++tempTempo}, 100);
+      // console.log("tempTemp = " + tempTempo)
+      // console.log("jojo = " + jojo)
+    };    
+        console.log("tempoPlus2()");
+    // if (this.speeltAf) {
+    //   this.pauseMusic();
+    //   ++this.tempo;
+    //   this.playMusic();
+    // } else {
+    //     ++this.tempo;
+    // }
   }
 
   stopMusic(){
     if(this.speeltAf) {
       this.pauseMusic();
     }
+    console.log("Stop Music");
     this.lft = this.lft - this.lft;
     this.tp = this.tp - this.tp;
     document.getElementById("cursor").style.left = this.lft + "px";
     document.getElementById("cursor").style.top = this.tp + "px";
-    console.log("Stop Music");
   }
 
   pauseMusic() {
