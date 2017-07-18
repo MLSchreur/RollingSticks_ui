@@ -1,5 +1,6 @@
 import { Component }                from '@angular/core';
 import { Leerling }                 from '../leerling/leerling';
+import { Docent }                 from '../docent/docent';
 import { LeerlingaanmakenService } from './leerlingaanmaken.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { LeerlingaanmakenService } from './leerlingaanmaken.service';
 export class LeerlingAanmakenComponent {
 
     leerlingAanmaken  : Leerling = new Leerling();
+    docentAanmaken    : Docent = new Docent();
     leerlingId        : Number;
 
 constructor(private leerlingaanmakenService: LeerlingaanmakenService) { }
