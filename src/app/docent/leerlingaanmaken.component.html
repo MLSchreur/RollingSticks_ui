@@ -1,10 +1,24 @@
 <div>
     <h1>Gebruiker aanmaken</h1>
+
+    <div class="container">
+
+        <form>
+            <label class="radio-inline">
+                <input checked="checked" type="radio" name="optradio">Nieuwe leerling aanmaken
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio">Nieuwe docent aanmaken
+            </label>
+        </form>
+    </div>
+
+
     <input class="invoer" [(ngModel)]="leerlingAanmaken.voornaam" placeholder="Voornaam"><br>
     <input class="invoer" [(ngModel)]="leerlingAanmaken.tussenvoegsel" placeholder="Tussenvoegsel"><br>
     <input class="invoer" [(ngModel)]="leerlingAanmaken.achternaam" placeholder="Achternaam"><br>
     <input class="invoer" [(ngModel)]="leerlingAanmaken.gebruikersnaam" placeholder="Gebruikersnaam"><br>
-    <input class="invoer" type ="password" [(ngModel)]="leerlingAanmaken.wachtwoord" placeholder="Wachtwoord"><br>
+    <input class="invoer" type="password" [(ngModel)]="leerlingAanmaken.wachtwoord" placeholder="Wachtwoord"><br>
     <label class="button" id="opslaan">
     <a (click)="postLeerling()">Opslaan</a>
     </label>
