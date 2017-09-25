@@ -14,18 +14,11 @@ export class LeerlingAanmakenComponent {
   leerlingAanmaken  : Leerling = new Leerling();
   docentAanmaken    : Docent = new Docent();
   leerlingId        : Number;
+  
 
   constructor(private leerlingaanmakenService: LeerlingaanmakenService) { }
 
-  checkGebruiker(){
-    let checkLeerling = document.getElementById("radio-leerling");
-    let checkDocent = document.getElementById("radio-docent");
-    console.log("Radio checkbox leerling is: " + checkLeerling.getAttributeNode("checked").value);
-    console.log("Radio checkbox leerling is: " + checkDocent.getAttributeNode("checked").value);
-    // if (check.getAttributeNode("checked").value != "checked"){
-    //   this.leerlingAanmaken = this.docentAanmaken;
-    // }
-  }
+
 
   // postGebruiker(){
   //   this.checkGebruiker();
@@ -37,10 +30,24 @@ export class LeerlingAanmakenComponent {
   // }
 
   postLeerling(){
+    
     console.log(this.leerlingAanmaken);
     this.leerlingaanmakenService.postLeerling(this.leerlingAanmaken).subscribe(leerlingId => {
         console.log("Leerling aangemaakt, succes! - " + leerlingId);
         this.leerlingId = +leerlingId;
     });
+  }
+
+  // wijzigen checkbox nieuwe leerling / nieuwe docent
+  changeChecked(){
+    let checkLeerling = (<HTMLInputElement>document.getElementById("radio-leerling"));
+    let checkDocent = (<HTMLInputElement>document.getElementById("radio-docent"));
+    if(checkDocent.checked == true){
+      checkDocent.checked = true;
+    } else {
+     checkLeerling.checked = true;
+    }
+    console.log("checkLeerling = " + checkLeerling.checked);
+    console.log("checkDocent = " + checkDocent.checked);
   }
 }
