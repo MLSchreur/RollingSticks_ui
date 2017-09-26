@@ -1,11 +1,14 @@
-<div>
-    <h1>Gebruiker aanmaken</h1>
-    <input class="invoer" [(ngModel)]="leerlingAanmaken.voornaam" placeholder="Voornaam"><br>
+<div class="jumbotron">
+
+    <h1>Nieuwe leerling aanmaken</h1>
+
+    <input class="invoer" [(ngModel)]="leerlingAanmaken.voornaam" placeholder="Voornaam" id="gebruikerVoornaam"><br>
     <input class="invoer" [(ngModel)]="leerlingAanmaken.tussenvoegsel" placeholder="Tussenvoegsel"><br>
     <input class="invoer" [(ngModel)]="leerlingAanmaken.achternaam" placeholder="Achternaam"><br>
     <input class="invoer" [(ngModel)]="leerlingAanmaken.gebruikersnaam" placeholder="Gebruikersnaam"><br>
-    <input class="invoer" type ="password" [(ngModel)]="leerlingAanmaken.wachtwoord" placeholder="Wachtwoord"><br>
+    <input class="invoer" [(ngModel)]="leerlingAanmaken.wachtwoord" placeholder="Wachtwoord"><br>
     <label class="button" id="opslaan">
-    <a (click)="postLeerling()">Opslaan</a>
+    <a (click)="postLeerling()">Leerling opslaan</a>
     </label>
+
 </div>

@@ -10,6 +10,7 @@ import { LeerlingOverzichtComponent }    from "app/docent/leerlingoverzicht.comp
 import { LogoutComponent }               from "app/home/logout.component";
 import { LoginComponent }                from "app/home/login.component";
 import { LeerlingAanmakenComponent }     from "app/docent/leerlingaanmaken.component";
+import { DocentAanmakenComponent }       from "app/docent/docentaanmaken.component";
 import { VerzoekComponent }              from "app/verzoek/verzoek.component";
 import { MuziekstukComponent }           from "app/muziekstuk/muziekstuk.component";
 import { MuziekstukoverzichtComponent }  from "app/muziekstuk/muziekstukoverzicht.component";
@@ -35,6 +36,7 @@ export const routes: Routes = [
 
       { path: 'leerlingoverzicht'       ,   component: LeerlingOverzichtComponent     },
       { path: 'leerlingaanmaken'        ,   component: LeerlingAanmakenComponent      },
+      { path: 'docentaanmaken'          ,   component: DocentAanmakenComponent        },
       { path: 'muziekupload'            ,   component: MuziekstukComponent            },
       { path: 'muziekoverzicht'         ,   component: MuziekstukoverzichtComponent   },
   ]},

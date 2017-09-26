@@ -23,6 +23,7 @@ import { MuziekstukoverzichtComponent } from "./muziekstuk/muziekstukoverzicht.c
 import { AppGlobalService }             from './app.global.service';
 import { CompositieComponent }          from './compositie/compositie.component';
 import { CompositieComponent2 }         from './compositie2/compositie2.component'; // tijdelijk om code Rosalynn in ere te houden.
+import { DocentAanmakenComponent }      from './docent/docentaanmaken.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { CompositieComponent2 }         from './compositie2/compositie2.componen
     LogoutComponent,
     NotenbalkComponent,
     LeerlingAanmakenComponent,
+    DocentAanmakenComponent,
     VerzoekComponent,
     MuziekstukComponent,
     MuziekstukoverzichtComponent,
