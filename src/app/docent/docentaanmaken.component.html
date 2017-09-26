@@ -1,0 +1,14 @@
+<div>
+
+    <h1>Nieuwe docent aanmaken</h1>
+
+    <input class="invoer" [(ngModel)]="docentAanmaken.voornaam" placeholder="Voornaam"><br>
+    <input class="invoer" [(ngModel)]="docentAanmaken.tussenvoegsel" placeholder="Tussenvoegsel"><br>
+    <input class="invoer" [(ngModel)]="docentAanmaken.achternaam" placeholder="Achternaam"><br>
+    <input class="invoer" [(ngModel)]="docentAanmaken.gebruikersnaam" placeholder="Gebruikersnaam"><br>
+    <input class="invoer" [(ngModel)]="docentAanmaken.wachtwoord" placeholder="Wachtwoord"><br>
+    <label class="button" id="opslaan">
+    <a (click)="postDocent()">Opslaan</a>
+    </label>
+
+</div>
