@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { Leerling } from '../leerling/leerling';
-import { Docent } from '../docent/docent'; import { LeerlingaanmakenService } from './leerlingaanmaken.service';
+import { LeerlingaanmakenService } from './leerlingaanmaken.service';
 
 @Component({
   selector: 'leerlingaanmaken',
